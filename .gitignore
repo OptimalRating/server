@@ -14,5 +14,5 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .editorconfig
-public/.well-knownserviceAccountKey.json
+public/.well-knownserviceAccountKey.json 
 
