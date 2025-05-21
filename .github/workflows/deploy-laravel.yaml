@@ -13,24 +13,32 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Set up PHP
+      - name: Set up PHP 8.1 (for other steps)
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'  # Update to your PHP version
-          extensions: mbstring, bcmath, zip, pdo_mysql  # Add more extensions if needed
+          php-version: '8.1'
+          extensions: mbstring, bcmath, zip, pdo_mysql
+
+      - name: Set up PHP 7.1 for Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.1'
+          extensions: mbstring, bcmath, zip, pdo_mysql
 
       - name: Set up Composer
         run: |
           curl -sS https://getcomposer.org/installer | php
           mv composer.phar /usr/local/bin/composer
 
-      - name: Install PHP Dependencies
+      - name: Install PHP Dependencies with PHP 7.1
         run: |
+          # Set PHP 7.1 for Composer install
+          sudo update-alternatives --set php /usr/bin/php7.1
           composer install --no-interaction --prefer-dist --optimize-autoloader
 
-      - name: Run Laravel Linting (PHPStan or PHPCS)
+      - name: Run Laravel Linting (optional)
         run: |
-          # You can optionally run static analysis or linting tools like PHPStan or PHPCS
+          # Run PHPStan or PHPCS for linting
           # composer require --dev phpstan/phpstan
           # ./vendor/bin/phpstan analyse
           # or use PHPCS
@@ -51,7 +59,7 @@ jobs:
               git clone https://github.com/OptimalRating/laravel-app.git /var/www/html/production/server/
             fi
 
-            cd /var/www/html/production/server/
+            cd /var/www/html/production/server
 
             # Pull the latest code from GitHub
             git pull origin main
@@ -76,4 +84,3 @@ jobs:
 
             # Optionally, if you're using queue workers:
             sudo php artisan queue:restart
-
