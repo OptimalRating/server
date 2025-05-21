@@ -1,0 +1,79 @@
+name: Deploy Laravel via Password SSH
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'  # Update to your PHP version
+          extensions: mbstring, bcmath, zip, pdo_mysql  # Add more extensions if needed
+
+      - name: Set up Composer
+        run: |
+          curl -sS https://getcomposer.org/installer | php
+          mv composer.phar /usr/local/bin/composer
+
+      - name: Install PHP Dependencies
+        run: |
+          composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Run Laravel Linting (PHPStan or PHPCS)
+        run: |
+          # You can optionally run static analysis or linting tools like PHPStan or PHPCS
+          # composer require --dev phpstan/phpstan
+          # ./vendor/bin/phpstan analyse
+          # or use PHPCS
+          # composer require --dev squizlabs/php_codesniffer
+          # ./vendor/bin/phpcs
+
+      - name: Deploy with SSH and Password
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: |
+            echo "Deploying Laravel project..."
+            
+            # Navigate to the deployment folder
+            if [ ! -d "/var/www/html/production/server/.git" ]; then
+              git clone https://github.com/OptimalRating/laravel-app.git /var/www/html/production/server/
+            fi
+
+            cd /var/www/html/production/server/
+
+            # Pull the latest code from GitHub
+            git pull origin main
+
+            # Install PHP dependencies on the server
+            composer install --no-interaction --prefer-dist --optimize-autoloader
+
+            # Run Laravel migrations if required
+            php artisan migrate --force
+
+            # Clear and cache configurations, routes, and views
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+
+            # Set appropriate permissions for storage and cache folders
+            sudo chown -R www-data:www-data /var/www/html/laravel-app/storage
+            sudo chown -R www-data:www-data /var/www/html/laravel-app/bootstrap/cache
+
+            # Restart the web server (if using supervisor, apache, or nginx)
+            sudo service apache2 restart  # or use nginx, supervisor, pm2, etc.
+
+            # Optionally, if you're using queue workers:
+            sudo php artisan queue:restart
+
