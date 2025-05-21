@@ -1,0 +1,188 @@
+msg.info.register.success:
+  tr: 'Üyelik Başarılı.'
+msg.error.phone.number.not.found:
+  tr: 'Telefon numarası giriniz.'
+msg.success.send.sms.success:
+  tr: 'Doğrulama kodu gönderildi.'
+msg.error.send.sms.error:
+  tr: 'Doğrulama kodu gönderilemedi.'
+msg.success.list.cities:
+  tr: 'İlçe listesi.'
+msg.city.created:
+  tr: 'İlçe oluşturuldu'
+
+msg.error.occured:
+  tr: 'Bir sorun oluştu'
+
+msg.error.name.required:
+  tr: 'Adınız ve Soyadınız alanını boş geçemezsiniz'
+
+msg.error.phone_number.required:
+  tr: 'Telefon numarası alanını boş geçemezsiniz'
+
+msg.error.sms_verify_code.required:
+  tr: 'Doğrulama kodu alanını boş geçemezsiniz'
+
+msg.error.mail.required:
+  tr: 'E-Posta alanını boş geçemezsiniz'
+
+msg.error.password.required:
+  tr: 'Şfre kodu alanını boş geçemezsiniz'
+
+msg.error.send.sms.verify:
+  tr: 'Doğrulama kodu gönderilirken bir hata oluştu'
+
+msg.info.send.verify.sms.success:
+  tr: 'Doğrulama kodu başarıyla gönderildi'
+
+msg.error.invalid_credentials:
+  tr: 'Kullanıcı adı veya şifre hatalı.'
+
+msg.error.not_country_category:
+  tr: 'Bu ülkenin kategorisine ekleme yapamazsınız'
+
+msg.error.not_country_mark:
+  tr: 'Bu ülkenin anketlerine oy veremezsiniz.'
+
+msg.error.not_country_choice:
+  tr: 'Bu ülkenin anketlerine aday ekleyemezsiniz'
+
+lbl.name:
+  tr: 'Adınız'
+
+
+lbl.middle_name:
+  tr: 'Orta adınız'
+
+lbl.surname:
+  tr: 'Soyadınız'
+
+
+lbl.phone_number:
+  tr: 'Telefon numaranız'
+
+lbl.sms_verify_code:
+  tr: 'Doğrulama kodu'
+
+lbl.send_verify_sms:
+  tr: 'Doğrulama kodu gönder'
+
+lbl.user_email:
+  tr: 'E-Posta Adresiniz'
+
+lbl.user_password:
+  tr: 'Şifreniz'
+
+lbl.login:
+  tr: 'Giriş yap'
+
+lbl.register:
+  tr: 'Kayıt ol'
+
+lbl.cancel:
+  tr: 'İptal'
+
+lbl.do_you_want_add_survey:
+  tr: 'Anket eklemek ister misiniz?'
+
+lbl.add_new_item:
+  tr: 'Yeni bir seçenek ekle'
+
+lbl.comments:
+  tr: 'Yorumlar'
+
+lbl.select_category:
+  tr: 'Üst kategori seçiniz'
+
+lbl.sub_category_name:
+  tr: 'Alt kategori adı'
+
+lbl.save:
+  tr: 'Kaydet'
+
+lbl.new_category:
+  tr: 'Yeni Kategori'
+
+lbl.my_profile:
+  tr: 'Profilim'
+
+lbl.my_friend:
+  tr: 'Arkadaşlar'
+
+lbl.chat:
+  tr: 'Sohbet'
+
+lbl.logout:
+  tr: 'Çıkış'
+
+lbl.profile:
+  tr: 'Profil'
+
+lbl.country:
+  tr: 'Ülkeler'
+
+lbl.profile_verify:
+  tr: 'Profil Doğrulama'
+
+lbl.profile_verify_message:
+  tr: 'Oy vermek yorum yapabilmek için profil bilgilerinizi giriniz.'
+
+lbl.profile_image:
+  tr: 'Profil resmi'
+
+lbl.gender:
+  tr: 'Cinsiyet'
+
+lbl.education:
+  tr: 'Öğrenim Durumu'
+
+lbl.city:
+  tr: 'Şehir'
+
+lbl.occupation:
+  tr: 'Meslek'
+
+lbl.marital_status:
+  tr: 'Medeni Durum'
+
+lbl.about_me:
+  tr: 'Hakkımda'
+
+lbl.birth_date:
+  tr: 'Doğum Tarihi'
+
+lbl.upload_image:
+  tr: 'Resim Yükle'
+
+lbl.username:
+  tr: 'Kullanıcı Adı'
+
+msg.success.update.phone_number:
+  tr: 'Telefon numarası başarıyla güncellendi'
+
+lbl.profile_photo_info:
+  tr: 'Fotoğraf, hesabınızı kişiselleştirmenize yardımcı olur'
+
+lbl.profile_info:
+  tr: 'Profil Bilgileri'
+
+lbl.free_sms_info:
+  tr: 'Doğrulama mesajları ücretsizdir tarafınızdan hiç bir ücret tahsis edilmez. Eğer doğrulama mesajını almadıysanız lütfen'
+
+lbl.click_here:
+  tr: 'Buraya Tıkla'
+
+lbl.add_survey:
+  tr: 'Yeni anket'
+
+lbl.survey_title:
+  tr: 'Anket Başlığı'
+
+lbl.survey_description:
+  tr: 'Anket Açıklama'
+
+lbl.marking:
+  tr: 'Puan'
+
+lbl.answer:
+  tr: 'Cevap'

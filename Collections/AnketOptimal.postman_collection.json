@@ -1,0 +1,819 @@
+{
+    "info": {
+        "_postman_id": "39af2afb-85a9-412f-bf6b-ee555a4bafd4",
+        "name": "AnketOptimal",
+        "description": "Anket api",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "CitiesCrud",
+            "item": [
+                {
+                    "name": "http://anket.local/api/cities",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjlkZTk1OTk5Mzg4ZTViOTMwYTJkMjM3ZTVjMzhjYWEyZjA2NDhjYjZkYzJiMWIzNDI4YmNhY2NhZTEyM2ZjNjhlMTg0OTFjM2U3MzU0ZjVhIn0.eyJhdWQiOiIyIiwianRpIjoiOWRlOTU5OTkzODhlNWI5MzBhMmQyMzdlNWMzOGNhYTJmMDY0OGNiNmRjMmIxYjM0MjhiY2FjY2FlMTIzZmM2OGUxODQ5MWMzZTczNTRmNWEiLCJpYXQiOjE1NjUyMDQ5OTcsIm5iZiI6MTU2NTIwNDk5NywiZXhwIjoxNTY2NTAwOTk3LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.T28Yg8KZH7--q83BdLwfjrp_R3PRSQjTWDGPo_Ew9oTaLXKg2kP4pX_Y6zjdMiOa-L1RMCyiuBamujFuHckbWE9uRf-PfOGig4lofBPwSCeM33wodQaoKZXb5EFtNOhDMiDUqaB7K3QmQ_YI4jb2WsYiA3wL8WmLYNbQj0lVVqv3Ou4FZBz0ImT44mVV0_D0G0STOwgqJWiKaHHWFoXzOo4ixj0Wv3DUuhQopDj0UD0N1FZ-H-3TLQat6famA0VL_Whso7YDS3qQKAPE-zDE2m5L6pEcYMBYkhkrP4jJoApENYJLrDdpc2zdBtzhFWeRG7kupR6FsJdGIbhGXSmhGkGmhSKnHNvZndB7-2t27qB9mrZJZIdZzRx7nFQW4OJiQCvfnT3WrQN7CiWFnjuBTm-SFaZu5QauSirk6iHLO-YaKLXF8hLVGJBAKKJRZtwN3pe0J0Dn_b1CAKsizQIRhe05xvrjy9ehElRvZzXB9p7ULyFYVY5mOD5lbqbrk6gm4se4oSBqyYsFEAkPO-0wQ4BVKOaGZCtsY-OamtNxISRgk4Xn5EDE3qAlec2lr0DxX5px3pblEtAIwpksI_FvenvioMKzqrmcLtDK7CZMppbgd5E3W3MSxQ81YxB3w86s6m1PvOgrLe4Idq3fV7eWm78sBFoBdF-vbmMJJ0OW1lI",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"name\": \"Mardin\",\n\t\"order\": 1\n}"
+                        },
+                        "url": {
+                            "raw": "http://anket.local/api/cities",
+                            "protocol": "http",
+                            "host": [
+                                "anket",
+                                "local"
+                            ],
+                            "path": [
+                                "api",
+                                "cities"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "http://anket.local/api/cities",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjlkZTk1OTk5Mzg4ZTViOTMwYTJkMjM3ZTVjMzhjYWEyZjA2NDhjYjZkYzJiMWIzNDI4YmNhY2NhZTEyM2ZjNjhlMTg0OTFjM2U3MzU0ZjVhIn0.eyJhdWQiOiIyIiwianRpIjoiOWRlOTU5OTkzODhlNWI5MzBhMmQyMzdlNWMzOGNhYTJmMDY0OGNiNmRjMmIxYjM0MjhiY2FjY2FlMTIzZmM2OGUxODQ5MWMzZTczNTRmNWEiLCJpYXQiOjE1NjUyMDQ5OTcsIm5iZiI6MTU2NTIwNDk5NywiZXhwIjoxNTY2NTAwOTk3LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.T28Yg8KZH7--q83BdLwfjrp_R3PRSQjTWDGPo_Ew9oTaLXKg2kP4pX_Y6zjdMiOa-L1RMCyiuBamujFuHckbWE9uRf-PfOGig4lofBPwSCeM33wodQaoKZXb5EFtNOhDMiDUqaB7K3QmQ_YI4jb2WsYiA3wL8WmLYNbQj0lVVqv3Ou4FZBz0ImT44mVV0_D0G0STOwgqJWiKaHHWFoXzOo4ixj0Wv3DUuhQopDj0UD0N1FZ-H-3TLQat6famA0VL_Whso7YDS3qQKAPE-zDE2m5L6pEcYMBYkhkrP4jJoApENYJLrDdpc2zdBtzhFWeRG7kupR6FsJdGIbhGXSmhGkGmhSKnHNvZndB7-2t27qB9mrZJZIdZzRx7nFQW4OJiQCvfnT3WrQN7CiWFnjuBTm-SFaZu5QauSirk6iHLO-YaKLXF8hLVGJBAKKJRZtwN3pe0J0Dn_b1CAKsizQIRhe05xvrjy9ehElRvZzXB9p7ULyFYVY5mOD5lbqbrk6gm4se4oSBqyYsFEAkPO-0wQ4BVKOaGZCtsY-OamtNxISRgk4Xn5EDE3qAlec2lr0DxX5px3pblEtAIwpksI_FvenvioMKzqrmcLtDK7CZMppbgd5E3W3MSxQ81YxB3w86s6m1PvOgrLe4Idq3fV7eWm78sBFoBdF-vbmMJJ0OW1lI",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"name\": \"Nevşehir\",\n\t\"order\": 8\n}"
+                        },
+                        "url": {
+                            "raw": "http://anket.local/api/cities",
+                            "protocol": "http",
+                            "host": [
+                                "anket",
+                                "local"
+                            ],
+                            "path": [
+                                "api",
+                                "cities"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "http://anket.local/api/cities/5",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjlkZTk1OTk5Mzg4ZTViOTMwYTJkMjM3ZTVjMzhjYWEyZjA2NDhjYjZkYzJiMWIzNDI4YmNhY2NhZTEyM2ZjNjhlMTg0OTFjM2U3MzU0ZjVhIn0.eyJhdWQiOiIyIiwianRpIjoiOWRlOTU5OTkzODhlNWI5MzBhMmQyMzdlNWMzOGNhYTJmMDY0OGNiNmRjMmIxYjM0MjhiY2FjY2FlMTIzZmM2OGUxODQ5MWMzZTczNTRmNWEiLCJpYXQiOjE1NjUyMDQ5OTcsIm5iZiI6MTU2NTIwNDk5NywiZXhwIjoxNTY2NTAwOTk3LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.T28Yg8KZH7--q83BdLwfjrp_R3PRSQjTWDGPo_Ew9oTaLXKg2kP4pX_Y6zjdMiOa-L1RMCyiuBamujFuHckbWE9uRf-PfOGig4lofBPwSCeM33wodQaoKZXb5EFtNOhDMiDUqaB7K3QmQ_YI4jb2WsYiA3wL8WmLYNbQj0lVVqv3Ou4FZBz0ImT44mVV0_D0G0STOwgqJWiKaHHWFoXzOo4ixj0Wv3DUuhQopDj0UD0N1FZ-H-3TLQat6famA0VL_Whso7YDS3qQKAPE-zDE2m5L6pEcYMBYkhkrP4jJoApENYJLrDdpc2zdBtzhFWeRG7kupR6FsJdGIbhGXSmhGkGmhSKnHNvZndB7-2t27qB9mrZJZIdZzRx7nFQW4OJiQCvfnT3WrQN7CiWFnjuBTm-SFaZu5QauSirk6iHLO-YaKLXF8hLVGJBAKKJRZtwN3pe0J0Dn_b1CAKsizQIRhe05xvrjy9ehElRvZzXB9p7ULyFYVY5mOD5lbqbrk6gm4se4oSBqyYsFEAkPO-0wQ4BVKOaGZCtsY-OamtNxISRgk4Xn5EDE3qAlec2lr0DxX5px3pblEtAIwpksI_FvenvioMKzqrmcLtDK7CZMppbgd5E3W3MSxQ81YxB3w86s6m1PvOgrLe4Idq3fV7eWm78sBFoBdF-vbmMJJ0OW1lI",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"name\": \"Nevşehir\",\n\t\"order\": 7\n}"
+                        },
+                        "url": {
+                            "raw": "http://anket.local/api/cities/5",
+                            "protocol": "http",
+                            "host": [
+                                "anket",
+                                "local"
+                            ],
+                            "path": [
+                                "api",
+                                "cities",
+                                "5"
+                            ]
+                        },
+                        "description": "ilgili şehrin id si url parametre olarak gönderilmelidir. "
+                    },
+                    "response": []
+                },
+                {
+                    "name": "http://anket.local/api/cities/5",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjlkZTk1OTk5Mzg4ZTViOTMwYTJkMjM3ZTVjMzhjYWEyZjA2NDhjYjZkYzJiMWIzNDI4YmNhY2NhZTEyM2ZjNjhlMTg0OTFjM2U3MzU0ZjVhIn0.eyJhdWQiOiIyIiwianRpIjoiOWRlOTU5OTkzODhlNWI5MzBhMmQyMzdlNWMzOGNhYTJmMDY0OGNiNmRjMmIxYjM0MjhiY2FjY2FlMTIzZmM2OGUxODQ5MWMzZTczNTRmNWEiLCJpYXQiOjE1NjUyMDQ5OTcsIm5iZiI6MTU2NTIwNDk5NywiZXhwIjoxNTY2NTAwOTk3LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.T28Yg8KZH7--q83BdLwfjrp_R3PRSQjTWDGPo_Ew9oTaLXKg2kP4pX_Y6zjdMiOa-L1RMCyiuBamujFuHckbWE9uRf-PfOGig4lofBPwSCeM33wodQaoKZXb5EFtNOhDMiDUqaB7K3QmQ_YI4jb2WsYiA3wL8WmLYNbQj0lVVqv3Ou4FZBz0ImT44mVV0_D0G0STOwgqJWiKaHHWFoXzOo4ixj0Wv3DUuhQopDj0UD0N1FZ-H-3TLQat6famA0VL_Whso7YDS3qQKAPE-zDE2m5L6pEcYMBYkhkrP4jJoApENYJLrDdpc2zdBtzhFWeRG7kupR6FsJdGIbhGXSmhGkGmhSKnHNvZndB7-2t27qB9mrZJZIdZzRx7nFQW4OJiQCvfnT3WrQN7CiWFnjuBTm-SFaZu5QauSirk6iHLO-YaKLXF8hLVGJBAKKJRZtwN3pe0J0Dn_b1CAKsizQIRhe05xvrjy9ehElRvZzXB9p7ULyFYVY5mOD5lbqbrk6gm4se4oSBqyYsFEAkPO-0wQ4BVKOaGZCtsY-OamtNxISRgk4Xn5EDE3qAlec2lr0DxX5px3pblEtAIwpksI_FvenvioMKzqrmcLtDK7CZMppbgd5E3W3MSxQ81YxB3w86s6m1PvOgrLe4Idq3fV7eWm78sBFoBdF-vbmMJJ0OW1lI",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"name\": \"Nevşehir\",\n\t\"order\": 7\n}"
+                        },
+                        "url": {
+                            "raw": "http://anket.local/api/cities/5",
+                            "protocol": "http",
+                            "host": [
+                                "anket",
+                                "local"
+                            ],
+                            "path": [
+                                "api",
+                                "cities",
+                                "5"
+                            ]
+                        },
+                        "description": "Url de gönderilen şehri sildikten sonra ilgili şehri döner"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "CountryCrud",
+            "item": [
+                {
+                    "name": "http://anket.local/api/panel/countries/5",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImQ1ZDAxMjEwNmFmZjE1NWFiYzc1NzJjMDA0NDA2Njc4NWY0MTRjNWRkMDc4YmE5OWNmYmIwY2E5OGM2YWJmODU4ZTIxNTgwZmY3NjZhYzZkIn0.eyJhdWQiOiIyIiwianRpIjoiZDVkMDEyMTA2YWZmMTU1YWJjNzU3MmMwMDQ0MDY2Nzg1ZjQxNGM1ZGQwNzhiYTk5Y2ZiYjBjYTk4YzZhYmY4NThlMjE1ODBmZjc2NmFjNmQiLCJpYXQiOjE1NjYzMzM3OTcsIm5iZiI6MTU2NjMzMzc5NywiZXhwIjoxNTY3NjI5Nzk3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.SEWqnfloS1mGa0G6VdnkfO_96G5mI8fq3uyEIGB1VvoqcY00H_6o4mrSaSU0x56Y6xjaAE-wYADMbmFzTAj_v0MaEwHwca-jb3w2k5D9AQ8pVAhQxxnLQbJtgxCGQTeqdziiugp8rc6l5XNVJPg82gmOh63_Wj3N7EH0ksc6Mm51mJD6xkePwPrVcNJtSnrm3cHXTtCnvNWfgjGz44CKB2_VB4cejOsQUIje14JnPJv-Br1UrR8PJbYFYBYm5g7eGL_Ah0e4VIJLAUxaCCEh1nQeyiXUXnJyx_A8XLc24bG5MmJgyQJlbjwXySjpxnpbSjKbjR0ixzxhNVfGOM0hS_y0KxDcpRVt0jN3zS3XHrpcvBUq1_8lOYzqQucim_mMt6FheuixisDvaGn-4VUZqIIg8gheU8OkOgWNQ7qiBG8sZa3SZLdgoGbszb3GsJtWENj-F-jmwd5XXPyBM792PMtgIdW_n4q0snGs24DrCmXp0Q784l95QSHl94GedKAC8MGuTz-kLm-kdRAJ6ohbgEyHLZxOkDUxjAJOV6EQ_5JJoTY5oJm5wtBZWkenyXmdMwbZ5tWgjmO5oT05Ece9PAPgwQ73bJi6iLuUEgyNVvXK4eAATdhYNJgHh5NhgR74PyzF9W-8XUoNNuMPJvTl6yi70MqHe8N3evJGsrAzuPw",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"name_en\": \"Germany\",\n\t\"name\": \"Deutschland\",\n\t\"flag\": \"germany.png\",\n\t\"code\": \"de\",\n\t\"status\": \"active\",\n\t\"sort_order\": 2,\n\t\"email\":\"germany_admin@optimalrating.com\",\n\t\"password\":\"123456\",\n\t\"password_confirmation\":\"123456\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://anket.local/api/panel/countries/5",
+                            "protocol": "http",
+                            "host": [
+                                "anket",
+                                "local"
+                            ],
+                            "path": [
+                                "api",
+                                "panel",
+                                "countries",
+                                "5"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "http://anket.local/api/panel/countries",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImQ1ZDAxMjEwNmFmZjE1NWFiYzc1NzJjMDA0NDA2Njc4NWY0MTRjNWRkMDc4YmE5OWNmYmIwY2E5OGM2YWJmODU4ZTIxNTgwZmY3NjZhYzZkIn0.eyJhdWQiOiIyIiwianRpIjoiZDVkMDEyMTA2YWZmMTU1YWJjNzU3MmMwMDQ0MDY2Nzg1ZjQxNGM1ZGQwNzhiYTk5Y2ZiYjBjYTk4YzZhYmY4NThlMjE1ODBmZjc2NmFjNmQiLCJpYXQiOjE1NjYzMzM3OTcsIm5iZiI6MTU2NjMzMzc5NywiZXhwIjoxNTY3NjI5Nzk3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.SEWqnfloS1mGa0G6VdnkfO_96G5mI8fq3uyEIGB1VvoqcY00H_6o4mrSaSU0x56Y6xjaAE-wYADMbmFzTAj_v0MaEwHwca-jb3w2k5D9AQ8pVAhQxxnLQbJtgxCGQTeqdziiugp8rc6l5XNVJPg82gmOh63_Wj3N7EH0ksc6Mm51mJD6xkePwPrVcNJtSnrm3cHXTtCnvNWfgjGz44CKB2_VB4cejOsQUIje14JnPJv-Br1UrR8PJbYFYBYm5g7eGL_Ah0e4VIJLAUxaCCEh1nQeyiXUXnJyx_A8XLc24bG5MmJgyQJlbjwXySjpxnpbSjKbjR0ixzxhNVfGOM0hS_y0KxDcpRVt0jN3zS3XHrpcvBUq1_8lOYzqQucim_mMt6FheuixisDvaGn-4VUZqIIg8gheU8OkOgWNQ7qiBG8sZa3SZLdgoGbszb3GsJtWENj-F-jmwd5XXPyBM792PMtgIdW_n4q0snGs24DrCmXp0Q784l95QSHl94GedKAC8MGuTz-kLm-kdRAJ6ohbgEyHLZxOkDUxjAJOV6EQ_5JJoTY5oJm5wtBZWkenyXmdMwbZ5tWgjmO5oT05Ece9PAPgwQ73bJi6iLuUEgyNVvXK4eAATdhYNJgHh5NhgR74PyzF9W-8XUoNNuMPJvTl6yi70MqHe8N3evJGsrAzuPw",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"name_en\": \"England\",\n\t\"name\": \"England\",\n\t\"flag\": \"england.png\",\n\t\"code\": \"en\",\n\t\"status\": \"active\",\n\t\"sort_order\": 2,\n\t\"email\":\"england_admin@optimalrating.com\",\n\t\"password\":\"123456\",\n\t\"password_confirmation\":\"123456\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://anket.local/api/panel/countries",
+                            "protocol": "http",
+                            "host": [
+                                "anket",
+                                "local"
+                            ],
+                            "path": [
+                                "api",
+                                "panel",
+                                "countries"
+                            ]
+                        },
+                        "description": "Ülkeyi ve bu ülkeyi yönetecek ülke adminini üretir. Ülke adminine ait email ve şifre de zorunlu parametrelerdir."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "http://anket.local/api/panel/countries/6",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImQ1ZDAxMjEwNmFmZjE1NWFiYzc1NzJjMDA0NDA2Njc4NWY0MTRjNWRkMDc4YmE5OWNmYmIwY2E5OGM2YWJmODU4ZTIxNTgwZmY3NjZhYzZkIn0.eyJhdWQiOiIyIiwianRpIjoiZDVkMDEyMTA2YWZmMTU1YWJjNzU3MmMwMDQ0MDY2Nzg1ZjQxNGM1ZGQwNzhiYTk5Y2ZiYjBjYTk4YzZhYmY4NThlMjE1ODBmZjc2NmFjNmQiLCJpYXQiOjE1NjYzMzM3OTcsIm5iZiI6MTU2NjMzMzc5NywiZXhwIjoxNTY3NjI5Nzk3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.SEWqnfloS1mGa0G6VdnkfO_96G5mI8fq3uyEIGB1VvoqcY00H_6o4mrSaSU0x56Y6xjaAE-wYADMbmFzTAj_v0MaEwHwca-jb3w2k5D9AQ8pVAhQxxnLQbJtgxCGQTeqdziiugp8rc6l5XNVJPg82gmOh63_Wj3N7EH0ksc6Mm51mJD6xkePwPrVcNJtSnrm3cHXTtCnvNWfgjGz44CKB2_VB4cejOsQUIje14JnPJv-Br1UrR8PJbYFYBYm5g7eGL_Ah0e4VIJLAUxaCCEh1nQeyiXUXnJyx_A8XLc24bG5MmJgyQJlbjwXySjpxnpbSjKbjR0ixzxhNVfGOM0hS_y0KxDcpRVt0jN3zS3XHrpcvBUq1_8lOYzqQucim_mMt6FheuixisDvaGn-4VUZqIIg8gheU8OkOgWNQ7qiBG8sZa3SZLdgoGbszb3GsJtWENj-F-jmwd5XXPyBM792PMtgIdW_n4q0snGs24DrCmXp0Q784l95QSHl94GedKAC8MGuTz-kLm-kdRAJ6ohbgEyHLZxOkDUxjAJOV6EQ_5JJoTY5oJm5wtBZWkenyXmdMwbZ5tWgjmO5oT05Ece9PAPgwQ73bJi6iLuUEgyNVvXK4eAATdhYNJgHh5NhgR74PyzF9W-8XUoNNuMPJvTl6yi70MqHe8N3evJGsrAzuPw",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"name_en\": \"England\",\n\t\"name\": \"Englands\",\n\t\"flag\": \"england.png\",\n\t\"code\": \"en\",\n\t\"status\": \"active\",\n\t\"sort_order\": 2,\n\t\"email\":\"england_admin@optimalrating.com\",\n\t\"password\":\"123456\",\n\t\"password_confirmation\":\"123456\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://anket.local/api/panel/countries/6",
+                            "protocol": "http",
+                            "host": [
+                                "anket",
+                                "local"
+                            ],
+                            "path": [
+                                "api",
+                                "panel",
+                                "countries",
+                                "6"
+                            ]
+                        },
+                        "description": "User güncellenmemektedir. Yalnızca country bilgileri güncellenebilir."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "http://anket.local/api/panel/countries/6",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImQ1ZDAxMjEwNmFmZjE1NWFiYzc1NzJjMDA0NDA2Njc4NWY0MTRjNWRkMDc4YmE5OWNmYmIwY2E5OGM2YWJmODU4ZTIxNTgwZmY3NjZhYzZkIn0.eyJhdWQiOiIyIiwianRpIjoiZDVkMDEyMTA2YWZmMTU1YWJjNzU3MmMwMDQ0MDY2Nzg1ZjQxNGM1ZGQwNzhiYTk5Y2ZiYjBjYTk4YzZhYmY4NThlMjE1ODBmZjc2NmFjNmQiLCJpYXQiOjE1NjYzMzM3OTcsIm5iZiI6MTU2NjMzMzc5NywiZXhwIjoxNTY3NjI5Nzk3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.SEWqnfloS1mGa0G6VdnkfO_96G5mI8fq3uyEIGB1VvoqcY00H_6o4mrSaSU0x56Y6xjaAE-wYADMbmFzTAj_v0MaEwHwca-jb3w2k5D9AQ8pVAhQxxnLQbJtgxCGQTeqdziiugp8rc6l5XNVJPg82gmOh63_Wj3N7EH0ksc6Mm51mJD6xkePwPrVcNJtSnrm3cHXTtCnvNWfgjGz44CKB2_VB4cejOsQUIje14JnPJv-Br1UrR8PJbYFYBYm5g7eGL_Ah0e4VIJLAUxaCCEh1nQeyiXUXnJyx_A8XLc24bG5MmJgyQJlbjwXySjpxnpbSjKbjR0ixzxhNVfGOM0hS_y0KxDcpRVt0jN3zS3XHrpcvBUq1_8lOYzqQucim_mMt6FheuixisDvaGn-4VUZqIIg8gheU8OkOgWNQ7qiBG8sZa3SZLdgoGbszb3GsJtWENj-F-jmwd5XXPyBM792PMtgIdW_n4q0snGs24DrCmXp0Q784l95QSHl94GedKAC8MGuTz-kLm-kdRAJ6ohbgEyHLZxOkDUxjAJOV6EQ_5JJoTY5oJm5wtBZWkenyXmdMwbZ5tWgjmO5oT05Ece9PAPgwQ73bJi6iLuUEgyNVvXK4eAATdhYNJgHh5NhgR74PyzF9W-8XUoNNuMPJvTl6yi70MqHe8N3evJGsrAzuPw",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"name_en\": \"England\",\n\t\"name\": \"Englands\",\n\t\"flag\": \"england.png\",\n\t\"code\": \"en\",\n\t\"status\": \"active\",\n\t\"sort_order\": 2,\n\t\"email\":\"england_admin@optimalrating.com\",\n\t\"password\":\"123456\",\n\t\"password_confirmation\":\"123456\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://anket.local/api/panel/countries/6",
+                            "protocol": "http",
+                            "host": [
+                                "anket",
+                                "local"
+                            ],
+                            "path": [
+                                "api",
+                                "panel",
+                                "countries",
+                                "6"
+                            ]
+                        },
+                        "description": "Edit için bir ülkenin detaylarını getirir."
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "CategoryCrud",
+            "item": [
+                {
+                    "name": "http://anket.local/api/panel/categories",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImQ1ZDAxMjEwNmFmZjE1NWFiYzc1NzJjMDA0NDA2Njc4NWY0MTRjNWRkMDc4YmE5OWNmYmIwY2E5OGM2YWJmODU4ZTIxNTgwZmY3NjZhYzZkIn0.eyJhdWQiOiIyIiwianRpIjoiZDVkMDEyMTA2YWZmMTU1YWJjNzU3MmMwMDQ0MDY2Nzg1ZjQxNGM1ZGQwNzhiYTk5Y2ZiYjBjYTk4YzZhYmY4NThlMjE1ODBmZjc2NmFjNmQiLCJpYXQiOjE1NjYzMzM3OTcsIm5iZiI6MTU2NjMzMzc5NywiZXhwIjoxNTY3NjI5Nzk3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.SEWqnfloS1mGa0G6VdnkfO_96G5mI8fq3uyEIGB1VvoqcY00H_6o4mrSaSU0x56Y6xjaAE-wYADMbmFzTAj_v0MaEwHwca-jb3w2k5D9AQ8pVAhQxxnLQbJtgxCGQTeqdziiugp8rc6l5XNVJPg82gmOh63_Wj3N7EH0ksc6Mm51mJD6xkePwPrVcNJtSnrm3cHXTtCnvNWfgjGz44CKB2_VB4cejOsQUIje14JnPJv-Br1UrR8PJbYFYBYm5g7eGL_Ah0e4VIJLAUxaCCEh1nQeyiXUXnJyx_A8XLc24bG5MmJgyQJlbjwXySjpxnpbSjKbjR0ixzxhNVfGOM0hS_y0KxDcpRVt0jN3zS3XHrpcvBUq1_8lOYzqQucim_mMt6FheuixisDvaGn-4VUZqIIg8gheU8OkOgWNQ7qiBG8sZa3SZLdgoGbszb3GsJtWENj-F-jmwd5XXPyBM792PMtgIdW_n4q0snGs24DrCmXp0Q784l95QSHl94GedKAC8MGuTz-kLm-kdRAJ6ohbgEyHLZxOkDUxjAJOV6EQ_5JJoTY5oJm5wtBZWkenyXmdMwbZ5tWgjmO5oT05Ece9PAPgwQ73bJi6iLuUEgyNVvXK4eAATdhYNJgHh5NhgR74PyzF9W-8XUoNNuMPJvTl6yi70MqHe8N3evJGsrAzuPw",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"name\": \"Sport\",\n\t\"code\": \"category.sport\",\n\t\"description\": \"Sport is a good hobby\",\n\t\"status\": \"active\",\n\t\"sort_order\": 1\n}"
+                        },
+                        "url": {
+                            "raw": "http://anket.local/api/panel/categories",
+                            "protocol": "http",
+                            "host": [
+                                "anket",
+                                "local"
+                            ],
+                            "path": [
+                                "api",
+                                "panel",
+                                "categories"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "http://anket.local/api/panel/categories/1",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImQ1ZDAxMjEwNmFmZjE1NWFiYzc1NzJjMDA0NDA2Njc4NWY0MTRjNWRkMDc4YmE5OWNmYmIwY2E5OGM2YWJmODU4ZTIxNTgwZmY3NjZhYzZkIn0.eyJhdWQiOiIyIiwianRpIjoiZDVkMDEyMTA2YWZmMTU1YWJjNzU3MmMwMDQ0MDY2Nzg1ZjQxNGM1ZGQwNzhiYTk5Y2ZiYjBjYTk4YzZhYmY4NThlMjE1ODBmZjc2NmFjNmQiLCJpYXQiOjE1NjYzMzM3OTcsIm5iZiI6MTU2NjMzMzc5NywiZXhwIjoxNTY3NjI5Nzk3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.SEWqnfloS1mGa0G6VdnkfO_96G5mI8fq3uyEIGB1VvoqcY00H_6o4mrSaSU0x56Y6xjaAE-wYADMbmFzTAj_v0MaEwHwca-jb3w2k5D9AQ8pVAhQxxnLQbJtgxCGQTeqdziiugp8rc6l5XNVJPg82gmOh63_Wj3N7EH0ksc6Mm51mJD6xkePwPrVcNJtSnrm3cHXTtCnvNWfgjGz44CKB2_VB4cejOsQUIje14JnPJv-Br1UrR8PJbYFYBYm5g7eGL_Ah0e4VIJLAUxaCCEh1nQeyiXUXnJyx_A8XLc24bG5MmJgyQJlbjwXySjpxnpbSjKbjR0ixzxhNVfGOM0hS_y0KxDcpRVt0jN3zS3XHrpcvBUq1_8lOYzqQucim_mMt6FheuixisDvaGn-4VUZqIIg8gheU8OkOgWNQ7qiBG8sZa3SZLdgoGbszb3GsJtWENj-F-jmwd5XXPyBM792PMtgIdW_n4q0snGs24DrCmXp0Q784l95QSHl94GedKAC8MGuTz-kLm-kdRAJ6ohbgEyHLZxOkDUxjAJOV6EQ_5JJoTY5oJm5wtBZWkenyXmdMwbZ5tWgjmO5oT05Ece9PAPgwQ73bJi6iLuUEgyNVvXK4eAATdhYNJgHh5NhgR74PyzF9W-8XUoNNuMPJvTl6yi70MqHe8N3evJGsrAzuPw",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"name\": \"Sport\",\n\t\"code\": \"category.sport\",\n\t\"description\": \"Sport is a good hobby\",\n\t\"status\": \"active\",\n\t\"sort_order\": 1\n}"
+                        },
+                        "url": {
+                            "raw": "http://anket.local/api/panel/categories/1",
+                            "protocol": "http",
+                            "host": [
+                                "anket",
+                                "local"
+                            ],
+                            "path": [
+                                "api",
+                                "panel",
+                                "categories",
+                                "1"
+                            ]
+                        },
+                        "description": "Düzenleme ekranında tek kayıt çağırmak için id parametre olarak url de gönderilir"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "http://anket.local/api/panel/categories/1",
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImQ1ZDAxMjEwNmFmZjE1NWFiYzc1NzJjMDA0NDA2Njc4NWY0MTRjNWRkMDc4YmE5OWNmYmIwY2E5OGM2YWJmODU4ZTIxNTgwZmY3NjZhYzZkIn0.eyJhdWQiOiIyIiwianRpIjoiZDVkMDEyMTA2YWZmMTU1YWJjNzU3MmMwMDQ0MDY2Nzg1ZjQxNGM1ZGQwNzhiYTk5Y2ZiYjBjYTk4YzZhYmY4NThlMjE1ODBmZjc2NmFjNmQiLCJpYXQiOjE1NjYzMzM3OTcsIm5iZiI6MTU2NjMzMzc5NywiZXhwIjoxNTY3NjI5Nzk3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.SEWqnfloS1mGa0G6VdnkfO_96G5mI8fq3uyEIGB1VvoqcY00H_6o4mrSaSU0x56Y6xjaAE-wYADMbmFzTAj_v0MaEwHwca-jb3w2k5D9AQ8pVAhQxxnLQbJtgxCGQTeqdziiugp8rc6l5XNVJPg82gmOh63_Wj3N7EH0ksc6Mm51mJD6xkePwPrVcNJtSnrm3cHXTtCnvNWfgjGz44CKB2_VB4cejOsQUIje14JnPJv-Br1UrR8PJbYFYBYm5g7eGL_Ah0e4VIJLAUxaCCEh1nQeyiXUXnJyx_A8XLc24bG5MmJgyQJlbjwXySjpxnpbSjKbjR0ixzxhNVfGOM0hS_y0KxDcpRVt0jN3zS3XHrpcvBUq1_8lOYzqQucim_mMt6FheuixisDvaGn-4VUZqIIg8gheU8OkOgWNQ7qiBG8sZa3SZLdgoGbszb3GsJtWENj-F-jmwd5XXPyBM792PMtgIdW_n4q0snGs24DrCmXp0Q784l95QSHl94GedKAC8MGuTz-kLm-kdRAJ6ohbgEyHLZxOkDUxjAJOV6EQ_5JJoTY5oJm5wtBZWkenyXmdMwbZ5tWgjmO5oT05Ece9PAPgwQ73bJi6iLuUEgyNVvXK4eAATdhYNJgHh5NhgR74PyzF9W-8XUoNNuMPJvTl6yi70MqHe8N3evJGsrAzuPw",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"name\": \"Sport2\",\n\t\"code\": \"category.sport\",\n\t\"description\": \"Sport is a good hobby\",\n\t\"status\": \"active\",\n\t\"sort_order\": 1\n}"
+                        },
+                        "url": {
+                            "raw": "http://anket.local/api/panel/categories/1",
+                            "protocol": "http",
+                            "host": [
+                                "anket",
+                                "local"
+                            ],
+                            "path": [
+                                "api",
+                                "panel",
+                                "categories",
+                                "1"
+                            ]
+                        },
+                        "description": "update işlemi"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "http://anket.local/api/panel/categories",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImQ1ZDAxMjEwNmFmZjE1NWFiYzc1NzJjMDA0NDA2Njc4NWY0MTRjNWRkMDc4YmE5OWNmYmIwY2E5OGM2YWJmODU4ZTIxNTgwZmY3NjZhYzZkIn0.eyJhdWQiOiIyIiwianRpIjoiZDVkMDEyMTA2YWZmMTU1YWJjNzU3MmMwMDQ0MDY2Nzg1ZjQxNGM1ZGQwNzhiYTk5Y2ZiYjBjYTk4YzZhYmY4NThlMjE1ODBmZjc2NmFjNmQiLCJpYXQiOjE1NjYzMzM3OTcsIm5iZiI6MTU2NjMzMzc5NywiZXhwIjoxNTY3NjI5Nzk3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.SEWqnfloS1mGa0G6VdnkfO_96G5mI8fq3uyEIGB1VvoqcY00H_6o4mrSaSU0x56Y6xjaAE-wYADMbmFzTAj_v0MaEwHwca-jb3w2k5D9AQ8pVAhQxxnLQbJtgxCGQTeqdziiugp8rc6l5XNVJPg82gmOh63_Wj3N7EH0ksc6Mm51mJD6xkePwPrVcNJtSnrm3cHXTtCnvNWfgjGz44CKB2_VB4cejOsQUIje14JnPJv-Br1UrR8PJbYFYBYm5g7eGL_Ah0e4VIJLAUxaCCEh1nQeyiXUXnJyx_A8XLc24bG5MmJgyQJlbjwXySjpxnpbSjKbjR0ixzxhNVfGOM0hS_y0KxDcpRVt0jN3zS3XHrpcvBUq1_8lOYzqQucim_mMt6FheuixisDvaGn-4VUZqIIg8gheU8OkOgWNQ7qiBG8sZa3SZLdgoGbszb3GsJtWENj-F-jmwd5XXPyBM792PMtgIdW_n4q0snGs24DrCmXp0Q784l95QSHl94GedKAC8MGuTz-kLm-kdRAJ6ohbgEyHLZxOkDUxjAJOV6EQ_5JJoTY5oJm5wtBZWkenyXmdMwbZ5tWgjmO5oT05Ece9PAPgwQ73bJi6iLuUEgyNVvXK4eAATdhYNJgHh5NhgR74PyzF9W-8XUoNNuMPJvTl6yi70MqHe8N3evJGsrAzuPw",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"name\": \"Economy\",\n\t\"code\": \"category.economy\",\n\t\"description\": \"Economy\",\n\t\"status\": \"active\",\n\t\"sort_order\": 2\n}"
+                        },
+                        "url": {
+                            "raw": "http://anket.local/api/panel/categories",
+                            "protocol": "http",
+                            "host": [
+                                "anket",
+                                "local"
+                            ],
+                            "path": [
+                                "api",
+                                "panel",
+                                "categories"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "http://{{host}}/api/panel/categories/list/pending",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjIwYTM3ODMxOGViZTVjYTUzYjRkNGFiOWE1Yzg1YmU1OGE0YjIzMTFmNmNlYWFmMTQ5MzIzNDVlNzhhOWJiNTgyMjMxNjA2ZGYwNjVlYTg2In0.eyJhdWQiOiIyIiwianRpIjoiMjBhMzc4MzE4ZWJlNWNhNTNiNGQ0YWI5YTVjODViZTU4YTRiMjMxMWY2Y2VhYWYxNDkzMjM0NWU3OGE5YmI1ODIyMzE2MDZkZjA2NWVhODYiLCJpYXQiOjE1Njg3NDE5MzIsIm5iZiI6MTU2ODc0MTkzMiwiZXhwIjoxNTcwMDM3OTMyLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.CqTVRQfca07T0C8I_0UCogXudakl2wr_bNLhrvGr4QKTEVp8EDuSuMrXvap4rW8iaTwbxKrZRHJQG1QuZBrr0v_K4TIvGvU0JfgzK3GUW0KugKhfNn7rcTQBZCdj133qYYfpPdMuJUxGWZYH9FuxFdI7cWIMVNV6N9WCjVey8c9FHnQG3pT9vXBgYvoYGVTkuYpL4WICAF-oxvMOqRYoNc5jQlj3K8XeVum94yLu4CEy95d6ApkfuAFjqgtW4W3P3ZsDek-jBpuYflXn00NujQn_D5dBXzU3OWUR5IlKp3BcknjpYr21F7FHUuOlr_U4KeC97dt9EDyy9oY68A4ZH08gHjikwmy1JTMZsMdU03Hk-1v--SXBmUrtvlweOZGSurGDLYq2yu_qnQe7b9pFQUE2pTx_YefQhl9jr_l2DGKbtXNPmgLIUw7g5M6NuWtMVXyt1GK-sWedusqhT0EtaPk_OrePfrdvdrO5Gqgikx9ngCmQUTtlp70_e9DaZv-gUpogqOj4zzHgWZdwukDPP5TZVT3vaWOXcsnwaJE2R_YaayqmvOvX-y8ronjcE-vVvl9miIGBRrEvlywYPNTeXm5_APOp_6teHoRxBFeJWeMPaSrCpZjBvQ4jrzXgePUujnZjqJrTBHiB5imTCYbzlKhwtYiTjVBbmXML_HqUVcQ",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"name\": \"Stutgart\",\n\t\"country_id\": 1\n}"
+                        },
+                        "url": {
+                            "raw": "http://{{host}}/api/panel/categories/list/pending",
+                            "protocol": "http",
+                            "host": [
+                                "{{host}}"
+                            ],
+                            "path": [
+                                "api",
+                                "panel",
+                                "categories",
+                                "list",
+                                "pending"
+                            ]
+                        },
+                        "description": "hangi ülkenin admini ise o ülke içn bekleyen categorilerin listesini döner"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Dashboard",
+            "item": [
+                {
+                    "name": "http://anket.local/api/panel/dashboard",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "bearer",
+                            "bearer": [
+                                {
+                                    "key": "token",
+                                    "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImQ1ZDAxMjEwNmFmZjE1NWFiYzc1NzJjMDA0NDA2Njc4NWY0MTRjNWRkMDc4YmE5OWNmYmIwY2E5OGM2YWJmODU4ZTIxNTgwZmY3NjZhYzZkIn0.eyJhdWQiOiIyIiwianRpIjoiZDVkMDEyMTA2YWZmMTU1YWJjNzU3MmMwMDQ0MDY2Nzg1ZjQxNGM1ZGQwNzhiYTk5Y2ZiYjBjYTk4YzZhYmY4NThlMjE1ODBmZjc2NmFjNmQiLCJpYXQiOjE1NjYzMzM3OTcsIm5iZiI6MTU2NjMzMzc5NywiZXhwIjoxNTY3NjI5Nzk3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.SEWqnfloS1mGa0G6VdnkfO_96G5mI8fq3uyEIGB1VvoqcY00H_6o4mrSaSU0x56Y6xjaAE-wYADMbmFzTAj_v0MaEwHwca-jb3w2k5D9AQ8pVAhQxxnLQbJtgxCGQTeqdziiugp8rc6l5XNVJPg82gmOh63_Wj3N7EH0ksc6Mm51mJD6xkePwPrVcNJtSnrm3cHXTtCnvNWfgjGz44CKB2_VB4cejOsQUIje14JnPJv-Br1UrR8PJbYFYBYm5g7eGL_Ah0e4VIJLAUxaCCEh1nQeyiXUXnJyx_A8XLc24bG5MmJgyQJlbjwXySjpxnpbSjKbjR0ixzxhNVfGOM0hS_y0KxDcpRVt0jN3zS3XHrpcvBUq1_8lOYzqQucim_mMt6FheuixisDvaGn-4VUZqIIg8gheU8OkOgWNQ7qiBG8sZa3SZLdgoGbszb3GsJtWENj-F-jmwd5XXPyBM792PMtgIdW_n4q0snGs24DrCmXp0Q784l95QSHl94GedKAC8MGuTz-kLm-kdRAJ6ohbgEyHLZxOkDUxjAJOV6EQ_5JJoTY5oJm5wtBZWkenyXmdMwbZ5tWgjmO5oT05Ece9PAPgwQ73bJi6iLuUEgyNVvXK4eAATdhYNJgHh5NhgR74PyzF9W-8XUoNNuMPJvTl6yi70MqHe8N3evJGsrAzuPw",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"name\": \"Economy\",\n\t\"code\": \"category.economy\",\n\t\"sort_order\": 1\n}"
+                        },
+                        "url": {
+                            "raw": "http://anket.local/api/panel/dashboard",
+                            "protocol": "http",
+                            "host": [
+                                "anket",
+                                "local"
+                            ],
+                            "path": [
+                                "api",
+                                "panel",
+                                "dashboard"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "User",
+            "item": [
+                {
+                    "name": "http://anket.local/api/register",
+                    "request": {
+                        "auth": {
+                            "type": "noauth"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "name": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n\t\"name\":\"Tuncay Elvanağaç\",\n\t\"email\":\"tuncay@deneme.com\",\n\t\"password\":\"123456\",\n\t\"code\": \"21809\",\n\t\"phone_number\": \"905068012574\",\n\t\"country_id\" : \"2\"\n}"
+                        },
+                        "url": {
+                            "raw": "http://anket.local/api/register",
+                            "protocol": "http",
+                            "host": [
+                                "anket",
+                                "local"
+                            ],
+                            "path": [
+                                "api",
+                                "register"
+                            ]
+                        },
+                        "description": "country_id gönderilmeli ve code expire süresi 3 dk"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "http://anket.local/api/panel/menu",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "auth": {
+                    "type": "bearer",
+                    "bearer": [
+                        {
+                            "key": "token",
+                            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjlkZTk1OTk5Mzg4ZTViOTMwYTJkMjM3ZTVjMzhjYWEyZjA2NDhjYjZkYzJiMWIzNDI4YmNhY2NhZTEyM2ZjNjhlMTg0OTFjM2U3MzU0ZjVhIn0.eyJhdWQiOiIyIiwianRpIjoiOWRlOTU5OTkzODhlNWI5MzBhMmQyMzdlNWMzOGNhYTJmMDY0OGNiNmRjMmIxYjM0MjhiY2FjY2FlMTIzZmM2OGUxODQ5MWMzZTczNTRmNWEiLCJpYXQiOjE1NjUyMDQ5OTcsIm5iZiI6MTU2NTIwNDk5NywiZXhwIjoxNTY2NTAwOTk3LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.T28Yg8KZH7--q83BdLwfjrp_R3PRSQjTWDGPo_Ew9oTaLXKg2kP4pX_Y6zjdMiOa-L1RMCyiuBamujFuHckbWE9uRf-PfOGig4lofBPwSCeM33wodQaoKZXb5EFtNOhDMiDUqaB7K3QmQ_YI4jb2WsYiA3wL8WmLYNbQj0lVVqv3Ou4FZBz0ImT44mVV0_D0G0STOwgqJWiKaHHWFoXzOo4ixj0Wv3DUuhQopDj0UD0N1FZ-H-3TLQat6famA0VL_Whso7YDS3qQKAPE-zDE2m5L6pEcYMBYkhkrP4jJoApENYJLrDdpc2zdBtzhFWeRG7kupR6FsJdGIbhGXSmhGkGmhSKnHNvZndB7-2t27qB9mrZJZIdZzRx7nFQW4OJiQCvfnT3WrQN7CiWFnjuBTm-SFaZu5QauSirk6iHLO-YaKLXF8hLVGJBAKKJRZtwN3pe0J0Dn_b1CAKsizQIRhe05xvrjy9ehElRvZzXB9p7ULyFYVY5mOD5lbqbrk6gm4se4oSBqyYsFEAkPO-0wQ4BVKOaGZCtsY-OamtNxISRgk4Xn5EDE3qAlec2lr0DxX5px3pblEtAIwpksI_FvenvioMKzqrmcLtDK7CZMppbgd5E3W3MSxQ81YxB3w86s6m1PvOgrLe4Idq3fV7eWm78sBFoBdF-vbmMJJ0OW1lI",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "name": "Content-Type",
+                        "value": "application/x-www-form-urlencoded",
+                        "type": "text"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "urlencoded",
+                    "urlencoded": [
+                        {
+                            "key": "_method",
+                            "value": "PUT",
+                            "type": "text"
+                        }
+                    ]
+                },
+                "url": {
+                    "raw": "http://anket.local/api/panel/menu",
+                    "protocol": "http",
+                    "host": [
+                        "anket",
+                        "local"
+                    ],
+                    "path": [
+                        "api",
+                        "panel",
+                        "menu"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}
