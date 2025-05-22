@@ -1,4 +1,4 @@
-name: Deploy Laravel (PHP 7.1) with ESLint
+name: Deploy Laravel (PHP 8.2) with ESLint
 
 on:
   push:
@@ -13,10 +13,10 @@ jobs:
       - name: 📦 Checkout Code
         uses: actions/checkout@v3
 
-      - name: 🐘 Set up PHP 7.1
+      - name: 🐘 Set up PHP 8.2
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.1'
+          php-version: '8.2'
           extensions: mbstring, bcmath, zip, pdo_mysql
 
       - name: 📦 Install Composer
@@ -24,7 +24,7 @@ jobs:
           curl -sS https://getcomposer.org/installer | php
           sudo mv composer.phar /usr/local/bin/composer
 
-      - name: 📥 Install PHP Dependencies (matching server PHP 7.1)
+      - name: 📥 Install PHP Dependencies (matching server PHP 8.2)
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
       - name: ⚙️ Set up Node.js
@@ -58,7 +58,7 @@ jobs:
             git clean -fd
             git pull origin main
 
-            echo "Installing server PHP dependencies (PHP 7.1)..."
+            echo "Installing server PHP dependencies (PHP 8.2)..."
             composer install --no-interaction --prefer-dist --optimize-autoloader
 
             echo "Running Laravel commands..."
