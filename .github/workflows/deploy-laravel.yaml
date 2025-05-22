@@ -1,4 +1,4 @@
-name: Deploy Laravel via Password SSH
+name: Deploy Laravel (PHP 7.1) with ESLint
 
 on:
   push:
@@ -10,77 +10,70 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: 📦 Checkout Code
         uses: actions/checkout@v3
 
-      - name: Set up PHP 8.1 (for other steps)
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'
-          extensions: mbstring, bcmath, zip, pdo_mysql
-
-      - name: Set up PHP 7.1 for Composer
+      - name: 🐘 Set up PHP 7.1
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.1'
           extensions: mbstring, bcmath, zip, pdo_mysql
 
-      - name: Set up Composer
+      - name: 📦 Install Composer
         run: |
           curl -sS https://getcomposer.org/installer | php
-          mv composer.phar /usr/local/bin/composer
+          sudo mv composer.phar /usr/local/bin/composer
 
-      - name: Install PHP Dependencies with PHP 7.1
-        run: |
-          # Set PHP 7.1 for Composer install
-          sudo update-alternatives --set php /usr/bin/php7.1
-          composer install --no-interaction --prefer-dist --optimize-autoloader
+      - name: 📥 Install PHP Dependencies (matching server PHP 7.1)
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
-      - name: Run Laravel Linting (optional)
-        run: |
-          # Run PHPStan or PHPCS for linting
-          # composer require --dev phpstan/phpstan
-          # ./vendor/bin/phpstan analyse
-          # or use PHPCS
-          # composer require --dev squizlabs/php_codesniffer
-          # ./vendor/bin/phpcs
+      - name: ⚙️ Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-      - name: Deploy with SSH and Password
+      - name: 📥 Install JS Dependencies
+        run: npm ci
+
+      - name: 🔍 Run ESLint on frontend code
+        run: npx eslint resources/js
+
+      - name: 🚀 Deploy to Laravel Server (via SSH password)
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            echo "Deploying Laravel project..."
-            
-            # Navigate to the deployment folder
-            if [ ! -d "/var/www/html/production/server/.git" ]; then
-              git clone https://github.com/OptimalRating/laravel-app.git /var/www/html/production/server/
-            fi
+            echo "Starting Laravel deployment on server..."
 
-            cd /var/www/html/production/server
+            cd /var/www/html/production/server || {
+              echo "Directory not found. Cloning fresh copy..."
+              git clone https://github.com/OptimalRating/laravel-app.git /var/www/html/production/server
+              cd /var/www/html/production/server
+            }
 
-            # Pull the latest code from GitHub
+            echo "Pulling latest code..."
+            git reset --hard
+            git clean -fd
             git pull origin main
 
-            # Install PHP dependencies on the server
+            echo "Installing server PHP dependencies (PHP 7.1)..."
             composer install --no-interaction --prefer-dist --optimize-autoloader
 
-            # Run Laravel migrations if required
+            echo "Running Laravel commands..."
             php artisan migrate --force
-
-            # Clear and cache configurations, routes, and views
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
 
-            # Set appropriate permissions for storage and cache folders
-            sudo chown -R www-data:www-data /var/www/html/laravel-app/storage
-            sudo chown -R www-data:www-data /var/www/html/laravel-app/bootstrap/cache
+            echo "Setting permissions..."
+            sudo chown -R www-data:www-data storage bootstrap/cache
 
-            # Restart the web server (if using supervisor, apache, or nginx)
-            sudo service apache2 restart  # or use nginx, supervisor, pm2, etc.
+            echo "Restarting web server (Apache)..."
+            sudo service apache2 restart
 
-            # Optionally, if you're using queue workers:
-            sudo php artisan queue:restart
+            echo "Restarting Laravel queue (if used)..."
+            php artisan queue:restart
+
+            echo "✅ Deployment complete."
