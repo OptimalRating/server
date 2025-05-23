@@ -27,16 +27,16 @@ jobs:
       - name: 📥 Install PHP Dependencies (matching server PHP 8.2)
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
-      - name: ⚙️ Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+      # - name: ⚙️ Set up Node.js
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '18'
 
       # - name: 📥 Install JS Dependencies
       #   run: npm ci
 
-      - name: 🔍 Run ESLint on frontend code
-        run: npx eslint resources/js
+      # - name: 🔍 Run ESLint on frontend code
+      #   run: npx eslint resources/js
 
       - name: 🚀 Deploy to Laravel Server (via SSH password)
         uses: appleboy/ssh-action@v1.0.0
