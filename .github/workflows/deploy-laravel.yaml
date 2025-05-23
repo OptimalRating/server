@@ -32,8 +32,8 @@ jobs:
         with:
           node-version: '18'
 
-      - name: 📥 Install JS Dependencies
-        run: npm ci
+      # - name: 📥 Install JS Dependencies
+      #   run: npm ci
 
       - name: 🔍 Run ESLint on frontend code
         run: npx eslint resources/js
