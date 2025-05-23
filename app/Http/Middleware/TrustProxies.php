@@ -3,6 +3,8 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Fideloper\Proxy\TrustProxies as Middleware;
+use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
+
 
 class TrustProxies extends Middleware
 {
@@ -18,7 +20,8 @@ class TrustProxies extends Middleware
      *
      * @var int
      */
-    protected $headers = Request::HEADER_X_FORWARDED_ALL;
+    // protected $headers = Request::HEADER_X_FORWARDED_ALL; //outdated in laravel 9
+    protected $headers = SymfonyRequest::HEADER_X_FORWARDED_ALL;
 
     /**
      * Handle an incoming request.
