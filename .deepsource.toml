@@ -4,15 +4,9 @@ version = 1
 name = "php"
 enabled = true
 
-[analyzers.meta]
-runtime_version = "7.1"
-
 [[analyzers]]
 name = "javascript"
 enabled = true
-
-[analyzers.meta]
-runtime_version = "18"
 
 # Optional: To exclude directories like vendor, node_modules, etc.
 [exclude]
