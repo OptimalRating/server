@@ -11,7 +11,7 @@
 |
 */
  
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\DemoController;
 use App\Http\Controllers\Api\Auth\OtpController;
@@ -31,4 +31,4 @@ Route::get('/log-test', function () {
 Route::get('/mobile-verification', [DemoController::class,'otpSend']);
 
 
-Auth::routes();
+// Auth::routes();

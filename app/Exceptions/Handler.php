@@ -3,9 +3,9 @@
 namespace App\Exceptions;
 
 use App\CustomObjects\CustomJsonResponse;
-use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -31,10 +31,10 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param  \Throwable  $exception
      * @return void
      */
-    public function report(Exception $exception)
+    public function report(Throwable $exception)
     {
         parent::report($exception);
     }
@@ -43,17 +43,16 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
+     * @param  \Throwable  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Throwable $exception)
     {
-        if ($exception instanceof AuthorizationException)
-        {
+        if ($exception instanceof AuthorizationException) {
             $customResponse = new CustomJsonResponse(403, 'fail', 'msg.error.permission.denied');
             return response()->json($customResponse->getResponse());
         }
+
         return parent::render($request, $exception);
     }
-
 }
