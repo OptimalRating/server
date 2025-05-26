@@ -139,7 +139,7 @@ public function facebookLogin(Request $request)
     $existingUser = User::where('email', $email)->first();
 
     if ($existingUser) {
-    $token = $existingUser->createToken('https://staging.optimalrating.com/')->accessToken;
+    $token = $existingUser->createToken('https://www.optimalrating.com/')->accessToken;
     return $this->createResponse($existingUser, $token);
     }
 
@@ -162,7 +162,7 @@ public function facebookLogin(Request $request)
     $user = User::firstOrCreate(['email' => $email], $userData);
 
     // Issue an OAuth token for the user
-    $token = $user->createToken('https://staging.optimalrating.com/')->accessToken;
+    $token = $user->createToken('https://www.optimalrating.com/')->accessToken;
 
     return $this->createResponse($userData, $token);
 }

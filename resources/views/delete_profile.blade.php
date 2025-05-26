@@ -2,5 +2,5 @@
     <div>
         <h3>Delete Profile</h3>
     </div>
-    <p><a href="https://staging.optimalrating.com/in/DeleteProfile/{{$messages}}">Click Here</a></p>
+    <p><a href="https://www.optimalrating.com/in/DeleteProfile/{{$messages}}">Click Here</a></p>
 </div>
