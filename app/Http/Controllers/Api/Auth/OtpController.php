@@ -17,7 +17,7 @@ class OtpController extends Controller
 
     // public function __construct()
     // {
-    //     $serviceAccount = ServiceAccount::fromJsonFile('/var/www/html/staging/server.optimalrating/serviceAccountKey.json');
+    //     $serviceAccount = ServiceAccount::fromJsonFile('/var/www/html/staging/server/serviceAccountKey.json');
 
     //     $firebase = (new Factory)
     //         ->withServiceAccount($serviceAccount)
@@ -28,7 +28,7 @@ class OtpController extends Controller
     public function __construct()
     {
         $factory = (new Factory)
-            ->withServiceAccount('/var/www/html/staging/server.optimalrating/serviceAccountKey.json');
+            ->withServiceAccount('/var/www/html/staging/server/serviceAccountKey.json');
         
         // Initialize the Auth service
         $this->auth = $factory->createAuth();
