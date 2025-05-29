@@ -18,6 +18,11 @@ jobs:
         with:
           php-version: '8.2'
           extensions: mbstring, bcmath, zip, pdo_mysql
+          
+      - name: 🔐 Write service account file
+        run: |
+          mkdir -p /var/www/html/staging/server
+          echo "${{ secrets.SERVICE_ACCOUNT_JSON }}" > /var/www/html/staging/server/serviceAccountKey.json
 
       - name: 📦 Install Composer
         run: |
