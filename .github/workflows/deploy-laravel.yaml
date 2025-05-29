@@ -1,4 +1,4 @@
-name: Deploy Laravel (PHP 8.2) with ESLint
+name: Deploy Laravel (PHP 8.2) with Laravel Pint & PHPStan
 
 on:
   push:
