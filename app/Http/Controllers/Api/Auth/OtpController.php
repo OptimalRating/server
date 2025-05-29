@@ -27,11 +27,25 @@ class OtpController extends Controller
 
     public function __construct()
     {
-        $factory = (new Factory)
-            ->withServiceAccount('/var/www/html/staging/server/serviceAccountKey.json');
+        // $factory = (new Factory)
+        //     ->withServiceAccount('/var/www/html/staging/server/serviceAccountKey.json');
         
-        // Initialize the Auth service
-        $this->auth = $factory->createAuth();
+        // // Initialize the Auth service
+        // $this->auth = $factory->createAuth();
+        try {
+            $serviceAccountPath = base_path('serviceAccountKey.json');
+
+            if (!file_exists($serviceAccountPath) || !is_readable($serviceAccountPath)) {
+                throw new \RuntimeException("Firebase service account key file is missing or unreadable.");
+            }
+
+            $factory = (new Factory)->withServiceAccount($serviceAccountPath);
+            $this->auth = $factory->createAuth();
+        } catch (Exception $e) {
+            Log::error('Firebase Auth initialization failed: ' . $e->getMessage());
+            // Optionally: throw or handle gracefully
+            abort(500, 'Unable to initialize Firebase.');
+        }
     }
 
     public function sendOtp(Request $request)
