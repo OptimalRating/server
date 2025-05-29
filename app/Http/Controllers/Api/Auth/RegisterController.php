@@ -24,15 +24,10 @@ class RegisterController extends Controller
 {
 
     private $client;
-    /**
-     * @var CustomJsonResponse
-     */
-    private $response;
 
-    public function __construct(CustomJsonResponse $response)
+    public function __construct(private readonly CustomJsonResponse $response)
     {
         $this->client  = Client::find(2);
-        $this->response = $response;
     }
 
     public function register(Request $request, CustomJsonResponse $customJsonResponse)
@@ -145,7 +140,7 @@ class RegisterController extends Controller
         $sms->token        = Carbon::now()->timestamp;
         $sms->sms_type     = 'verify';
         $sms->status       = 'p';
-        $sms->expired      = Carbon::now('GMT+3')->addHour(1);
+        $sms->expired      = Carbon::now('GMT+3')->addHour();
 
         $sms->save();
 
@@ -160,11 +155,11 @@ class RegisterController extends Controller
 
     private function getSefUsername($url)
     {
-        $turkcefrom = array("/Ğ/","/Ü/","/Ş/","/İ/","/Ö/","/Ç/","/ğ/","/ü/","/ş/","/ı/","/ö/","/ç/");
+        $turkcefrom = ["/Ğ/", "/Ü/", "/Ş/", "/İ/", "/Ö/", "/Ç/", "/ğ/", "/ü/", "/ş/", "/ı/", "/ö/", "/ç/"];
 
-        $turkceto = array("G","U","S","I","O","C","g","u","s","i","o","c");
+        $turkceto = ["G", "U", "S", "I", "O", "C", "g", "u", "s", "i", "o", "c"];
 
-        $url = preg_replace("/[^0-9a-zA-ZÄzÜŞİÖÇğüşıöç]/"," ",$url);
+        $url = preg_replace("/[^0-9a-zA-ZÄzÜŞİÖÇğüşıöç]/"," ",(string) $url);
         // Türkçe harfleri ingilizceye çevir
         $url = preg_replace($turkcefrom,$turkceto,$url);
         // Birden fazla olan boşlukları tek boşluk yap

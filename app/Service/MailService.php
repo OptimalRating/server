@@ -55,12 +55,7 @@ class MailService
             $clickHere = $translationClick->translation;
         }
 
-        $body = array(
-            "messages" => $content,
-            "click" => $clickHere,
-            "title" => $title,
-            "url" => $url
-        );
+        $body = ["messages" => $content, "click" => $clickHere, "title" => $title, "url" => $url];
         
         Mail::send("send_mail", $body, function ($message) use ($user, $title){
             $message->to($user['email'], "SSS")->subject($title);
@@ -70,9 +65,7 @@ class MailService
     }
     public function test()
     {
-        $body = array(
-            "messages"=> "Merhaba",
-        );
+        $body = ["messages"=> "Merhaba"];
 
         Mail::send("test", $body, function ($message) {
             $message->to("uveysservetoglu@gmail.com", "SSS")->subject("Delete Profile");

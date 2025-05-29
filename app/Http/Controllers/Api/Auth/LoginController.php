@@ -27,16 +27,11 @@ use Google_Client;
 class LoginController extends Controller
 {
     private $client;
-    /**
-     * @var CustomJsonResponse
-     */
-    private $jsonResponse;
 
 
-    public function __construct(CustomJsonResponse $jsonResponse)
+    public function __construct(private readonly CustomJsonResponse $jsonResponse)
     {
         $this->client  = Client::find(2);
-        $this->jsonResponse = $jsonResponse;
     }
 
     //updated by Muskan
@@ -57,7 +52,7 @@ class LoginController extends Controller
         // 'client_secret' => 'pCX5bipQ8dMqn7rAIxqtDx43lGm73pIbpa9gSwqR', // Use the generated client secret here
         'client_id' => $this->client->id,
         'client_secret' => $this->client->secret,
-        'username' => $request->json('email') ? $request->json('email') : $request->json('username'),
+        'username' => $request->json('email') ?: $request->json('username'),
         'password' => $request->json('password'),
         'scope' => '',
     ];
@@ -86,11 +81,11 @@ class LoginController extends Controller
         // if ($user->status !== 'approved') {
         //     return $customJsonResponse->setData(403, 'msg.error.account_not_approved')->getResponse();
         // }
-        $token = json_decode($response->getContent());
+        $token = json_decode($response->getContent(), null, 512, JSON_THROW_ON_ERROR);
         return $this->createResponse($user, $token);
     }
 
-    return $customJsonResponse->setData(401, 'msg.error.invalid_credentials', json_decode($response->getContent()))->getResponse();
+    return $customJsonResponse->setData(401, 'msg.error.invalid_credentials', json_decode($response->getContent(), null, 512, JSON_THROW_ON_ERROR))->getResponse();
 }
 
     public function refresh(Request $request)
@@ -119,9 +114,6 @@ class LoginController extends Controller
 
     }
 
-    /**
-     * @param Request $request
-     */
     public function social($social, Request $request)
     {
         $verify = null;
@@ -199,7 +191,7 @@ class LoginController extends Controller
         }
 
         $user = User::create([
-            'username'  => 'optimal_'.rand(0,9999999),
+            'username'  => 'optimal_'.random_int(0,9_999_999),
             'email'     => $verify['email'],
             'password'  => Hash::make($verify['uid']),
             'uid'       => $verify['uid'],

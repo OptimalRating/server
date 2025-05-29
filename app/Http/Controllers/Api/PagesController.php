@@ -13,14 +13,8 @@ use Illuminate\Http\Response;
 
 class PagesController extends Controller
 {
-    /**
-     * @var CustomJsonResponse
-     */
-    private $jsonResponse;
-
-    public function __construct(CustomJsonResponse $jsonResponse)
+    public function __construct(private readonly CustomJsonResponse $jsonResponse)
     {
-        $this->jsonResponse = $jsonResponse;
     }
     /**
      * Display a listing of the resource.
@@ -46,7 +40,6 @@ class PagesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
      * @return array|bool
      */
     public function store(Request $request)
@@ -128,7 +121,6 @@ class PagesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
      * @param $page
      * @return array|bool
      */
@@ -153,7 +145,6 @@ class PagesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Page $page
      * @return array
      * @throws \Exception
      */

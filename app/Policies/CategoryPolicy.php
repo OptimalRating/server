@@ -24,12 +24,10 @@ class CategoryPolicy
     }
 
     /**
-     * @param User $user
      * @return bool
      * @throws AuthorizationException
      * yalnızca super admin ana kategori ekler düzenler diğerleri alt kategori ekleyebilir
      */
-
     public function create(User $user)
     {
         if($user->hasRole('country_admin')){
@@ -42,7 +40,6 @@ class CategoryPolicy
     }
 
     /**
-     * @param User $user
      * @return bool
      * @throws AuthorizationException
      */

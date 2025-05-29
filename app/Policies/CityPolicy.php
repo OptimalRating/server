@@ -22,12 +22,10 @@ class CityPolicy
     }
 
     /**
-     * @param User $user
      * @return bool
      * @throws AuthorizationException
      * yalnızca super admin ana kategori ekler düzenler diğerleri alt kategori ekleyebilir
      */
-
     public function create(User $user)
     {
         if($user->hasRole('country_admin')){
@@ -39,11 +37,9 @@ class CityPolicy
     }
 
     /**
-     * @param User $user
      * @return bool
      * @throws AuthorizationException
      */
-
     public function update(User $user)
     {
         if($user->hasRole('country_admin')){

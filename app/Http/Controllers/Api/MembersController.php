@@ -15,11 +15,8 @@ use Illuminate\Support\Facades\Log;
 
 class MembersController extends Controller
 {
-    private $jsonResponse;
-
-    public function __construct(CustomJsonResponse $jsonResponse)
+    public function __construct(private readonly CustomJsonResponse $jsonResponse)
     {
-        $this->jsonResponse = $jsonResponse;
     }
 
     public function index()
@@ -103,7 +100,7 @@ class MembersController extends Controller
             $model->whereIn('id', $ids);
         }
 
-        $pagination = new ApiPagination(request("limit", 100), count($model->get()), request("offset", 0));
+        $pagination = new ApiPagination(request("limit", 100), is_countable($model->get()) ? count($model->get()) : 0, request("offset", 0));
 
         $model = $model->orderBy(request('sort','id'), request('order', 'desc'))
             ->offset(request('offset', 0))->take(request('limit'))->get();

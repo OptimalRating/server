@@ -24,14 +24,8 @@ use Mockery\Exception;
 
 class CountryController extends Controller
 {
-    /**
-     * @var CustomJsonResponse
-     */
-    private $jsonResponse;
-
-    public function __construct(CustomJsonResponse $jsonResponse)
+    public function __construct(private readonly CustomJsonResponse $jsonResponse)
     {
-        $this->jsonResponse = $jsonResponse;
     }
 
     
@@ -66,7 +60,7 @@ class CountryController extends Controller
         {
             $countryAdmin = new User();
             $countryAdmin->email = $request->json('email');
-            $countryAdmin->username = str_replace(' ', '_', $request->json('name_en')). '_admin';
+            $countryAdmin->username = str_replace(' ', '_', (string) $request->json('name_en')). '_admin';
             $countryAdmin->password = Hash::make($request->json('password'));
             $countryAdmin->save();
             //    $countryAdmin = User::create([
@@ -118,7 +112,7 @@ class CountryController extends Controller
                 ]
             ]);
         }
-        catch (Exception $e)
+        catch (Exception)
         {
             return $this->jsonResponse->setData(200, 'msg.error.not_found')->getResponse();
         }
@@ -181,12 +175,9 @@ class CountryController extends Controller
     // {
     //     $country->delete();
     //     // $country->update(['status'=>'passive']);
-
     //     return $this->jsonResponse->setData(200, 'msg.info.success.country.delete')->getResponse();
     // }
-
     /**
-     * @param Country $country
      * @return array
      */
     public function citiesOfCountry(Country $country)

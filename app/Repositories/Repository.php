@@ -6,11 +6,8 @@ namespace App\Repositories;
 
 abstract class Repository
 {
-    protected $model;
-
-    public function __construct($model)
+    public function __construct(protected $model)
     {
-        $this->model = $model;
     }
 
     public function findData($id)

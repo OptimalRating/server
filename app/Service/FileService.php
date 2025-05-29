@@ -26,7 +26,7 @@ class FileService
         }
 
         $result = [];
-        $reqImage = is_array($file ) ? $file : array($file);
+        $reqImage = is_array($file ) ? $file : [$file];
         foreach ($reqImage as $uploadedFile) {
 
             try {
@@ -51,7 +51,7 @@ class FileService
 
     public function updateProductGallery(Request $request, $id)
     {
-        $requestedData = json_decode($request->getContent(), true);
+        $requestedData = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
         $requestedData = $requestedData["data"];
 
@@ -63,7 +63,7 @@ class FileService
             return $this->ApiResponse([],[],'error',404, 'Not Found!');
         }
 
-        $newGallery = array();
+        $newGallery = [];
         $title = $product->title;
         foreach ($requestedData["gallery"] as $gallery){
             if(file_exists($product_image.$gallery)){

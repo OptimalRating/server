@@ -19,11 +19,11 @@ class GoogleAuthentication extends SocialAuthentication
 
         try {
             $getService = $this->client->get($url);
-        } catch (GuzzleException $exception) {
+        } catch (GuzzleException) {
             return false;
         }
 
-        $body = json_decode($getService->getBody()->getContents());
+        $body = json_decode((string) $getService->getBody()->getContents(), null, 512, JSON_THROW_ON_ERROR);
 
         return [
             'uid' => $body->sub,

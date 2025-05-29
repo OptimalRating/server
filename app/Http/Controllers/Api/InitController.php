@@ -23,8 +23,6 @@ class InitController extends Controller
 {
 
     /**
-     * @param Request $request
-     * @param CacheService $cache
      * @return array
      */
     public function init(Request $request, CacheService $cache)
@@ -64,10 +62,7 @@ class InitController extends Controller
         $country = Country::find($auth->country_id);
         $friend = Friends::with(['friend.userDetails'])->where('user', '=', $auth->id)->get();
 
-        $init = array(
-            'country' => $country,
-            'role' => $auth->roles[0]
-        );
+        $init = ['country' => $country, 'role' => $auth->roles[0]];
         $customResponse = new CustomJsonResponse(
             200,
 
@@ -88,6 +83,6 @@ class InitController extends Controller
             (new CacheService())->keywordCacheCreate();
             $keyword = KeywordsCache::orderBy('id', 'desc')->first();
         }
-        return response()->json(json_decode($keyword->body));
+        return response()->json(json_decode((string) $keyword->body, null, 512, JSON_THROW_ON_ERROR));
     }
 }

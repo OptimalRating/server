@@ -31,11 +31,8 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    private $customJsonResponse;
-
-    public function __construct(CustomJsonResponse $customJsonResponse)
+    public function __construct(private readonly CustomJsonResponse $customJsonResponse)
     {
-        $this->customJsonResponse = $customJsonResponse;
     }
 
 //   public function facebookLogin(Request $request)
@@ -121,7 +118,7 @@ public function facebookLogin(Request $request)
     $provider = $request->input('provider');
     $accessToken = $request->input('token');
     $countryCode = $request->input('countryCode');
-    $country = Country::where('code', strtoupper($countryCode))->first(); // Make case-insensitive search
+    $country = Country::where('code', strtoupper((string) $countryCode))->first(); // Make case-insensitive search
     $countryId = null;
     if ($country) {
         $countryId = $country->id;
@@ -129,7 +126,7 @@ public function facebookLogin(Request $request)
 
     try {
         $socialUser = $this->getSocialUser($provider, $accessToken);
-    } catch (\Exception $e) {
+    } catch (\Exception) {
         return $customJsonResponse->setData(400, 'msg.error.invalid_social_token')->getResponse();
     }
 
@@ -143,21 +140,11 @@ public function facebookLogin(Request $request)
     return $this->createResponse($existingUser, $token);
     }
 
-    $names = explode(" ", $name);
+    $names = explode(" ", (string) $name);
     $firstName = $names[0];
     $lastName = implode(" ", array_slice($names, 1));
 
-    $userData = array(
-        'username' => $firstName,
-        'name' => $name,
-        'firstname' => $firstName,
-        'lastname' => $lastName,
-        'email' => $email,
-        'password' => bcrypt(Str::random(24)),
-        'status' => 'approved',
-        'country_id' => $countryId,
-        'provider' => $provider
-    );
+    $userData = ['username' => $firstName, 'name' => $name, 'firstname' => $firstName, 'lastname' => $lastName, 'email' => $email, 'password' => bcrypt(Str::random(24)), 'status' => 'approved', 'country_id' => $countryId, 'provider' => $provider];
 
     $user = User::firstOrCreate(['email' => $email], $userData);
 
@@ -575,7 +562,7 @@ public function facebookLogin(Request $request)
 
         $delete->user = \auth()->id();
 
-        $delete->expire_at = Carbon::now()->addWeek(1);
+        $delete->expire_at = Carbon::now()->addWeek();
         $delete->token = md5(Carbon::now()->timestamp);
 
         $delete->save();
@@ -652,7 +639,7 @@ public function facebookLogin(Request $request)
         $delete = new UserToken();
 
         $delete->user = $user->id;
-        $delete->expire_at = Carbon::now()->addWeek(1);
+        $delete->expire_at = Carbon::now()->addWeek();
         $delete->token = md5(Carbon::now()->timestamp);
 
         $delete->save();
@@ -727,7 +714,7 @@ public function facebookLogin(Request $request)
         $user = \auth()->user();
         $delete = new UserToken();
         $delete->user = $user->id;
-        $delete->expire_at = Carbon::now()->addWeek(1);
+        $delete->expire_at = Carbon::now()->addWeek();
         $delete->old_data = $user->email;
         $delete->new_data = \request('email');
         $delete->token = md5(Carbon::now()->timestamp);

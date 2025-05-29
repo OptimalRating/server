@@ -21,7 +21,7 @@ class CommentLikeRepository extends Repository
     public function save($request)
     {
         $data = $this->checkUserLikeExist($request);
-        if(!count($data)){
+        if(!(is_countable($data) ? count($data) : 0)){
             $data = [
                 'comment_id' => $request['comment_id'],
                 'user_id' => auth()->id()

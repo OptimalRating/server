@@ -19,7 +19,7 @@ trait Privacy
 {
     public function getPrivacyForGenericAttribute($user, $model, $privacy)
 {
-    $show = isset($this->attributes[$privacy]) ? $this->attributes[$privacy] : null;
+    $show = $this->attributes[$privacy] ?? null;
     $role = ['super_admin', 'country_admin', 'user'];
 
     if (!is_null($model) && !is_null($user) && $user->id == $model->id) {
@@ -58,15 +58,15 @@ trait Privacy
 
     $option = $userPrivacySetting->option()->first();
 
-    if ($option && strtolower($option->option) === 'everyone') {
-        return isset($this->attributes[$privacy]) ? $this->attributes[$privacy] : null;
+    if ($option && strtolower((string) $option->option) === 'everyone') {
+        return $this->attributes[$privacy] ?? null;
     }
 
-    if (is_null($user) || (strtolower($option->option) === 'nobody')) {
+    if (is_null($user) || (strtolower((string) $option->option) === 'nobody')) {
         return null;
     }
 
-    if (strtolower($option->option) === 'friend') {
+    if (strtolower((string) $option->option) === 'friend') {
         $friend = Friends::where('user', '=', $user->id)
             ->where('friend', '=', $model->id)
             ->first();

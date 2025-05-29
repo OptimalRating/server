@@ -10,11 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class FriendsController extends Controller
 {
-    private $response;
-
-    public function __construct(CustomJsonResponse $response)
+    public function __construct(private readonly CustomJsonResponse $response)
     {
-        $this->response = $response;
     }
 
     public function listMyFriend()

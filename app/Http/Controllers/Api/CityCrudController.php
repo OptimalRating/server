@@ -32,7 +32,7 @@ class CityCrudController extends Controller
         //get the related cities for country admin's country
         $model = City::where('country_id', Auth::user()->country_id)->get();
 
-        $pagination = new ApiPagination(request("limit", 20), count($model), request("offset", 0));
+        $pagination = new ApiPagination(request("limit", 20), is_countable($model) ? count($model) : 0, request("offset", 0));
 
         $this->jsonResponse->setData(
             200,
@@ -45,7 +45,6 @@ class CityCrudController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
      * @return array
      */
     public function store(Request $request)
@@ -73,7 +72,6 @@ class CityCrudController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param City $city
      * @return array
      */
     public function show(City $city)
@@ -86,7 +84,6 @@ class CityCrudController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
      * @param  int  $id
      * @return array
      */
@@ -106,7 +103,6 @@ class CityCrudController extends Controller
     }
 
     /**
-     * @param City $city
      * @return array
      * @throws \Exception
      */
@@ -146,7 +142,7 @@ class CityCrudController extends Controller
             ->offset($getQuery["offset"])
             ->get();
 
-        $pagination = (new ApiPagination($getQuery["limit"], count(City::where('country_id', $id)->get()), $getQuery["offset"]))->getConvertObject();
+        $pagination = (new ApiPagination($getQuery["limit"], is_countable(City::where('country_id', $id)->get()) ? count(City::where('country_id', $id)->get()) : 0, $getQuery["offset"]))->getConvertObject();
         $this->jsonResponse->setData(200, 'msg.info.list.cities', $model, null, $pagination);
         return $this->jsonResponse->getResponse();
     }

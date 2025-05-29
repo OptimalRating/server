@@ -43,7 +43,7 @@ class CacheService
     public function keywordCacheCreate()
     {
         $countryModel = Country::all();
-        $response = array();
+        $response = [];
 
         foreach ($countryModel as $country)
         {
@@ -58,8 +58,7 @@ class CacheService
             $obj = new \stdClass();
             foreach ($model as $keyword)
             {
-                $obj->{$keyword->key} = count($keyword->translations) ?
-                    $keyword->translations[count($keyword->translations) - 1]->translation : $keyword->default;
+                $obj->{$keyword->key} = (is_countable($keyword->translations) ? count($keyword->translations) : 0) ? $keyword->translations[(is_countable($keyword->translations) ? count($keyword->translations) : 0) - 1]->translation : $keyword->default;
             }
             /**
              * @todo page lang
@@ -83,7 +82,7 @@ class CacheService
 
         $keywordCache = new KeywordsCache();
 
-        $keywordCache->body = json_encode($response);
+        $keywordCache->body = json_encode($response, JSON_THROW_ON_ERROR);
 
         $keywordCache->save();
     }

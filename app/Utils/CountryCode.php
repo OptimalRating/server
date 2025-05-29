@@ -12,7 +12,7 @@ namespace App\Utils;
 
 class CountryCode
 {
-    const COUNTRY = [
+    final public const COUNTRY = [
         'ad'=>'ca',
         'ae'=>'ar',
         'af'=>'fa',

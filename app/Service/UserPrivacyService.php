@@ -19,7 +19,7 @@ class UserPrivacyService
     {
         $privacies = Privacy::all();
 
-        if (count($list)) {
+        if (is_countable($list) ? count($list) : 0) {
             $privacies = Privacy::whereIn('id', $list)->get();
         }
 

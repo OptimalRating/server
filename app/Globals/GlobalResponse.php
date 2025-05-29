@@ -8,7 +8,7 @@ class GlobalResponse
 {
     private $response;
 
-    private $errors=[];
+    private array $errors=[];
 
     private $result;
 

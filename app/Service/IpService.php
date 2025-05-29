@@ -20,12 +20,12 @@ class IpService
     {
         //https://api.ipdata.co/45.135.206.200?api-key=9b8a49e10bc989a900a2d1052999045d9450c3cee479de571ac81d9e
 
-        $apiResponse = (json_decode(self::getCacheData($IP)));
+        $apiResponse = (json_decode((string) self::getCacheData($IP), null, 512, JSON_THROW_ON_ERROR));
         if (is_null($apiResponse)) {
             $apiResponse = $this->getData($IP);
             self::setCache($IP, $apiResponse);
         }else{
-            $apiResponse = json_decode($apiResponse->body);
+            $apiResponse = json_decode((string) $apiResponse->body, null, 512, JSON_THROW_ON_ERROR);
         }
 
         return $apiResponse;
@@ -38,7 +38,7 @@ class IpService
         try{
             $url= "http://www.geoplugin.net/json.gp?ip=".self::ipCheck($IP);
             $apiResponse = self::getIpData($url, "returnObjectForGeoPlugin");
-        }catch (\Exception $exception) {
+        }catch (\Exception) {
             $url= "https://api.ipdata.co/".$IP.'?api-key=a685452584680f0c96918c6e608d547601dc62943de337c63f425cc2';
             $apiResponse = self::getIpData($url, "returnObjectForApiData");
         }
@@ -49,7 +49,7 @@ class IpService
     public function getIpData($url, $function)
     {
         $client    = new Client();
-        $req = json_decode($client->request('GET', $url)->getBody()->getContents());
+        $req = json_decode($client->request('GET', $url)->getBody()->getContents(), null, 512, JSON_THROW_ON_ERROR);
         return self::{$function}($req);
     }
 
@@ -57,7 +57,7 @@ class IpService
     {
         $cache = new IpCache();
         $cache->ip = $key;
-        $cache->body = json_encode($body);
+        $cache->body = json_encode($body, JSON_THROW_ON_ERROR);
         $cache->save();
     }
     private function getCacheData($key)
@@ -69,14 +69,10 @@ class IpService
     }
     private function ipCheck($IP)
     {
-        switch ($IP){
-            case '127.0.0.1':
-            case 'localhost':
-            case '::1':
-                return '88.252.31.244';
-            default :
-                return $IP;
-        }
+        return match ($IP) {
+            '127.0.0.1', 'localhost', '::1' => '88.252.31.244',
+            default => $IP,
+        };
     }
 
     private function returnObjectForApiData($object)

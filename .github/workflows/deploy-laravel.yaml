@@ -1,4 +1,4 @@
-name: Deploy Laravel (PHP 8.2) with Laravel Pint & PHPStan
+name: Deploy Laravel (PHP 8.2) with Laravel Pint, Rector & PHPStan
 
 on:
   push:
@@ -41,8 +41,11 @@ jobs:
       - name: 🎨 Run Laravel Pint
         run: ./vendor/bin/pint
 
+      - name: 🔧 Run Rector (auto-refactor)
+        run: ./vendor/bin/rector process --no-interaction
+
       - name: 🔍 Run PHPStan Static Analysis
-        run: ./vendor/bin/phpstan analyse
+        run: ./vendor/bin/phpstan analyse --memory-limit=1G
 
       - name: 🚀 Deploy to Laravel Server (via SSH password)
         uses: appleboy/ssh-action@v1.0.0

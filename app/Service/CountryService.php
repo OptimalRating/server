@@ -15,14 +15,8 @@ use Illuminate\Http\Request;
 
 class CountryService
 {
-    /**
-     * @var Request
-     */
-    private $request;
-
-    public function __construct(Request $request)
+    public function __construct(private readonly Request $request)
     {
-        $this->request = $request;
     }
 
     public function getCountry()

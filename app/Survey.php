@@ -67,7 +67,7 @@ class Survey extends Model
 
     public function subjects()
     {
-        return $this->belongsToMany('App\Subject', 'survey_subjects');
+        return $this->belongsToMany(\App\Subject::class, 'survey_subjects');
     }
 
     public function votes()

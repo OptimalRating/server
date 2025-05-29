@@ -10,8 +10,8 @@ use GuzzleHttp\Client;
 class SmsService
 {
 
-    private $serviceUrl;
-    private $client;
+    private readonly string $serviceUrl;
+    private readonly \GuzzleHttp\Client $client;
 
     /**
      * SmsService constructor.
@@ -25,20 +25,17 @@ class SmsService
 
     public function sendSmsVerify($phone)
     {
-        $verifyCode = mt_rand(10000, 99999);
+        $verifyCode = random_int(10000, 99999);
         $smsContent = "Optimal Rating ".$verifyCode.PHP_EOL;
 
         $req = self::send($phone, $smsContent);
 
-        $smsResponse = json_decode($req->getBody()->getContents());
+        $smsResponse = json_decode((string) $req->getBody()->getContents(), null, 512, JSON_THROW_ON_ERROR);
 
         if($smsResponse->messages[0]->status->groupId !== 1)
-            return array('status' => false);
+            return ['status' => false];
 
-        return array(
-            'status' => true,
-            'code'   => $verifyCode
-        );
+        return ['status' => true, 'code'   => $verifyCode];
     }
 
     public function categoryConfirmMessage($category)
@@ -68,24 +65,7 @@ class SmsService
     {
         return $this->client->request('POST', $this->serviceUrl,
 
-            array(
-                'json' => array(
-                    'messages' => array(
-                        array(
-                            'from'  => '08505400794' ,
-                            'destinations' => array(
-                                array('to'    => $phone)
-                            ),
-                            'text' => $smsContent
-                        )
-                    ),
-                ),
-                'headers' => array(
-                    'accept' => 'application/json',
-                    'Content-Type' => 'application/json',
-                    'authorization' => 'Basic '.$this->apiKey
-                )
-            )
+            ['json' => ['messages' => [['from'  => '08505400794', 'destinations' => [['to'    => $phone]], 'text' => $smsContent]]], 'headers' => ['accept' => 'application/json', 'Content-Type' => 'application/json', 'authorization' => 'Basic '.$this->apiKey]]
         );
     }
 }

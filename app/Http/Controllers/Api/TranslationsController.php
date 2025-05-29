@@ -31,7 +31,6 @@ class TranslationsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function store(Request $request)
@@ -64,25 +63,19 @@ class TranslationsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
      * @return array
      */
     // public function update(Request $request, Keyword $translation)
     // {
     //     $translation = $translation->translation()->first();
-
     //     $reqData = $request->get('translation');
     //     Log::info('Translation Request Data:', ['reqData' => $reqData]);
     //     $translation->translation = $reqData['translation'];
-
     //     $translation->update();
-
     //     (new CacheService())->keywordCacheCreate();
     //     $customResponse = new CustomJsonResponse(200,  'msg.info.translation.save');
-
     //     return $customResponse->getResponse();
     // }
-
     public function update(Request $request, Keyword $translation) //updated code
     {
         // Log::info('All Translation Request Data', ['ALL reqData' => $request]);
@@ -145,7 +138,7 @@ class TranslationsController extends Controller
 
         //  if ($keyword->where('key','=', $key)->count())  continue;
 
-          $pre = explode('.',$key);
+          $pre = explode('.',(string) $key);
 
 
           $model = new Keyword();

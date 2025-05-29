@@ -37,7 +37,7 @@ abstract class SocialAuthentication
     public function convertToObject($data)
     {
         foreach ($data as $key => $value) {
-            $set = 'set'.ucwords($key);
+            $set = 'set'.ucwords((string) $key);
 
             if (method_exists($this, $set)) {
                 $this->{$set}($value);

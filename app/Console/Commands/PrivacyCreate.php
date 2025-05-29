@@ -37,7 +37,6 @@ class PrivacyCreate extends Command
     /**
      * Execute the console command.
      *
-     * @param UserPrivacyService $privacyService
      * @return mixed
      */
     public function handle(UserPrivacyService $privacyService)
@@ -55,7 +54,7 @@ class PrivacyCreate extends Command
                 $privacyIDS[] = $privacy->id;
             }
 
-            if (count($userPrivacies) !== count($privacyModel)) {
+            if ((is_countable($userPrivacies) ? count($userPrivacies) : 0) !== count($privacyModel)) {
 
                 $privacyNotIN = Privacy::select('id')->whereNotIn('id', $privacyIDS)->get();
 

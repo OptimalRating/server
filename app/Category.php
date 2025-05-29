@@ -29,30 +29,30 @@ class Category extends Model
 
     public function getChildren($status = 'active', $isThereCountry = false, $country = null)
     {
-        $category = $this->hasMany('App\Category', 'parent', 'id')
+        $category = $this->hasMany(\App\Category::class, 'parent', 'id')
             ->with('surveys');
             //->whereStatus($status);
 
         if ($isThereCountry) {
             $category = $category->where('country_id', '=', $country ? $country->id : null);
         }
-        
+
         return $category->get();
     }
 
     public function surveys()
     {
-        return $this->hasMany('App\Survey', 'category_id')->with('user');
+        return $this->hasMany(\App\Survey::class, 'category_id')->with('user');
     }
 
     public function parent()
     {
-        return $this->belongsTo('App\Category', 'parent');
+        return $this->belongsTo(\App\Category::class, 'parent');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User', 'user_id')->with('userDetails');
+        return $this->belongsTo(\App\User::class, 'user_id')->with('userDetails');
     }
 
     public function scopePrepareChildrenWhere($query)

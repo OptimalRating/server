@@ -25,30 +25,21 @@ use Illuminate\Support\Facades\Log;
 
 class SurveysController extends Controller
 {
-    /**
-     * @var CustomJsonResponse
-     */
-    private $jsonResponse;
-
-    public function __construct(CustomJsonResponse $jsonResponse)
+    public function __construct(private readonly CustomJsonResponse $jsonResponse)
     {
-        $this->jsonResponse = $jsonResponse;
     }
 
     /**
      * List of survey collection
      *
      * @param string $type
-     * @param Request $request
      * @return array
      */
-    public function index($type = 'normal', Request $request)
+    public function index(Request $request, $type = 'normal')
     {
 
         if ( $type == 'normal' ) {
-            $model = Survey::whereHas('category', function( $query ) {
-                return $query->where(['status' => 'active']);
-            })
+            $model = Survey::whereHas('category', fn($query) => $query->where(['status' => 'active']))
             ->with(['choices.votes', 'category']);
         } else {
             $model = Survey::with(['choices.votes', 'category']);
@@ -110,7 +101,6 @@ class SurveysController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Survey $survey
      * @return array
      */
     public function store(Survey $survey, Request $request)
@@ -136,7 +126,7 @@ class SurveysController extends Controller
 
         //store the choices
 
-        $this->addSurveyChoices($survey, null, $request);
+        $this->addSurveyChoices($survey, $request, null);
 
         if ($survey) {
             // add survey subject
@@ -150,11 +140,9 @@ class SurveysController extends Controller
     }
 
     /**
-     * @param $id
-     * @param Request $request
-     * @return array
-     */
-
+      * @param $id
+      * @return array
+      */
      public function getdetails(Request $request, $slug)
 {
     // Set the take parameter, default to 3
@@ -325,8 +313,6 @@ class SurveysController extends Controller
     }
 
     /**
-     * @param Survey $survey
-     * @param Request $request
      * @return array
      */
     public function update(Survey $survey, Request $request)
@@ -336,15 +322,15 @@ class SurveysController extends Controller
         
         $fillable = request()->only($survey->getFillable());
         
-        $fillable["start_at"] = date("Y-m-d H:i:s", strtotime($fillable["start_at"]));
-        $fillable["expire_at"] = date("Y-m-d H:i:s", strtotime($fillable["expire_at"]));
+        $fillable["start_at"] = date("Y-m-d H:i:s", strtotime((string) $fillable["start_at"]));
+        $fillable["expire_at"] = date("Y-m-d H:i:s", strtotime((string) $fillable["expire_at"]));
         
         // return response()->json( $fillable );
         $update = $surveyRepository->updateData($survey, $fillable);
 
         if ($update) {
             //update the choices
-            $this->addSurveyChoices($survey, 'update', $request);
+            $this->addSurveyChoices($survey, $request, 'update');
             if ($subjects = request('subjects')) {
                 $survey->subjects()->sync($subjects);
             }
@@ -1044,7 +1030,7 @@ public function homeCurrentSpecialSurvey(Request $request)
         return $allComments;
     }
 
-    private function addSurveyChoices($survey, $type = null, $request)
+    private function addSurveyChoices($survey, $request, $type = null)
     {
         if ($survey) {
             foreach (request()->json('choices') as $choice) {
@@ -1108,8 +1094,8 @@ public function homeCurrentSpecialSurvey(Request $request)
             'category_id' => request('category_id'),
             'status' => request('type') == 'normal' ? 0 : request('status', 0),
             'type' => request('type'),
-            'start_at' => date('Y-m-d', strtotime(request('start_at'))),
-            'expire_at' => date('Y-m-d', strtotime(request('expire_at'))),
+            'start_at' => date('Y-m-d', strtotime((string) request('start_at'))),
+            'expire_at' => date('Y-m-d', strtotime((string) request('expire_at'))),
             'show_on_home' => request('show_on_home'),
             'country_id' => $country_id,
             'is_world' => $is_world
@@ -1120,7 +1106,6 @@ public function homeCurrentSpecialSurvey(Request $request)
 
     /**
      * @param Request $request
-     * @param Survey $survey
      * @return array
      */
     public function statusUpdate(Survey $survey)
@@ -1134,8 +1119,6 @@ public function homeCurrentSpecialSurvey(Request $request)
     }
 
     /**
-     * @param Request $request
-     * @param Survey $survey
      * @return array
      */
     public function showOnHomeUpdate(Survey $survey, Request $request)
@@ -1156,7 +1139,7 @@ public function homeCurrentSpecialSurvey(Request $request)
         $country = (new CountryService($request))->getCountry();
 
         $forUpdate = Survey::where('show_on_home', '=', true)
-            ->where('country_id', '=', auth()->user()->country_id ? auth()->user()->country_id : null)->first();
+            ->where('country_id', '=', auth()->user()->country_id ?: null)->first();
         if ($forUpdate) {
             $forUpdate->show_on_home = false;
             $forUpdate->save();
@@ -1279,7 +1262,6 @@ public function topVoted(Request $request)
     }
 
     /**
-     * @param Survey $survey
      * @return array
      * @throws \Exception
      */
@@ -1318,7 +1300,7 @@ public function topVoted(Request $request)
         $country = (new CountryService($request))->getCountry();
         $votes = SurveyVote::groupBy('survey_id')
             ->selectRaw('survey_id, sum(mark) as sum')
-            ->where('country_id', '=', auth()->user()->country_id ? auth()->user()->country_id : null)
+            ->where('country_id', '=', auth()->user()->country_id ?: null)
             ->orderBy('sum', 'desc')
             ->get();
 
@@ -1356,7 +1338,7 @@ public function topVoted(Request $request)
         $data = $request->all();
 
         //get the base-64 from data
-        $base64_str = substr($data['base64_image'], strpos($data['base64_image'], ",")+1);
+        $base64_str = substr((string) $data['base64_image'], strpos((string) $data['base64_image'], ",")+1);
         $name = $data["name"];
         //decode base64 string
         $image = base64_decode($base64_str);

@@ -7,25 +7,23 @@ namespace App\CustomObjects;
  */
 class ApiPagination
 {
-    private $pageCount = 1;
+    private int $pageCount = 1;
 
-    private $recordCount = 0;
+    private int $recordCount = 0;
 
-    private $itemsPerPage = 20;
+    private int $itemsPerPage = 20;
 
-    private $firstLink = '';
+    private ?string $firstLink = '';
 
-    private $lastLink = '';
+    private ?string $lastLink = '';
 
-    private $prevLink = '';
+    private ?string $prevLink = '';
 
-    private $nextLink = '';
+    private ?string $nextLink = '';
 
     private $currentPage = 1;
 
-    private $circular = false;
-
-    public function __construct(int $itemsPerPage = null, int $recordCount = null, int $offset = 0, bool $circular = false)
+    public function __construct(int $itemsPerPage = null, int $recordCount = null, int $offset = 0, private bool $circular = false)
     {
         //dd($offset);
         $this->itemsPerPage = (is_null($itemsPerPage) || $itemsPerPage == 0) ? 1 : $itemsPerPage;
@@ -33,7 +31,6 @@ class ApiPagination
         $pageCalc = (int) ceil($this->recordCount / $this->itemsPerPage);
         $this->pageCount = $pageCalc <= 0 ? 1 : $pageCalc;
         $this->currentPage = $this->calculatePage($offset);
-        $this->circular = $circular;
         $this->setFirstLink()->setLastLink()->setPrevLink()->setNextLink();
 
     }
@@ -209,7 +206,6 @@ class ApiPagination
     }
 
     /**
-     * @param int $currentPage
      * @return $this
      */
     public function setCurrentPage(int $currentPage)
@@ -227,7 +223,6 @@ class ApiPagination
     }
 
     /**
-     * @param int $itemsPerPage
      * @return $this
      */
     public function setItemsPerPage(int $itemsPerPage)
@@ -245,7 +240,6 @@ class ApiPagination
     }
 
     /**
-     * @param bool $circular
      * @return $this
      */
     public function setCircular(bool $circular)

@@ -117,7 +117,7 @@ class SurveyChoiceController extends Controller
             // $survey = Survey::where('id','=',$survey->id)->first();
             $jsonResponse->setData(200,'msg.info.list.survey_choices',$survey);
 
-        }catch (\Exception $exception){
+        }catch (\Exception){
            $jsonResponse->setData(400,'msg.error_unauthorized_country');
         }
         return $jsonResponse->getResponse();
@@ -132,11 +132,7 @@ class SurveyChoiceController extends Controller
              })
              ->get();*/
 
-        $survey = SurveyChoice::with(['user', 'onlySurvey' => function( $query ) {
-            return $query->whereHas('category', function ( $q ) {
-                return $q->where(['status' => 'active']);
-            })->with('category');
-        }])
+        $survey = SurveyChoice::with(['user', 'onlySurvey' => fn($query) => $query->whereHas('category', fn($q) => $q->where(['status' => 'active']))->with('category')])
         ->where('status', false);
 
         if(auth()->user()) {

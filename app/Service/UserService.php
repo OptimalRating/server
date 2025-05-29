@@ -81,7 +81,7 @@ class UserService
     {
         $surveys = Survey::where('user_id','=', $user->id)->get();
 
-        if (!count($surveys)) {
+        if (!(is_countable($surveys) ? count($surveys) : 0)) {
             return;
         }
 

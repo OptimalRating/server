@@ -11,13 +11,12 @@ class CountryAndSuperAdmin
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next, $level)
     {
         if(Auth::user()){
-            $levels = explode('.', $level);
+            $levels = explode('.', (string) $level);
             foreach($levels as $level){
                 if(Auth::user()->hasRole($level)){
                     return $next($request);

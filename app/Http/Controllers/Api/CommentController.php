@@ -14,14 +14,8 @@ use App\Validator\CategoryValidator;
 
 class CommentController extends Controller
 {
-    /**
-     * @var CustomJsonResponse
-     */
-    private $jsonResponse;
-
-    public function __construct(CustomJsonResponse $jsonResponse)
+    public function __construct(private readonly CustomJsonResponse $jsonResponse)
     {
-        $this->jsonResponse = $jsonResponse;
     }
 
     /**
@@ -36,7 +30,7 @@ class CommentController extends Controller
             $model = Comment::where('country_id', auth()->user()->country_id)->with(['country','commentable','user']);
         }
 
-        $pagination = new ApiPagination(request("limit", 20), count($model->get()), request("offset", 0));
+        $pagination = new ApiPagination(request("limit", 20), is_countable($model->get()) ? count($model->get()) : 0, request("offset", 0));
 
         $this->jsonResponse->setData(200, 'msg.info.list.comments', $model->get(), null, null);
 
@@ -97,8 +91,6 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param Comment $comment
      * @return array|bool
      */
     public function update(Request $request, Comment $comment)
@@ -122,7 +114,7 @@ class CommentController extends Controller
     {
         $model  = self::prepareTree($survey->comments);
 
-        $pagination = new ApiPagination(request("limit", 20), count($model), request("offset", 0));
+        $pagination = new ApiPagination(request("limit", 20), is_countable($model) ? count($model) : 0, request("offset", 0));
 
         $this->jsonResponse->setData(
             200,

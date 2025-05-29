@@ -24,15 +24,8 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-    /**
-     * @var CustomJsonResponse
-     */
-    private $jsonResponse;
-
-    public function __construct(CustomJsonResponse $jsonResponse)
+    public function __construct(private readonly CustomJsonResponse $jsonResponse)
     {
-        //$this->authorizeResource(Category::class, 'category');
-        $this->jsonResponse = $jsonResponse;
     }
 
     /**
@@ -63,20 +56,16 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
      * @return array
      */
     // public function store(Request $request)
     // {
     //     $requestJsonAll = $request->json()->all();
-
     //     $requestJsonAll['country_id'] = auth()->user()->country_id;
     //     if(auth()->user()->hasRole('super_admin')) {
     //         $requestJsonAll['country_id'] = null;
-
     //         $requestJsonAll['code'] = 'category.'.str_slug($requestJsonAll['name']);
     //     }
-
     //     new KeywordService($requestJsonAll['code'], $requestJsonAll['name'], 'category');
     //     // Log::info('HELLO CODE', ['code' => $requestJsonAll['code']]);
     //        if($requestJsonAll){
@@ -85,26 +74,19 @@ class CategoryController extends Controller
     //        'key' => $requestJsonAll['code'],
     //        'default' => $request->json('name')
     //       ]);
-
     //     (new CacheService())->keywordCacheCreate(); //
     //     }
-       
     //     $validator = new CategoryValidator();
     //     if($response = $validator->validate()) {
     //         return $response;
     //     }
-
     //     $category = Category::create($requestJsonAll);
-
     //     if($category) {
     //         $this->jsonResponse->setData(200,  'msg.info.category.created', $category);
-
     //         return $this->jsonResponse->getResponse();
     //     }
-
     //     return $this->categoryError();
     // }
-
     public function store(Request $request)
 {
     $requestJsonAll = $request->json()->all();
@@ -173,8 +155,6 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param Category $category
      * @return array|bool
      */
     public function update(Request $request, Category $category)
@@ -205,7 +185,6 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Category $category
      * @return array category silme olmamalı bence kategoriye bağlı birçok alt kategori ve
      * category silme olmamalı bence kategoriye bağlı birçok alt kategori ve
      * bunlara bağlı anketler olabilir
@@ -227,7 +206,7 @@ class CategoryController extends Controller
                 # Delete Survey Subjects
                 DB::table('survey_subjects')
                     ->where('survey_id', $survey->id)
-                    ->update(array('deleted_at' => DB::raw('NOW()')));
+                    ->update(['deleted_at' => DB::raw('NOW()')]);
                 
                 # Delete Survey Choice
                 $survey_votes = SurveyVote::where(['survey_id' => $survey->id])->get();
@@ -367,14 +346,12 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return array
      */
-
     public function pending(Request $request)
     {
         $categories = Category::where("parent",0)->get();
-        $category =  self::prepareTreeForCountryAdmin($categories, 'pending', $request);
+        $category =  self::prepareTreeForCountryAdmin($categories, $request, 'pending');
         $this->jsonResponse->setData(200,  'msg.info.category.list', $category);
 
         return $this->jsonResponse->getResponse();
@@ -382,7 +359,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return array
      */
     public function categoryTree(Request $request)
@@ -426,7 +402,7 @@ class CategoryController extends Controller
      * @param string $status
      * @return array
      */
-    public function prepareTreeForCountryAdmin($categories, $status='pending', Request $request)
+    public function prepareTreeForCountryAdmin($categories, Request $request, $status='pending')
     {
         $allCategory = [];
         $countryId = null;
@@ -442,7 +418,7 @@ class CategoryController extends Controller
 
         foreach ($categories as $key => $category) {
             $child = Category::where("parent", $category->id)->where('status', $status)->where('country_id',$countryId)->get();
-            $category->children = self::prepareTreeForCountryAdmin($child, $status, $request);
+            $category->children = self::prepareTreeForCountryAdmin($child, $request, $status);
             $allCategory[] = $category;//parent::snakeCaseToCamelCase($category)
         }
         return $allCategory;

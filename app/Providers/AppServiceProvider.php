@@ -15,9 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-            $this->app->bind('CustomJsonResponse', function (){
-            return new CustomJsonResponse();
-        });
+            $this->app->bind('CustomJsonResponse', fn() => new CustomJsonResponse());
     }
 
     /**

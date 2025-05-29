@@ -8,19 +8,8 @@ use App\Service\KeywordService;
 
 class CustomJsonResponse
 {
-    private $code;
-    private $message;
-    private $data;
-    private $errors;
-    private $pagination;
-
-    public function __construct($code, $message, $data=null, $errors=null, $pagination= null)
+    public function __construct(private $code, private $message, private $data=null, private $errors=null, private $pagination= null)
     {
-        $this->code = $code;
-        $this->message = $message;
-        $this->data = $data;
-        $this->errors = $errors;
-        $this->pagination = $pagination;
     }
 
     public function getResponse()

@@ -8,30 +8,20 @@ use GuzzleHttp\Client;
 class LanguagesService
 {
 
-    private $client;
-    private $countries;
-    private $ipData;
+    private readonly \GuzzleHttp\Client $client;
 
-    /**
-     * @var string
-     */
-    private $apiKey;
+    private readonly string $apiKey;
 
-    /**
-     * @var string
-     */
-    private $apiUrl;
+    private readonly string $apiUrl;
 
     /**
      * SmsService constructor.
      * @param $countries
      * @param $ipData
      */
-    public function __construct($countries, $ipData)
+    public function __construct(private $countries, private $ipData)
     {
         $this->client     = new Client();
-        $this->countries = $countries;
-        $this->ipData = $ipData;
         $this->apiKey = 'trnsl.1.1.20191117T111038Z.cd0f674744adf370.c74fbe46e4d993b6fc305dc18b4936748b85ec0e';
         $this->apiUrl = 'https://translate.yandex.net/api/v1.5/tr.json/translate?';
     }
@@ -41,7 +31,7 @@ class LanguagesService
         foreach ($this->countries as $country){
             try{
                 $country->locale_lang = self::translate($country->name_en, 'en', $this->ipData->language_code);
-            }catch (\Exception $exception){
+            }catch (\Exception){
                 $country->locale_lang = self::translate($country->name_en, 'en');
             }
         }
@@ -56,7 +46,7 @@ class LanguagesService
 
         $client = $this->client->get($url);
 
-        $json = json_decode($client->getBody()->getContents(), true);
+        $json = json_decode($client->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
 
         return $json['text'][0];
     }

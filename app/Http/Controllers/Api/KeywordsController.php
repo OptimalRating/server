@@ -58,7 +58,6 @@ class KeywordsController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return array
      */
     public function store(Request $request)
@@ -93,8 +92,6 @@ class KeywordsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param Keyword $keyword
      * @return array
      */
     public function update(Request $request, Keyword $keyword)

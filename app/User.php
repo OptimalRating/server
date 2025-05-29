@@ -105,7 +105,7 @@ class User extends Authenticatable
     }
 
     public function AauthAcessToken(){
-        return $this->hasMany('\App\OauthAccessToken');
+        return $this->hasMany('\\' . \App\OauthAccessToken::class);
     }
 
     public function roles()
@@ -145,12 +145,12 @@ class User extends Authenticatable
 
     public function country()
     {
-        return $this->belongsTo('App\Country');
+        return $this->belongsTo(\App\Country::class);
     }
 
     public function city()
     {
-        return $this->belongsTo('App\City');
+        return $this->belongsTo(\App\City::class);
     }
 
     public function getNormalUsers()

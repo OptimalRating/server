@@ -14,7 +14,7 @@ use App\Service\MailService;
 
 class TestController
 {
-    public function test(MailService $service)
+    public function test(MailService $service): never
     {
         $body = $service->test();
 

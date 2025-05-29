@@ -26,7 +26,7 @@ class CountryScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $countryID = app('Illuminate\Http\Request')->header('country');
+        $countryID = app(\Illuminate\Http\Request::class)->header('country');
         $country = Country::where('code','=',$countryID)->first();
 
         $builder->where('country_id', '=', $country->id);
