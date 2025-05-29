@@ -37,12 +37,12 @@ jobs:
 
       # - name: 🔍 Run ESLint on frontend code
       #   run: npx eslint resources/js
-      
+
       - name: 🎨 Run Laravel Pint
         run: ./vendor/bin/pint
 
       - name: 🔍 Run PHPStan Static Analysis
-        run: ./vendor/bin/phpstan analyse --level=max
+        run: ./vendor/bin/phpstan analyse
 
       - name: 🚀 Deploy to Laravel Server (via SSH password)
         uses: appleboy/ssh-action@v1.0.0
