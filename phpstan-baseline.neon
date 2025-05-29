@@ -1,172 +1,17 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$country_id\\.$#"
+			message: "#^Call to method getMessage\\(\\) on an unknown class App\\\\Http\\\\Controllers\\\\Api\\\\Auth\\\\Exception\\.$#"
 			count: 1
-			path: app/Category.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:hasRole\\(\\)\\.$#"
-			count: 1
-			path: app/Category.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\BelongsTo\\:\\:with\\(\\)\\.$#"
-			count: 1
-			path: app/Category.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\HasMany\\:\\:with\\(\\)\\.$#"
-			count: 2
-			path: app/Category.php
-
-		-
-			message: "#^Class App\\\\App\\\\Country not found\\.$#"
-			count: 1
-			path: app/City.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Builder\\|Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$id\\.$#"
-			count: 1
-			path: app/Console/Commands/PrivacyCreate.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Builder\\|Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$privacySettings\\.$#"
-			count: 1
-			path: app/Console/Commands/PrivacyCreate.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Privacy\\:\\:select\\(\\)\\.$#"
-			count: 1
-			path: app/Console/Commands/PrivacyCreate.php
-
-		-
-			message: "#^Method App\\\\Exceptions\\\\Handler\\:\\:render\\(\\) should return Illuminate\\\\Http\\\\Response but returns Illuminate\\\\Http\\\\JsonResponse\\.$#"
-			count: 1
-			path: app/Exceptions/Handler.php
-
-		-
-			message: "#^Method App\\\\Exceptions\\\\Handler\\:\\:render\\(\\) should return Illuminate\\\\Http\\\\Response but returns Symfony\\\\Component\\\\HttpFoundation\\\\Response\\.$#"
-			count: 1
-			path: app/Exceptions/Handler.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\Exceptions\\\\Handler\\:\\:\\$dontFlash is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Foundation\\\\Exceptions\\\\Handler\\:\\:\\$dontFlash\\.$#"
-			count: 1
-			path: app/Exceptions/Handler.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\Exceptions\\\\Handler\\:\\:\\$dontReport is not covariant with PHPDoc type array\\<int, class\\-string\\<Throwable\\>\\> of overridden property Illuminate\\\\Foundation\\\\Exceptions\\\\Handler\\:\\:\\$dontReport\\.$#"
-			count: 1
-			path: app/Exceptions/Handler.php
-
-		-
-			message: "#^Property App\\\\Globals\\\\GlobalResponse\\:\\:\\$code is unused\\.$#"
-			count: 1
-			path: app/Globals/GlobalResponse.php
-
-		-
-			message: "#^Property App\\\\Globals\\\\GlobalResponse\\:\\:\\$data is never read, only written\\.$#"
-			count: 1
-			path: app/Globals/GlobalResponse.php
-
-		-
-			message: "#^Property App\\\\Globals\\\\GlobalResponse\\:\\:\\$errors is never read, only written\\.$#"
-			count: 1
-			path: app/Globals/GlobalResponse.php
-
-		-
-			message: "#^Property App\\\\Globals\\\\GlobalResponse\\:\\:\\$message is unused\\.$#"
-			count: 1
-			path: app/Globals/GlobalResponse.php
-
-		-
-			message: "#^Property App\\\\Globals\\\\GlobalResponse\\:\\:\\$response is unused\\.$#"
-			count: 1
-			path: app/Globals/GlobalResponse.php
-
-		-
-			message: "#^Property App\\\\Globals\\\\GlobalResponse\\:\\:\\$result is unused\\.$#"
-			count: 1
-			path: app/Globals/GlobalResponse.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$phone_verify\\.$#"
-			count: 1
-			path: app/Helper/CustomHelper.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$status\\.$#"
-			count: 1
-			path: app/Helper/CustomHelper.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Country\\:\\:\\$code\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/LoginController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Country\\:\\:\\$flag\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/LoginController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Country\\:\\:\\$name\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/LoginController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Country\\:\\:\\$name_en\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/LoginController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Country\\:\\:\\$status\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/LoginController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:AauthAcessToken\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/LoginController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/LoginController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Role\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/LoginController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\User\\:\\:create\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/LoginController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\User\\:\\:where\\(\\)\\.$#"
-			count: 3
-			path: app/Http/Controllers/Api/Auth/LoginController.php
-
-		-
-			message: "#^Call to an undefined static method Laravel\\\\Passport\\\\Client\\:\\:find\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/LoginController.php
-
-		-
-			message: "#^Negated boolean expression is always true\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/LoginController.php
-
-		-
-			message: "#^Right side of && is always true\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/LoginController.php
+			path: app/Http/Controllers/Api/Auth/OtpController.php
 
 		-
 			message: "#^Call to method getMessage\\(\\) on an unknown class Kreait\\\\Firebase\\\\Exception\\\\Auth\\\\FirebaseAuthException\\.$#"
+			count: 1
+			path: app/Http/Controllers/Api/Auth/OtpController.php
+
+		-
+			message: "#^Caught class App\\\\Http\\\\Controllers\\\\Api\\\\Auth\\\\Exception not found\\.$#"
 			count: 1
 			path: app/Http/Controllers/Api/Auth/OtpController.php
 
@@ -176,177 +21,17 @@ parameters:
 			path: app/Http/Controllers/Api/Auth/OtpController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\SmsVerify\\:\\:\\$expired\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/RegisterController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SmsVerify\\:\\:\\$phone_number\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/RegisterController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SmsVerify\\:\\:\\$sms\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/RegisterController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SmsVerify\\:\\:\\$sms_type\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/RegisterController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SmsVerify\\:\\:\\$status\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/RegisterController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SmsVerify\\:\\:\\$token\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/RegisterController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/RegisterController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Role\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/RegisterController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\SmsVerify\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/RegisterController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\User\\:\\:create\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/RegisterController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\User\\:\\:whereEmail\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/RegisterController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\UserDetail\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/RegisterController.php
-
-		-
-			message: "#^Call to an undefined static method Laravel\\\\Passport\\\\Client\\:\\:find\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/RegisterController.php
-
-		-
-			message: "#^Method Carbon\\\\Carbon\\:\\:addHour\\(\\) invoked with 1 parameter, 0 required\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/Auth/RegisterController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Category\\:\\:\\$code\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Category\\:\\:\\$country_id\\.$#"
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Builder\\<App\\\\Keyword\\>\\:\\:\\$default\\.$#"
 			count: 1
 			path: app/Http/Controllers/Api/CategoryController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\Category\\:\\:\\$id\\.$#"
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Builder\\<App\\\\Keyword\\>\\:\\:\\$key\\.$#"
 			count: 1
 			path: app/Http/Controllers/Api/CategoryController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\Category\\:\\:\\$is_world\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Category\\:\\:\\$name\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Category\\:\\:\\$parent\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Category\\:\\:\\$slug\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Category\\:\\:\\$status\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Category\\:\\:\\$user_id\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$country_id\\.$#"
-			count: 4
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:hasRole\\(\\)\\.$#"
-			count: 4
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Category\\:\\:create\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Category\\:\\:find\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Category\\:\\:where\\(\\)\\.$#"
-			count: 6
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:where\\(\\)\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Keyword\\:\\:create\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Keyword\\:\\:where\\(\\)\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Survey\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\SurveyChoice\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\SurveyVote\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CategoryController.php
-
-		-
-			message: "#^Deprecated in PHP 8\\.0\\: Required parameter \\$request follows optional parameter \\$status\\.$#"
+			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Builder\\<App\\\\Keyword\\>\\:\\:\\$type\\.$#"
 			count: 1
 			path: app/Http/Controllers/Api/CategoryController.php
 
@@ -356,29 +41,19 @@ parameters:
 			path: app/Http/Controllers/Api/CategoryController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\City\\:\\:\\$name\\.$#"
+			message: "#^Relation 'parent' is not found in App\\\\Category model\\.$#"
 			count: 1
-			path: app/Http/Controllers/Api/CityCrudController.php
+			path: app/Http/Controllers/Api/CategoryController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\City\\:\\:\\$order\\.$#"
+			message: "#^Relation 'surveys' is not found in App\\\\Category model\\.$#"
 			count: 1
-			path: app/Http/Controllers/Api/CityCrudController.php
+			path: app/Http/Controllers/Api/CategoryController.php
 
 		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$country_id\\.$#"
+			message: "#^Relation 'user' is not found in App\\\\Category model\\.$#"
 			count: 1
-			path: app/Http/Controllers/Api/CityCrudController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\City\\:\\:create\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CityCrudController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\City\\:\\:where\\(\\)\\.$#"
-			count: 3
-			path: app/Http/Controllers/Api/CityCrudController.php
+			path: app/Http/Controllers/Api/CategoryController.php
 
 		-
 			message: "#^Method App\\\\Http\\\\Controllers\\\\Api\\\\CityCrudController\\:\\:destroy\\(\\) should return array but return statement is missing\\.$#"
@@ -396,118 +71,23 @@ parameters:
 			path: app/Http/Controllers/Api/CityCrudController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\Survey\\:\\:\\$comments\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CommentController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$country_id\\.$#"
+			message: "#^Relation 'commentable' is not found in App\\\\Comment model\\.$#"
 			count: 2
 			path: app/Http/Controllers/Api/CommentController.php
 
 		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:hasRole\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CommentController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Comment\\:\\:find\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CommentController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Comment\\:\\:where\\(\\)\\.$#"
+			message: "#^Relation 'country' is not found in App\\\\Comment model\\.$#"
 			count: 2
 			path: app/Http/Controllers/Api/CommentController.php
 
 		-
-			message: "#^Call to an undefined static method App\\\\Survey\\:\\:find\\(\\)\\.$#"
-			count: 1
+			message: "#^Relation 'user' is not found in App\\\\Comment model\\.$#"
+			count: 2
 			path: app/Http/Controllers/Api/CommentController.php
 
 		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$country_id\\.$#"
+			message: "#^Relation 'user' is not found in App\\\\Country model\\.$#"
 			count: 1
-			path: app/Http/Controllers/Api/CommentLikeController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Http\\\\Request\\:\\:\\$comment_id\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CommentLikeController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Comment\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CommentLikeController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:select\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CommentLikeController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Country\\:\\:\\$id\\.$#"
-			count: 4
-			path: app/Http/Controllers/Api/CountryController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\User\\:\\:\\$country_id\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CountryController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\User\\:\\:\\$email\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CountryController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\User\\:\\:\\$id\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CountryController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\User\\:\\:\\$password\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CountryController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\User\\:\\:\\$username\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CountryController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Category\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CountryController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\City\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CountryController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:create\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CountryController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:whereNull\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CountryController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Role\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/CountryController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Survey\\:\\:where\\(\\)\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/CountryController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\User\\:\\:where\\(\\)\\.$#"
-			count: 2
 			path: app/Http/Controllers/Api/CountryController.php
 
 		-
@@ -521,104 +101,19 @@ parameters:
 			path: app/Http/Controllers/Api/CountryController.php
 
 		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$country_id\\.$#"
+			message: "#^Relation 'user' is not found in App\\\\Category model\\.$#"
 			count: 1
 			path: app/Http/Controllers/Api/DashboardController.php
 
 		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:hasRole\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/DashboardController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Friends\\:\\:\\$friend\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/FriendsController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Friends\\:\\:\\$status\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/FriendsController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Friends\\:\\:\\$user\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/FriendsController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\PendingFriends\\:\\:\\$friend\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/FriendsController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\PendingFriends\\:\\:\\$status\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/FriendsController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\PendingFriends\\:\\:\\$user\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/FriendsController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$id\\.$#"
-			count: 8
-			path: app/Http/Controllers/Api/FriendsController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Friends\\:\\:where\\(\\)\\.$#"
-			count: 5
-			path: app/Http/Controllers/Api/FriendsController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\PendingFriends\\:\\:where\\(\\)\\.$#"
-			count: 4
-			path: app/Http/Controllers/Api/FriendsController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$country_id\\.$#"
+			message: "#^Relation 'friend' is not found in App\\\\Friends model\\.$#"
 			count: 1
 			path: app/Http/Controllers/Api/InitController.php
 
 		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$id\\.$#"
+			message: "#^Relation 'friends' is not found in App\\\\User model\\.$#"
 			count: 1
 			path: app/Http/Controllers/Api/InitController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$roles\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/InitController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:find\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/InitController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\KeywordsCache\\:\\:orderBy\\(\\)\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/InitController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Keyword\\:\\:\\$default\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/KeywordsController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Keyword\\:\\:\\$key\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/KeywordsController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:hasRole\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/KeywordsController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Keyword\\:\\:create\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/KeywordsController.php
 
 		-
 			message: "#^PHPDoc tag @param references unknown parameter\\: \\$keywords$#"
@@ -626,89 +121,39 @@ parameters:
 			path: app/Http/Controllers/Api/KeywordsController.php
 
 		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$country\\.$#"
+			message: "#^Relation 'translation' is not found in App\\\\Keyword model\\.$#"
 			count: 1
-			path: app/Http/Controllers/Api/LocaleController.php
+			path: app/Http/Controllers/Api/KeywordsController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\User\\:\\:\\$is_real\\.$#"
+			message: "#^Relation 'translations' is not found in App\\\\Keyword model\\.$#"
+			count: 1
+			path: app/Http/Controllers/Api/KeywordsController.php
+
+		-
+			message: "#^Property App\\\\User\\:\\:\\$status \\('approved'\\|'deleted'\\|'disapproved'\\|'freeze'\\|'pending'\\|'pendingApproved'\\|'pendingFreeze'\\) does not accept 'active'\\.$#"
 			count: 1
 			path: app/Http/Controllers/Api/MembersController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\User\\:\\:\\$status\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/MembersController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$country_id\\.$#"
+			message: "#^Relation 'country' is not found in App\\\\User model\\.$#"
 			count: 2
 			path: app/Http/Controllers/Api/MembersController.php
 
 		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$id\\.$#"
+			message: "#^Relation 'roles' is not found in App\\\\User model\\.$#"
 			count: 1
 			path: app/Http/Controllers/Api/MembersController.php
 
 		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:hasRole\\(\\)\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/MembersController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\User\\:\\:find\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/MembersController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\User\\:\\:whereHas\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/MembersController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\UserDetail\\:\\:select\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/MembersController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\UserDetail\\:\\:where\\(\\)\\.$#"
-			count: 1
+			message: "#^Relation 'userDetails' is not found in App\\\\User model\\.$#"
+			count: 3
 			path: app/Http/Controllers/Api/MembersController.php
 
 		-
 			message: "#^Variable \\$model might not be defined\\.$#"
-			count: 9
+			count: 10
 			path: app/Http/Controllers/Api/MembersController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:hasRole\\(\\)\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/MenuController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Page\\:\\:\\$status\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/PagesController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:country\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/PagesController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Page\\:\\:create\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/PagesController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Page\\:\\:where\\(\\)\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/PagesController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\PageTranslations\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/PagesController.php
 
 		-
 			message: "#^Method App\\\\Http\\\\Controllers\\\\Api\\\\PagesController\\:\\:destroy\\(\\) should return array but return statement is missing\\.$#"
@@ -718,6 +163,16 @@ parameters:
 		-
 			message: "#^PHPDoc tag @param references unknown parameter\\: \\$page$#"
 			count: 2
+			path: app/Http/Controllers/Api/PagesController.php
+
+		-
+			message: "#^Property App\\\\Page\\:\\:\\$status \\(bool\\) does not accept int\\.$#"
+			count: 1
+			path: app/Http/Controllers/Api/PagesController.php
+
+		-
+			message: "#^Relation 'translation' is not found in App\\\\Page model\\.$#"
+			count: 1
 			path: app/Http/Controllers/Api/PagesController.php
 
 		-
@@ -756,26 +211,6 @@ parameters:
 			path: app/Http/Controllers/Api/PendingFriendsController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\PrivacyOptions\\:\\:\\$id\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/PrivacyController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\PrivacyOptions\\:\\:\\$option\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/PrivacyController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\PrivacyOptions\\:\\:\\$privacy_id\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/PrivacyController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Privacy\\:\\:create\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/PrivacyController.php
-
-		-
 			message: "#^Method App\\\\Http\\\\Controllers\\\\Api\\\\PrivacyOptionsController\\:\\:create\\(\\) should return Illuminate\\\\Http\\\\Response but return statement is missing\\.$#"
 			count: 1
 			path: app/Http/Controllers/Api/PrivacyOptionsController.php
@@ -811,58 +246,8 @@ parameters:
 			path: app/Http/Controllers/Api/PrivacyOptionsController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\Subject\\:\\:\\$title\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/SubjectsController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Subject\\:\\:\\$translate_key\\.$#"
-			count: 3
-			path: app/Http/Controllers/Api/SubjectsController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Http\\\\Request\\:\\:\\$orderBy\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/SubjectsController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SubjectsController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Keyword\\:\\:create\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SubjectsController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Keyword\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SubjectsController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Subject\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SubjectsController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\SurveyVote\\:\\:groupBy\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SubjectsController.php
-
-		-
-			message: "#^Call to static method info\\(\\) on an unknown class Log\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SubjectsController.php
-
-		-
 			message: "#^Function str_slug not found\\.$#"
 			count: 2
-			path: app/Http/Controllers/Api/SubjectsController.php
-
-		-
-			message: "#^If condition is always true\\.$#"
-			count: 1
 			path: app/Http/Controllers/Api/SubjectsController.php
 
 		-
@@ -876,199 +261,24 @@ parameters:
 			path: app/Http/Controllers/Api/SubjectsController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\Survey\\:\\:\\$id\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/SurveyChoiceController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Survey\\:\\:\\$type\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveyChoiceController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SurveyChoice\\:\\:\\$survey\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveyChoiceController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SurveyVote\\:\\:\\$choice_id\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveyChoiceController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SurveyVote\\:\\:\\$country_id\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveyChoiceController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SurveyVote\\:\\:\\$mark\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveyChoiceController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SurveyVote\\:\\:\\$survey_id\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveyChoiceController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SurveyVote\\:\\:\\$user_id\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveyChoiceController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$country_id\\.$#"
+			message: "#^Relation 'onlySurvey' is not found in App\\\\SurveyChoice model\\.$#"
 			count: 3
 			path: app/Http/Controllers/Api/SurveyChoiceController.php
 
 		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$id\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/SurveyChoiceController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:hasAnyRole\\(\\)\\.$#"
+			message: "#^Relation 'user' is not found in App\\\\SurveyChoice model\\.$#"
 			count: 1
 			path: app/Http/Controllers/Api/SurveyChoiceController.php
 
 		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveyChoiceController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\SurveyChoice\\:\\:create\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveyChoiceController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\SurveyChoice\\:\\:find\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveyChoiceController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\SurveyChoice\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveyChoiceController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Http\\\\Controllers\\\\Api\\\\SurveyVotesController\\:\\:\\$jsonResponse\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/SurveyVotesController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Survey\\:\\:\\$country_id\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/SurveyVotesController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Survey\\:\\:\\$id\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/SurveyVotesController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Survey\\:\\:\\$is_world\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/SurveyVotesController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SurveyVote\\:\\:\\$choice_id\\.$#"
+			message: "#^Method App\\\\Http\\\\Controllers\\\\Api\\\\SurveyVotesController\\:\\:surveyVote\\(\\) should return Illuminate\\\\Database\\\\Eloquent\\\\Builder\\<App\\\\SurveyVote\\> but returns App\\\\SurveyVote\\|null\\.$#"
 			count: 1
 			path: app/Http/Controllers/Api/SurveyVotesController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\SurveyVote\\:\\:\\$mark\\.$#"
+			message: "#^Relation 'choice' is not found in App\\\\SurveyVote model\\.$#"
 			count: 1
 			path: app/Http/Controllers/Api/SurveyVotesController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SurveyVote\\:\\:\\$survey_id\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveyVotesController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SurveyVote\\:\\:\\$user_id\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveyVotesController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$country_id\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/SurveyVotesController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$status\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveyVotesController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\SurveyChoice\\:\\:find\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveyVotesController.php
-
-		-
-			message: "#^Call to function is_null\\(\\) with App\\\\SurveyVote\\|Illuminate\\\\Database\\\\Eloquent\\\\Builder will always evaluate to false\\.$#"
-			count: 3
-			path: app/Http/Controllers/Api/SurveyVotesController.php
-
-		-
-			message: "#^Unreachable statement \\- code above always terminates\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/SurveyVotesController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SurveyVote\\:\\:\\$choice_id\\.$#"
-			count: 3
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SurveyVote\\:\\:\\$country_id\\.$#"
-			count: 3
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SurveyVote\\:\\:\\$mark\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SurveyVote\\:\\:\\$survey_id\\.$#"
-			count: 3
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\SurveyVote\\:\\:\\$user_id\\.$#"
-			count: 3
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$country_id\\.$#"
-			count: 9
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$id\\.$#"
-			count: 4
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Http\\\\Request\\:\\:\\$country_code\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Http\\\\Request\\:\\:\\$is_world\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Http\\\\Request\\:\\:\\$offset\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Http\\\\Request\\:\\:\\$orderBy\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveysController.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$id\\.$#"
@@ -1076,128 +286,8 @@ parameters:
 			path: app/Http/Controllers/Api/SurveysController.php
 
 		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:hasAnyRole\\(\\)\\.$#"
-			count: 4
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:hasRole\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Builder\\:\\:withTrashed\\(\\)\\.$#"
-			count: 6
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Query\\\\Builder\\:\\:withTrashed\\(\\)\\.$#"
-			count: 3
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Category\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:select\\(\\)\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:where\\(\\)\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Friends\\:\\:hasFriend\\(\\)\\.$#"
-			count: 4
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
 			message: "#^Call to an undefined static method App\\\\Friends\\:\\:withTrashed\\(\\)\\.$#"
 			count: 4
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Survey\\:\\:create\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Survey\\:\\:select\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Survey\\:\\:where\\(\\)\\.$#"
-			count: 3
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Survey\\:\\:whereHas\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\SurveyChoice\\:\\:create\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\SurveyChoice\\:\\:find\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\SurveyVote\\:\\:groupBy\\(\\)\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\SurveyVote\\:\\:where\\(\\)\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\SurveyVote\\:\\:whereHas\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\User\\:\\:whereNotIn\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to function is_null\\(\\) with array\\<Illuminate\\\\Database\\\\Eloquent\\\\Builder\\>\\|Illuminate\\\\Database\\\\Eloquent\\\\Builder\\|Illuminate\\\\Database\\\\Eloquent\\\\Collection\\|Illuminate\\\\Database\\\\Eloquent\\\\Model will always evaluate to false\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Call to function is_null\\(\\) with object will always evaluate to false\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Cannot access property \\$category_id on array\\<Illuminate\\\\Database\\\\Eloquent\\\\Builder\\>\\|Illuminate\\\\Database\\\\Eloquent\\\\Builder\\|Illuminate\\\\Database\\\\Eloquent\\\\Collection\\|Illuminate\\\\Database\\\\Eloquent\\\\Model\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Cannot access property \\$id on array\\<Illuminate\\\\Database\\\\Eloquent\\\\Builder\\>\\|Illuminate\\\\Database\\\\Eloquent\\\\Builder\\|Illuminate\\\\Database\\\\Eloquent\\\\Collection\\|Illuminate\\\\Database\\\\Eloquent\\\\Model\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Cannot access property \\$type on array\\<Illuminate\\\\Database\\\\Eloquent\\\\Builder\\>\\|Illuminate\\\\Database\\\\Eloquent\\\\Builder\\|Illuminate\\\\Database\\\\Eloquent\\\\Collection\\|Illuminate\\\\Database\\\\Eloquent\\\\Model\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/SurveysController.php
-
-		-
-			message: "#^Deprecated in PHP 8\\.0\\: Required parameter \\$request follows optional parameter \\$type\\.$#"
-			count: 2
 			path: app/Http/Controllers/Api/SurveysController.php
 
 		-
@@ -1216,174 +306,44 @@ parameters:
 			path: app/Http/Controllers/Api/SurveysController.php
 
 		-
-			message: "#^Parameter \\#1 \\$msg of method App\\\\Http\\\\Controllers\\\\Api\\\\SurveysController\\:\\:surveyError\\(\\) expects null, string given\\.$#"
+			message: "#^Relation 'category' is not found in App\\\\Survey model\\.$#"
 			count: 1
 			path: app/Http/Controllers/Api/SurveysController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\Keyword\\:\\:\\$default\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/TranslationsController.php
+			message: "#^Relation 'choices' is not found in App\\\\Survey model\\.$#"
+			count: 8
+			path: app/Http/Controllers/Api/SurveysController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\Keyword\\:\\:\\$key\\.$#"
+			message: "#^Relation 'comments' is not found in App\\\\Survey model\\.$#"
 			count: 1
-			path: app/Http/Controllers/Api/TranslationsController.php
+			path: app/Http/Controllers/Api/SurveysController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\Keyword\\:\\:\\$type\\.$#"
+			message: "#^Relation 'survey' is not found in App\\\\SurveyVote model\\.$#"
 			count: 1
-			path: app/Http/Controllers/Api/TranslationsController.php
+			path: app/Http/Controllers/Api/SurveysController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\Translation\\:\\:\\$country_code\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/TranslationsController.php
+			message: "#^Relation 'user' is not found in App\\\\Survey model\\.$#"
+			count: 5
+			path: app/Http/Controllers/Api/SurveysController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\Translation\\:\\:\\$keyword_id\\.$#"
+			message: "#^Relation 'users' is not found in App\\\\SurveyVote model\\.$#"
 			count: 1
-			path: app/Http/Controllers/Api/TranslationsController.php
+			path: app/Http/Controllers/Api/SurveysController.php
 
 		-
-			message: "#^Access to an undefined property App\\\\Translation\\:\\:\\$translation\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/TranslationsController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$country_id\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/TranslationsController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Category\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/TranslationsController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:find\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/TranslationsController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/TranslationsController.php
+			message: "#^Relation 'votes' is not found in App\\\\SurveyChoice model\\.$#"
+			count: 7
+			path: app/Http/Controllers/Api/SurveysController.php
 
 		-
 			message: "#^Call to static method parseFile\\(\\) on an unknown class Symfony\\\\Component\\\\Yaml\\\\Yaml\\.$#"
 			count: 1
 			path: app/Http/Controllers/Api/TranslationsController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\UserPrivacySetting\\:\\:\\$privacy_id\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\UserPrivacySetting\\:\\:\\$user_id\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\UserToken\\:\\:\\$expire_at\\.$#"
-			count: 3
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\UserToken\\:\\:\\$new_data\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\UserToken\\:\\:\\$old_data\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\UserToken\\:\\:\\$token\\.$#"
-			count: 3
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property App\\\\UserToken\\:\\:\\$user\\.$#"
-			count: 3
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property ArrayAccess\\:\\:\\$city\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property ArrayAccess\\:\\:\\$country\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$email\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$id\\.$#"
-			count: 6
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$national_image\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$password\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$phone_verify\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$portrait_image\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$privacySettings\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$username\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property object\\:\\:\\$id\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:hasAnyRole\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:save\\(\\)\\.$#"
-			count: 4
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:update\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:userDetails\\(\\)\\.$#"
-			count: 4
-			path: app/Http/Controllers/Api/UserController.php
 
 		-
 			message: "#^Call to an undefined method Laravel\\\\Socialite\\\\Contracts\\\\Provider\\:\\:scopes\\(\\)\\.$#"
@@ -1406,506 +366,31 @@ parameters:
 			path: app/Http/Controllers/Api/UserController.php
 
 		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:where\\(\\)\\.$#"
+			message: "#^Relation 'city' is not found in App\\\\User model\\.$#"
 			count: 1
 			path: app/Http/Controllers/Api/UserController.php
 
 		-
-			message: "#^Call to an undefined static method App\\\\Friends\\:\\:hasFriend\\(\\)\\.$#"
+			message: "#^Relation 'country' is not found in App\\\\User model\\.$#"
+			count: 1
+			path: app/Http/Controllers/Api/UserController.php
+
+		-
+			message: "#^Relation 'options' is not found in App\\\\Privacy model\\.$#"
+			count: 1
+			path: app/Http/Controllers/Api/UserController.php
+
+		-
+			message: "#^Relation 'privacySettings' is not found in App\\\\User model\\.$#"
 			count: 2
 			path: app/Http/Controllers/Api/UserController.php
 
 		-
-			message: "#^Call to an undefined static method App\\\\SmsVerify\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\User\\:\\:find\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\User\\:\\:firstOrCreate\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\User\\:\\:where\\(\\)\\.$#"
-			count: 5
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\User\\:\\:whereEmail\\(\\)\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\UserDetail\\:\\:where\\(\\)\\.$#"
-			count: 2
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\UserPrivacySetting\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\UserToken\\:\\:where\\(\\)\\.$#"
+			message: "#^Relation 'userDetails' is not found in App\\\\User model\\.$#"
 			count: 3
 			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Method Carbon\\\\Carbon\\:\\:addWeek\\(\\) invoked with 1 parameter, 0 required\\.$#"
-			count: 3
-			path: app/Http/Controllers/Api/UserController.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Http\\\\Request\\:\\:\\$push\\.$#"
-			count: 1
-			path: app/Http/Controllers/Api/WebHookController.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\User\\:\\:create\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Controllers/Auth/RegisterController.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\Http\\\\Kernel\\:\\:\\$middleware is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Foundation\\\\Http\\\\Kernel\\:\\:\\$middleware\\.$#"
-			count: 1
-			path: app/Http/Kernel.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\Http\\\\Kernel\\:\\:\\$middlewareGroups is not covariant with PHPDoc type array\\<string, array\\<int, string\\>\\> of overridden property Illuminate\\\\Foundation\\\\Http\\\\Kernel\\:\\:\\$middlewareGroups\\.$#"
-			count: 1
-			path: app/Http/Kernel.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\Http\\\\Kernel\\:\\:\\$middlewarePriority is not covariant with PHPDoc type array\\<string\\> of overridden property Illuminate\\\\Foundation\\\\Http\\\\Kernel\\:\\:\\$middlewarePriority\\.$#"
-			count: 1
-			path: app/Http/Kernel.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\Http\\\\Kernel\\:\\:\\$routeMiddleware is not covariant with PHPDoc type array\\<string, string\\> of overridden property Illuminate\\\\Foundation\\\\Http\\\\Kernel\\:\\:\\$routeMiddleware\\.$#"
-			count: 1
-			path: app/Http/Kernel.php
 
 		-
 			message: "#^Method App\\\\Http\\\\Middleware\\\\Authenticate\\:\\:redirectTo\\(\\) should return string but return statement is missing\\.$#"
 			count: 1
 			path: app/Http/Middleware/Authenticate.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\Http\\\\Middleware\\\\CheckForMaintenanceMode\\:\\:\\$except is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\\:\\:\\$except\\.$#"
-			count: 1
-			path: app/Http/Middleware/CheckForMaintenanceMode.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:hasRole\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Middleware/CountryAdmin.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:hasRole\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Middleware/CountryAndSuperAdmin.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\Http\\\\Middleware\\\\EncryptCookies\\:\\:\\$except is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Cookie\\\\Middleware\\\\EncryptCookies\\:\\:\\$except\\.$#"
-			count: 1
-			path: app/Http/Middleware/EncryptCookies.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:hasRole\\(\\)\\.$#"
-			count: 1
-			path: app/Http/Middleware/SuperAdminAuth.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\Http\\\\Middleware\\\\TrimStrings\\:\\:\\$except is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\\:\\:\\$except\\.$#"
-			count: 1
-			path: app/Http/Middleware/TrimStrings.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\Http\\\\Middleware\\\\VerifyCsrfToken\\:\\:\\$except is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\VerifyCsrfToken\\:\\:\\$except\\.$#"
-			count: 1
-			path: app/Http/Middleware/VerifyCsrfToken.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Contracts\\\\Auth\\\\Authenticatable\\:\\:\\$country_id\\.$#"
-			count: 1
-			path: app/Keyword.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\HasOne\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Keyword.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:find\\(\\)\\.$#"
-			count: 1
-			path: app/Keyword.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Page\\:\\:\\$title\\.$#"
-			count: 1
-			path: app/Page.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\HasOne\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Page.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Page.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\Page\\:\\:\\$fillable is not covariant with PHPDoc type array\\<string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$fillable\\.$#"
-			count: 1
-			path: app/Page.php
-
-		-
-			message: "#^Access to an undefined property App\\\\City\\:\\:\\$country_id\\.$#"
-			count: 1
-			path: app/Policies/CityPolicy.php
-
-		-
-			message: "#^Access to an undefined property App\\\\User\\:\\:\\$country_id\\.$#"
-			count: 2
-			path: app/Policies/CityPolicy.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Privacy\\:\\:\\$name\\.$#"
-			count: 2
-			path: app/Privacy.php
-
-		-
-			message: "#^Class App\\\\CustomObjects\\\\CustomJsonResponse constructor invoked with 0 parameters, 2\\-5 required\\.$#"
-			count: 1
-			path: app/Providers/AppServiceProvider.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\Providers\\\\AuthServiceProvider\\:\\:\\$policies is not covariant with PHPDoc type array\\<class\\-string, class\\-string\\> of overridden property Illuminate\\\\Foundation\\\\Support\\\\Providers\\\\AuthServiceProvider\\:\\:\\$policies\\.$#"
-			count: 1
-			path: app/Providers/AuthServiceProvider.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\Providers\\\\EventServiceProvider\\:\\:\\$listen is not covariant with PHPDoc type array\\<string, array\\<int, string\\>\\> of overridden property Illuminate\\\\Foundation\\\\Support\\\\Providers\\\\EventServiceProvider\\:\\:\\$listen\\.$#"
-			count: 1
-			path: app/Providers/EventServiceProvider.php
-
-		-
-			message: "#^Call to an undefined static method Kreait\\\\Firebase\\\\ServiceAccount\\:\\:fromJsonFile\\(\\)\\.$#"
-			count: 1
-			path: app/Providers/FirebaseServiceProvider.php
-
-		-
-			message: "#^Unreachable statement \\- code above always terminates\\.$#"
-			count: 1
-			path: app/Repositories/CommentLikeRepository.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Scope/CountryScope.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Country\\:\\:\\$code\\.$#"
-			count: 3
-			path: app/Service/CacheService.php
-
-		-
-			message: "#^Access to an undefined property App\\\\KeywordsCache\\:\\:\\$body\\.$#"
-			count: 1
-			path: app/Service/CacheService.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Builder\\|Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$default\\.$#"
-			count: 1
-			path: app/Service/CacheService.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Builder\\|Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$key\\.$#"
-			count: 1
-			path: app/Service/CacheService.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Builder\\|Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$title\\.$#"
-			count: 1
-			path: app/Service/CacheService.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Builder\\|Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$translate_key\\.$#"
-			count: 1
-			path: app/Service/CacheService.php
-
-		-
-			message: "#^Access to an undefined property Illuminate\\\\Database\\\\Eloquent\\\\Builder\\|Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$translations\\.$#"
-			count: 3
-			path: app/Service/CacheService.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Builder\\|Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:translation\\(\\)\\.$#"
-			count: 1
-			path: app/Service/CacheService.php
-
-		-
-			message: "#^PHPDoc tag @param references unknown parameter\\: \\$redis$#"
-			count: 1
-			path: app/Service/CacheService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Service/CountryService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Role\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Service/FakeService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\User\\:\\:create\\(\\)\\.$#"
-			count: 1
-			path: app/Service/FakeService.php
-
-		-
-			message: "#^Parameter \\#1 \\$value of static method Illuminate\\\\Support\\\\Facades\\\\Hash\\:\\:make\\(\\) expects string, int given\\.$#"
-			count: 1
-			path: app/Service/FakeService.php
-
-		-
-			message: "#^Call to an undefined method App\\\\Service\\\\FileService\\:\\:ApiResponse\\(\\)\\.$#"
-			count: 2
-			path: app/Service/FileService.php
-
-		-
-			message: "#^Call to static method find\\(\\) on an unknown class App\\\\Service\\\\Products\\.$#"
-			count: 1
-			path: app/Service/FileService.php
-
-		-
-			message: "#^Call to static method user\\(\\) on an unknown class Auth\\.$#"
-			count: 1
-			path: app/Service/FileService.php
-
-		-
-			message: "#^Parameter \\#1 \\$string of function md5 expects string, int given\\.$#"
-			count: 1
-			path: app/Service/FileService.php
-
-		-
-			message: "#^Access to an undefined property App\\\\IpCache\\:\\:\\$body\\.$#"
-			count: 1
-			path: app/Service/IpService.php
-
-		-
-			message: "#^Access to an undefined property App\\\\IpCache\\:\\:\\$ip\\.$#"
-			count: 1
-			path: app/Service/IpService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\IpCache\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Service/IpService.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Keyword\\:\\:\\$default\\.$#"
-			count: 1
-			path: app/Service/KeywordService.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Keyword\\:\\:\\$key\\.$#"
-			count: 1
-			path: app/Service/KeywordService.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Keyword\\:\\:\\$type\\.$#"
-			count: 1
-			path: app/Service/KeywordService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Keyword\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Service/KeywordService.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Keyword\\:\\:\\$default\\.$#"
-			count: 2
-			path: app/Service/MailService.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Keyword\\:\\:\\$key\\.$#"
-			count: 2
-			path: app/Service/MailService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Country\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Service/MailService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Keyword\\:\\:where\\(\\)\\.$#"
-			count: 2
-			path: app/Service/MailService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Translation\\:\\:where\\(\\)\\.$#"
-			count: 2
-			path: app/Service/MailService.php
-
-		-
-			message: "#^Access to an undefined property App\\\\Service\\\\SmsService\\:\\:\\$apiKey\\.$#"
-			count: 2
-			path: app/Service/SmsService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Keyword\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Service/SmsService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Translation\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Service/SmsService.php
-
-		-
-			message: "#^Cannot access property \\$email on array\\|float\\|int\\|object\\|string\\|false\\.$#"
-			count: 1
-			path: app/Service/SocialAuthentication/FacebookAuthentication.php
-
-		-
-			message: "#^Access to an undefined property App\\\\UserPrivacySetting\\:\\:\\$option_id\\.$#"
-			count: 1
-			path: app/Service/UserPrivacyService.php
-
-		-
-			message: "#^Access to an undefined property App\\\\UserPrivacySetting\\:\\:\\$privacy_id\\.$#"
-			count: 1
-			path: app/Service/UserPrivacyService.php
-
-		-
-			message: "#^Access to an undefined property App\\\\UserPrivacySetting\\:\\:\\$user_id\\.$#"
-			count: 1
-			path: app/Service/UserPrivacyService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Privacy\\:\\:whereIn\\(\\)\\.$#"
-			count: 1
-			path: app/Service/UserPrivacyService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Category\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Service/UserService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Comment\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Service/UserService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\CommentLike\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Service/UserService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Friends\\:\\:where\\(\\)\\.$#"
-			count: 2
-			path: app/Service/UserService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\PendingFriends\\:\\:where\\(\\)\\.$#"
-			count: 2
-			path: app/Service/UserService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Survey\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Service/UserService.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\UserPrivacySetting\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/Service/UserService.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\MorphMany\\:\\:withTrashed\\(\\)\\.$#"
-			count: 1
-			path: app/Survey.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\Survey\\:\\:\\$fillable is not covariant with PHPDoc type array\\<string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$fillable\\.$#"
-			count: 1
-			path: app/Survey.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\BelongsTo\\:\\:with\\(\\)\\.$#"
-			count: 1
-			path: app/SurveyChoice.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\HasMany\\:\\:whereNotNull\\(\\)\\.$#"
-			count: 1
-			path: app/SurveyChoice.php
-
-		-
-			message: "#^Access to an undefined property App\\\\UserDetail\\:\\:\\$user_id\\.$#"
-			count: 1
-			path: app/User.php
-
-		-
-			message: "#^Call to an undefined method App\\\\User\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/User.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Database\\\\Eloquent\\\\Relations\\\\HasMany\\:\\:where\\(\\)\\.$#"
-			count: 2
-			path: app/User.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Friends\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/User.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Privacy\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/User.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\User\\:\\:\\$fillable is not covariant with PHPDoc type array\\<string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$fillable\\.$#"
-			count: 1
-			path: app/User.php
-
-		-
-			message: "#^PHPDoc type array of property App\\\\User\\:\\:\\$hidden is not covariant with PHPDoc type array\\<string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$hidden\\.$#"
-			count: 1
-			path: app/User.php
-
-		-
-			message: "#^Access to an undefined property App\\\\UserDetail\\:\\:\\$user_id\\.$#"
-			count: 1
-			path: app/UserDetail.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Friends\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/UserDetail.php
-
-		-
-			message: "#^Call to an undefined static method App\\\\Privacy\\:\\:where\\(\\)\\.$#"
-			count: 1
-			path: app/UserDetail.php
-
-		-
-			message: "#^Call to an undefined static method Illuminate\\\\Support\\\\Facades\\\\Redis\\:\\:get\\(\\)\\.$#"
-			count: 1
-			path: app/Utils/Redis.php
-
-		-
-			message: "#^Call to an undefined static method Illuminate\\\\Support\\\\Facades\\\\Redis\\:\\:set\\(\\)\\.$#"
-			count: 1
-			path: app/Utils/Redis.php

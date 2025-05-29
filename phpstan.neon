@@ -5,7 +5,15 @@ includes:
 parameters:
   level: 3 # instead of 5 or 6
   paths:
-    - app
+    - app/Http
+
+  autoload_files:
+    - %rootDir%/../../../vendor/autoload.php
+    # add more files if needed
+
+  # or use autoload_directories:
+  # autoload_directories:
+  #   - %rootDir%/../../../app
 
   excludePaths:
     - tests/*
@@ -14,11 +22,16 @@ parameters:
     - vendor/*
 
   ignoreErrors:
-    - '#Call to an undefined static method App\\.*::where#'
-    - '#Access to an undefined property App\\.*::\$.*#'
-    - '#PHPDoc type array of property .* is not covariant.*#'
-    - identifier: missingType.iterableValue
-      message: '#.+#'
+    - message: '#Call to an undefined static method App\\.*::where#'
+    - message: '#Access to an undefined property App\\.*::\$.*#'
+    - message: '#PHPDoc type array of property .* is not covariant.*#'
+    - message: '#.+#'
+      identifier: missingType.iterableValue 
+    # Remove the line that ignores all errors like '#.+#' — it hides everything
+
+
+  reportUnmatchedIgnoredErrors: false 
+
 
   parallel:
     maximumNumberOfProcesses: 1

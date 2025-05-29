@@ -14,14 +14,15 @@
     }
   ],
   "require": {
-    "php": "^8.1",  
-    "cviebrock/eloquent-sluggable": "^9.0",  
+    "php": "^8.1",
+    "cviebrock/eloquent-sluggable": "^9.0",
     "doctrine/dbal": "^3.9",
     "fideloper/proxy": "^4.4",
     "fruitcake/laravel-cors": "^3.0",
     "google/apiclient": "^2.14",
+    "illuminate/auth": "^9.0",
     "kreait/firebase-php": "^6.9",
-    "laravel/framework": "^9.0",  
+    "laravel/framework": "^9.0",
     "laravel/passport": "^10.0",
     "laravel/socialite": "^5.12",
     "laravel/tinker": "^2.10",

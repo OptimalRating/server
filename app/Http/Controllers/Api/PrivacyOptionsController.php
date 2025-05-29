@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\PrivacyOptions;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PrivacyOptionsController extends Controller
 {
