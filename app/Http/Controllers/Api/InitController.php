@@ -25,32 +25,67 @@ class InitController extends Controller
     /**
      * @return array
      */
-    public function init(Request $request, CacheService $cache)
-    {
-        // Log::info('INIT reqest latest',[$request]);
-        $IP = $request->server->get('REMOTE_ADDR');
+    // public function init(Request $request, CacheService $cache)
+    // {
+    //     // Log::info('INIT reqest latest',[$request]);
+    //     $IP = $request->server->get('REMOTE_ADDR');
 
-        $IPService = $cache->cache->get($IP);
+    //     $IPService = $cache->cache->get($IP);
 
-        if (is_null($IPService) || !$IPService) {
-            $IPService = (new IpService())->getCountryData($IP);
-            $cache->cache->set($IP, serialize($IPService));
-        }
-        $IPService = (new IpService())->getCountryData($IP);
+    //     if (is_null($IPService) || !$IPService) {
+    //         $IPService = (new IpService())->getCountryData($IP);
+    //         $cache->cache->set($IP, serialize($IPService));
+    //     }
+    //     $IPService = (new IpService())->getCountryData($IP);
         
-        $init = [
-            'ipService' => $IPService,
-            'user' => User::with(['userDetails', 'friends.friend.userDetails', 'pendingFriends', 'pendingFriends.user.userDetails', 'country', 'pendingRequestFriends', 'city'])->find(Auth::id())
-        ];
+    //     $init = [
+    //         'ipService' => $IPService,
+    //         'user' => User::with(['userDetails', 'friends.friend.userDetails', 'pendingFriends', 'pendingFriends.user.userDetails', 'country', 'pendingRequestFriends', 'city'])->find(Auth::id())
+    //     ];
 
-        $customResponse = new CustomJsonResponse(
-            200,
-            'msg.info.init.success',
-            $init
-        );
-        // Log::info('INIT ',[$init]);
-        return $customResponse->getResponse();
+    //     $customResponse = new CustomJsonResponse(
+    //         200,
+    //         'msg.info.init.success',
+    //         $init
+    //     );
+    //     // Log::info('INIT ',[$init]);
+    //     return $customResponse->getResponse();
+    // }
+public function init(Request $request, CacheService $cache)
+{
+    $IP = $request->server->get('REMOTE_ADDR');
+
+    // Try to retrieve from cache
+    $IPService = $cache->cache->get($IP);
+
+    if (is_null($IPService) || !$IPService) {
+        $IPService = (new IpService())->getCountryData($IP);
+        $cache->cache->set($IP, serialize($IPService));
+    } else {
+        $IPService = unserialize($IPService);
     }
+
+    $init = [
+        'ipService' => $IPService,
+        'user' => User::with([
+            'userDetails',
+            'friends.friend.userDetails',
+            'pendingFriends',
+            'pendingFriends.user.userDetails',
+            'country',
+            'pendingRequestFriends',
+            'city'
+        ])->find(Auth::id())
+    ];
+
+    $customResponse = new CustomJsonResponse(
+        200,
+        'msg.info.init.success',
+        $init
+    );
+
+    return $customResponse->getResponse();
+}
 
 
     /**
