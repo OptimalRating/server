@@ -16,20 +16,35 @@ use League\Flysystem\File;
 
 class IpService
 {
+    // public function getCountryData($IP)
+    // {
+    //     //https://api.ipdata.co/45.135.206.200?api-key=9b8a49e10bc989a900a2d1052999045d9450c3cee479de571ac81d9e
+
+    //     $apiResponse = json_decode((string) $this->getCacheData($IP), null, 512, JSON_THROW_ON_ERROR);
+    //     if (is_null($apiResponse)) {
+    //         $apiResponse = $this->getData($IP);
+    //         self::setCache($IP, $apiResponse);
+    //     }else{
+    //         $apiResponse = json_decode((string) $apiResponse->body, null, 512, JSON_THROW_ON_ERROR);
+    //     }
+
+    //     return $apiResponse;
+    // }
+
     public function getCountryData($IP)
-    {
-        //https://api.ipdata.co/45.135.206.200?api-key=9b8a49e10bc989a900a2d1052999045d9450c3cee479de571ac81d9e
+{
+    $cachedData = $this->getCacheData($IP);
 
-        $apiResponse = json_decode((string) $this->getCacheData($IP), null, 512, JSON_THROW_ON_ERROR);
-        if (is_null($apiResponse)) {
-            $apiResponse = $this->getData($IP);
-            self::setCache($IP, $apiResponse);
-        }else{
-            $apiResponse = json_decode((string) $apiResponse->body, null, 512, JSON_THROW_ON_ERROR);
-        }
-
-        return $apiResponse;
+    if (is_null($cachedData)) {
+        $apiResponse = $this->getData($IP);
+        self::setCache($IP, $apiResponse);
+    } else {
+        $apiResponse = json_decode($cachedData->body, false, 512, JSON_THROW_ON_ERROR);
     }
+
+    return $apiResponse;
+}
+
 
     public function getData($IP)
     {
