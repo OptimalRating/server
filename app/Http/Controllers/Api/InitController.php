@@ -59,11 +59,19 @@ public function init(Request $request, CacheService $cache)
     $IPService = $cache->cache->get($IP);
 
     if (is_null($IPService) || !$IPService) {
+    $IPService = (new IpService())->getCountryData($IP);
+    $cache->cache->set($IP, serialize($IPService));
+} else {
+    $unserialized = @unserialize($IPService);
+    if ($unserialized === false && $IPService !== serialize(false)) {
+        // unserialize failed
         $IPService = (new IpService())->getCountryData($IP);
         $cache->cache->set($IP, serialize($IPService));
     } else {
-        $IPService = unserialize($IPService);
+        $IPService = $unserialized;
     }
+}
+
 
     $init = [
         'ipService' => $IPService,
