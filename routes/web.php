@@ -19,9 +19,14 @@ use App\Http\Controllers\Api\Auth\OtpController;
 // Route::post('send-otp', [OTPController::class, 'sendOtp']); 
 Route::post('verify-otp', (new OTPController())->verifyOtp(...));
 
-Route::get('/', function (): never {
-    dd('2');
+Route::get('/', function () {
+    if (app()->environment('local')) {
+        dd('2');
+    }
+
+    return 'OK';
 });
+
 
 Route::get('/log-test', function () {
     Log::info('Test log entry');
