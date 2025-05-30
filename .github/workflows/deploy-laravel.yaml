@@ -47,8 +47,8 @@ jobs:
       # - name: 🔍 Run PHPStan Static Analysis
       #   run: ./vendor/bin/phpstan analyse --memory-limit=1G
 
-      - name: ✅ Run PHPUnit tests
-        run: php artisan test
+      - name: ✅ Run Tests with PHPUnit
+        run: ./vendor/bin/phpunit
 
       - name: 🚀 Deploy to Laravel Server (via SSH password)
         uses: appleboy/ssh-action@v1.0.0
