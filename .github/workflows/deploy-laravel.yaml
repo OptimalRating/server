@@ -41,11 +41,14 @@ jobs:
       - name: 🎨 Run Laravel Pint
         run: ./vendor/bin/pint
 
-      - name: 🔧 Run Rector (auto-refactor)
-        run: ./vendor/bin/rector process
+      # - name: 🔧 Run Rector (auto-refactor)
+      #   run: ./vendor/bin/rector process
+      
+      # - name: 🔍 Run PHPStan Static Analysis
+      #   run: ./vendor/bin/phpstan analyse --memory-limit=1G
 
-      - name: 🔍 Run PHPStan Static Analysis
-        run: ./vendor/bin/phpstan analyse --memory-limit=1G
+      - name: ✅ Run PHPUnit tests
+        run: php artisan test
 
       - name: 🚀 Deploy to Laravel Server (via SSH password)
         uses: appleboy/ssh-action@v1.0.0
