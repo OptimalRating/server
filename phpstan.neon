@@ -3,15 +3,14 @@ includes:
   - phpstan-baseline.neon
 
 parameters:
-  level: 3 # instead of 5 or 6
+  level: 3
   paths:
     - app/Http
 
-  autoload_files:
+  bootstrapFiles:
     - %rootDir%/../../../vendor/autoload.php
-    # add more files if needed
 
-  # or use autoload_directories:
+  # OR if you need to scan directories to autoload:
   # autoload_directories:
   #   - %rootDir%/../../../app
 
@@ -27,11 +26,8 @@ parameters:
     - message: '#PHPDoc type array of property .* is not covariant.*#'
     - message: '#.+#'
       identifier: missingType.iterableValue 
-    # Remove the line that ignores all errors like '#.+#' — it hides everything
 
-
-  reportUnmatchedIgnoredErrors: false 
-
+  reportUnmatchedIgnoredErrors: false
 
   parallel:
     maximumNumberOfProcesses: 1
