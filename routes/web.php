@@ -17,7 +17,7 @@ use App\Http\Controllers\Api\Auth\DemoController;
 use App\Http\Controllers\Api\Auth\OtpController;
 
 // Route::post('send-otp', [OTPController::class, 'sendOtp']); 
-Route::post('verify-otp', (new OTPController())->verifyOtp(...));
+Route::post('verify-otp', [OTPController::class , 'verifyOtp']);
 
 Route::get('/', function () {
     if (app()->environment('local')) {
@@ -33,7 +33,7 @@ Route::get('/log-test', function () {
     return 'Log entry has been created';
 });
 
-Route::get('/mobile-verification', (new DemoController())->otpSend(...));
+Route::get('/mobile-verification', [DemoController::class ,'otpSend']);
 
 
 // Auth::routes();

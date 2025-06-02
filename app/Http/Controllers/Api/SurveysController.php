@@ -25,10 +25,15 @@ use Illuminate\Support\Facades\Log;
 
 class SurveysController extends Controller
 {
-    public function __construct(private readonly CustomJsonResponse $jsonResponse)
-    {
-    }
+    /**
+     * @var CustomJsonResponse
+     */
+    private $jsonResponse;
 
+    public function __construct(CustomJsonResponse $jsonResponse)
+    {
+        $this->jsonResponse = $jsonResponse;
+    }
     /**
      * List of survey collection
      *
