@@ -31,8 +31,9 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function __construct(private readonly CustomJsonResponse $customJsonResponse)
+   public function __construct(CustomJsonResponse $customJsonResponse)
     {
+        $this->customJsonResponse = $customJsonResponse;
     }
 
 //   public function facebookLogin(Request $request)
