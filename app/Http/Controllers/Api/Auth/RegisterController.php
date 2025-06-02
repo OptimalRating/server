@@ -25,9 +25,10 @@ class RegisterController extends Controller
 
     private $client;
 
-    public function __construct(private readonly CustomJsonResponse $response)
+    public function __construct(CustomJsonResponse $response)
     {
         $this->client  = Client::find(2);
+        $this->response = $response;
     }
 
     public function register(Request $request, CustomJsonResponse $customJsonResponse)
@@ -49,12 +50,12 @@ class RegisterController extends Controller
         }
     
         if (User::whereEmail($request->json('email'))->first()) {
-            // Log::info('EMAIL already exist'); 
+            Log::info('EMAIL already exist'); 
             return $customJsonResponse->setData(409, 'msg.error_email_already_used', '', $validator->errors()->all())->getResponse();
         }
     
         if (UserDetail::where('phone_number', '=', $request->json('phone_number'))->first()) {
-            // Log::info('PHONE NUMBER already exist'); 
+            Log::info('PHONE NUMBER already exist'); 
             return $customJsonResponse->setData(409, 'msg.error_phone_number_already_used', '', $validator->errors()->all())->getResponse();
         }
         $country = $request->json('country');
