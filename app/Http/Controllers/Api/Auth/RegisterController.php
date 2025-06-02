@@ -90,12 +90,21 @@ class RegisterController extends Controller
             'password' => $request->json('password'),
             'scope' => '',
         ];
+// Create a new internal request with the parameters directly
+$tokenRequest = Request::create('/oauth/token', 'POST', $params);
 
-        $request->request->add($params);
+// Dispatch the request
+$response = Route::dispatch($tokenRequest);
+$responseData = json_decode($response->getContent(), true);
+Log::info('OAuth token response:', $responseData);
 
-        $proxy = Request::create('oauth/token', 'POST');
+// Return the response (token JSON)
+return $response;
+        // $request->request->add($params);
 
-        return Route::dispatch($proxy);
+        // $proxy = Request::create('oauth/token', 'POST');
+
+        // return Route::dispatch($proxy);
     } catch (\Exception $e) {
         Log::error('Registration error:', ['message' => $e->getMessage(), 'stack' => $e->getTraceAsString()]);
         return response()->json(['error' => 'An error occurred during registration.'], 500);
