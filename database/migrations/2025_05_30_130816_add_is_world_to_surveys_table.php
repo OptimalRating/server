@@ -12,11 +12,13 @@ return new class extends Migration
      * @return void
      */
     public function up()
-{
-    Schema::table('surveys', function (Blueprint $table) {
-        $table->boolean('is_world')->default(false);
-    });
-}
+    {
+        if (!Schema::hasColumn('surveys', 'is_world')) {
+            Schema::table('surveys', function (Blueprint $table) {
+                $table->boolean('is_world')->default(false);
+            });
+        }
+    }
 
     /**
      * Reverse the migrations.
@@ -24,9 +26,11 @@ return new class extends Migration
      * @return void
      */
     public function down()
-{
-    Schema::table('surveys', function (Blueprint $table) {
-        $table->dropColumn('is_world');
-    });
-}
+    {
+        if (Schema::hasColumn('surveys', 'is_world')) {
+            Schema::table('surveys', function (Blueprint $table) {
+                $table->dropColumn('is_world');
+            });
+        }
+    }
 };

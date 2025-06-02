@@ -13,9 +13,12 @@ class AddIsImageUpdatedToSurveyChoicesTable extends Migration
      */
     public function up()
     {
-        Schema::table('survey_choices', function (Blueprint $table) {
-            $table->boolean('isImageUpdated')->default(false);
-        });
+        // Prevent error if the column already exists
+        if (!Schema::hasColumn('survey_choices', 'isImageUpdated')) {
+            Schema::table('survey_choices', function (Blueprint $table) {
+                $table->boolean('isImageUpdated')->default(false);
+            });
+        }
     }
 
     /**
@@ -25,8 +28,10 @@ class AddIsImageUpdatedToSurveyChoicesTable extends Migration
      */
     public function down()
     {
-        Schema::table('survey_choices', function (Blueprint $table) {
-            $table->dropColumn('isImageUpdated');
-        });
+        if (Schema::hasColumn('survey_choices', 'isImageUpdated')) {
+            Schema::table('survey_choices', function (Blueprint $table) {
+                $table->dropColumn('isImageUpdated');
+            });
+        }
     }
 }
