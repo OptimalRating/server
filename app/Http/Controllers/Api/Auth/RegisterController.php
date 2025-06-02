@@ -82,8 +82,10 @@ class RegisterController extends Controller
 
         $params = [
             'grant_type' => 'password',
-            'client_id' => $this->client->id,
-            'client_secret' => $this->client->secret,
+            // 'client_id' => $this->client->id,
+            // 'client_secret' => $this->client->secret,
+            'client_id' => env('PASSWORD_CLIENT_ID'),
+            'client_secret' => env('PASSWORD_CLIENT_SECRET'),
             'username' => $request->json('email'),
             'password' => $request->json('password'),
             'scope' => '',
