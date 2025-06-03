@@ -79,31 +79,42 @@ class RegisterController extends Controller
         $role = Role::where('name', 'user')->firstOrFail();
 
         $user->roles()->attach($role);
-
-        $params = [
-            'grant_type' => 'password',
-            // 'client_id' => $this->client->id,
-            // 'client_secret' => $this->client->secret,
-            'client_id' => '9',
-            'client_secret' => '8OdVLaNYyA6gFBlmYbyOSbzYmuE8vjWxhIXXPua1',
-            'username' => $request->json('email'),
-            'password' => $request->json('password'),
-            'scope' => '',
-        ];
-        Log::info('OAuth token request params:', $params);
-
-// Create a new internal request with the parameters directly
-$tokenRequest = Request::create('/oauth/token', 'POST', $params, [], [], [
-    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+$response = Http::asForm()->post(env('APP_URL') . '/oauth/token', [
+    'grant_type' => 'password',
+    'client_id' => '9',
+    'client_secret' => '8OdVLaNYyA6gFBlmYbyOSbzYmuE8vjWxhIXXPua1',
+    'username' => $request->json('email'),
+    'password' => $request->json('password'),
+    'scope' => '',
 ]);
 
-// Dispatch the request
-$response = Route::dispatch($tokenRequest);
-$responseData = json_decode($response->getContent(), true);
+$responseData = $response->json();
 Log::info('OAuth token response:', $responseData);
+return response()->json($responseData);
+        // $params = [
+        //     'grant_type' => 'password',
+        //     // 'client_id' => $this->client->id,
+        //     // 'client_secret' => $this->client->secret,
+        //     'client_id' => '9',
+        //     'client_secret' => '8OdVLaNYyA6gFBlmYbyOSbzYmuE8vjWxhIXXPua1',
+        //     'username' => $request->json('email'),
+        //     'password' => $request->json('password'),
+        //     'scope' => '',
+        // ];
+//         Log::info('OAuth token request params:', $params);
 
-// Return the response (token JSON)
-return $response;
+// // Create a new internal request with the parameters directly
+// $tokenRequest = Request::create('/oauth/token', 'POST', $params, [], [], [
+//     'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+// ]);
+
+// // Dispatch the request
+// $response = Route::dispatch($tokenRequest);
+// $responseData = json_decode($response->getContent(), true);
+// Log::info('OAuth token response:', $responseData);
+
+// // Return the response (token JSON)
+// return $response;
         // $request->request->add($params);
 
         // $proxy = Request::create('oauth/token', 'POST');
