@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Validator;
 use Laravel\Passport\Client;
 use App\User;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 
 class RegisterController extends Controller
 {
