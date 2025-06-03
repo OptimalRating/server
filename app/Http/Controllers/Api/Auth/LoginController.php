@@ -15,6 +15,7 @@ use App\Validator\LoginValidator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log; // Import the Log facade
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -27,66 +28,121 @@ use Google_Client;
 class LoginController extends Controller
 {
     private $client;
+    /**
+     * @var CustomJsonResponse
+     */
+    private $jsonResponse;
 
 
-    public function __construct(private readonly CustomJsonResponse $jsonResponse)
+    public function __construct(CustomJsonResponse $jsonResponse)
     {
         $this->client  = Client::find(2);
+        $this->jsonResponse = $jsonResponse;
     }
 
     //updated by Muskan
-    public function login(Request $request, CustomJsonResponse $customJsonResponse)
-   {
+//     public function login(Request $request, CustomJsonResponse $customJsonResponse)
+//    {
+//     $validator = new LoginValidator();
+
+//     if ($response = $validator->validate()) {
+//         return $response;
+//     }
+
+//     $email = $request->json('email');
+
+//     //handle login request
+//     $params = [
+//         'grant_type' => 'password',
+//         'client_id' => $this->client->id,
+//         'client_secret' => $this->client->secret,
+//         'username' => $request->json('email') ?: $request->json('username'),
+//         'password' => $request->json('password'),
+//         'scope' => '',
+//     ];
+
+//     $request->request->add($params);
+
+//     $proxy = Request::create('oauth/token', 'POST');
+
+//     $response = Route::dispatch($proxy);
+
+//     if ($response->getStatusCode() == 200) {
+//     $user = User::findForLogin($params['username']);
+
+//     if(!$user){
+//     // Retrieve the user and check if they are not deleted
+//     $user = User::where(function($query) use ($params) {
+//                 $query->where('email', $params['username']) 
+//                       ->orWhere('username', $params['username']);
+//             })->whereNull('deleted_at')->first();
+//             // Log::info('USER====>', ['user' => $user]);
+//     }
+//     if (!$user) {
+//     return $customJsonResponse->setData(401, 'msg.error.your_account_deleted')->getResponse();
+//     }
+//         $token = json_decode($response->getContent(), null, 512, JSON_THROW_ON_ERROR);
+//         return $this->createResponse($user, $token);
+//     }
+
+//     return $customJsonResponse->setData(401, 'msg.error.invalid_credentials', json_decode($response->getContent(), null, 512, JSON_THROW_ON_ERROR))->getResponse();
+// }
+
+
+public function login(Request $request, CustomJsonResponse $customJsonResponse)
+{
     $validator = new LoginValidator();
 
     if ($response = $validator->validate()) {
         return $response;
     }
 
-    $email = $request->json('email');
+    $username = $request->json('email') ?? $request->json('username');
+    $password = $request->json('password');
 
-    //handle login request
-    $params = [
-        'grant_type' => 'password',
-        // 'client_id' => 9, // Use the generated client ID here
-        // 'client_secret' => 'pCX5bipQ8dMqn7rAIxqtDx43lGm73pIbpa9gSwqR', // Use the generated client secret here
-        'client_id' => $this->client->id,
-        'client_secret' => $this->client->secret,
-        'username' => $request->json('email') ?: $request->json('username'),
-        'password' => $request->json('password'),
-        'scope' => '',
-    ];
+    try {
+        // Send the token request just like in register()
+        $response = Http::asForm()->post(config('app.url') . '/oauth/token', [
+            'grant_type' => 'password',
+            'client_id' => '9', // or use $this->client->id if available
+            'client_secret' => '8OdVLaNYyA6gFBlmYbyOSbzYmuE8vjWxhIXXPua1', // or $this->client->secret
+            'username' => $username,
+            'password' => $password,
+            'scope' => '',
+        ]);
 
-    $request->request->add($params);
+        if ($response->status() === 200) {
+            $token = $response->json();
 
-    $proxy = Request::create('oauth/token', 'POST');
+            $user = User::findForLogin($username);
 
-    $response = Route::dispatch($proxy);
-
-    if ($response->getStatusCode() == 200) {
-    $user = User::findForLogin($params['username']);
-
-    if(!$user){
-    // Retrieve the user and check if they are not deleted
-    $user = User::where(function($query) use ($params) {
-                $query->where('email', $params['username']) 
-                      ->orWhere('username', $params['username']);
-            })->whereNull('deleted_at')->first();
-            // Log::info('USER====>', ['user' => $user]);
-        }
             if (!$user) {
-                return $customJsonResponse->setData(401, 'msg.error.your_account_deleted')->getResponse();
+                $user = User::where(function ($query) use ($username) {
+                    $query->where('email', $username)
+                          ->orWhere('username', $username);
+                })->whereNull('deleted_at')->first();
             }
-        //      // Check if user status is approved
-        // if ($user->status !== 'approved') {
-        //     return $customJsonResponse->setData(403, 'msg.error.account_not_approved')->getResponse();
-        // }
-        $token = json_decode($response->getContent(), null, 512, JSON_THROW_ON_ERROR);
-        return $this->createResponse($user, $token);
-    }
 
-    return $customJsonResponse->setData(401, 'msg.error.invalid_credentials', json_decode($response->getContent(), null, 512, JSON_THROW_ON_ERROR))->getResponse();
+            if (!$user) {
+                return $customJsonResponse
+                    ->setData(401, 'msg.error.your_account_deleted')
+                    ->getResponse();
+            }
+
+            return $this->createResponse($user, $token);
+        }
+
+        // If status is not 200
+        return $customJsonResponse
+            ->setData(401, 'msg.error.invalid_credentials', $response->json())
+            ->getResponse();
+
+    } catch (\Exception $e) {
+        \Log::error('Login error:', ['message' => $e->getMessage(), 'stack' => $e->getTraceAsString()]);
+        return response()->json(['error' => 'An error occurred during login.'], 500);
+    }
 }
+
 
     public function refresh(Request $request)
     {
