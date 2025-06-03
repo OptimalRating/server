@@ -102,7 +102,7 @@ public function login(Request $request, CustomJsonResponse $customJsonResponse)
 
     try {
         // Send the token request just like in register()
-        $response = Http::asForm()->post(config('app.url') . '/oauth/token', [
+        $response = Http::asForm()->post(config('https://server.optimalrating.com') . '/oauth/token', [
             'grant_type' => 'password',
             'client_id' => '9', // or use $this->client->id if available
             'client_secret' => '8OdVLaNYyA6gFBlmYbyOSbzYmuE8vjWxhIXXPua1', // or $this->client->secret
