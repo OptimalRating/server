@@ -90,8 +90,12 @@ class RegisterController extends Controller
             'password' => $request->json('password'),
             'scope' => '',
         ];
+        Log::info('OAuth token request params:', $params);
+
 // Create a new internal request with the parameters directly
-$tokenRequest = Request::create('/oauth/token', 'POST', $params);
+$tokenRequest = Request::create('/oauth/token', 'POST', $params, [], [], [
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
+]);
 
 // Dispatch the request
 $response = Route::dispatch($tokenRequest);
