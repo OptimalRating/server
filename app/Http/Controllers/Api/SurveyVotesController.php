@@ -12,11 +12,18 @@ use App\Http\Controllers\Controller;
 
 class SurveyVotesController extends Controller
 {
-    public function __construct(private readonly CustomJsonResponse $customJsonResponse)
+    /**
+     * @var CustomJsonResponse
+     */
+    private $customJsonResponse;
+
+    public function __construct(CustomJsonResponse $customJsonResponse)
     {
+        $this->customJsonResponse = $customJsonResponse;
     }
 
     /**
+     * @param Survey $survey
      * @return array
      */
     public function vote(Survey $survey)
@@ -80,7 +87,8 @@ class SurveyVotesController extends Controller
         $vote->user_id = auth()->id();
 
         $vote->choice_id = \request('choice_id');
-        $vote->mark = \request('mark', null);
+        // $vote->mark = \request('mark', null);
+        $vote->mark = \request('mark', 4.5);
 
         $vote->save();
 
