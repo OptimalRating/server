@@ -18,11 +18,18 @@ use App\Validator\SubjectValidator;
 use App\CustomObjects\ApiPagination;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class SubjectsController extends Controller
 {
-    public function __construct(private readonly CustomJsonResponse $jsonResponse)
+    /**
+     * @var CustomJsonResponse
+     */
+    private $jsonResponse;
+
+    public function __construct(CustomJsonResponse $jsonResponse)
     {
+        $this->jsonResponse = $jsonResponse;
     }
 
     /**
@@ -47,6 +54,7 @@ class SubjectsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param Request $request
      * @return array
      */
     public function store(Request $request)
@@ -58,7 +66,8 @@ class SubjectsController extends Controller
 
         $subject = new Subject();
         $subject->title = $request->json('title');
-        $subject->translate_key = 'subject.'.str_slug($subject->title);
+        // $subject->translate_key = 'subject.'.str_slug($subject->title);
+        $subject->translate_key = 'subject.'. Str::slug($subject->title);
         // $keyword = new KeywordService($subject->translate_key, $subject->title, 'subject');
         $subject->save();
         if($subject){
@@ -75,6 +84,7 @@ class SubjectsController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param Subject $subject
      * @return array
      */
     public function show(Subject $subject)
@@ -86,6 +96,8 @@ class SubjectsController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param Request $request
+     * @param Subject $subject
      * @return array
      */
     public function update(Request $request, Subject $subject)
@@ -243,11 +255,11 @@ class SubjectsController extends Controller
             $vote = SurveyVote::groupBy('survey_id')
                 ->selectRaw('sum(mark) as total_votes')
                 ->where('survey_id', $survey->id);
-
+    
             if ($request->orderBy == 'vote') {
                 $vote->orderBy('total_votes', 'desc');
             }
-
+    
             $vote = $vote->first();
             $survey->survey_votes = $vote->total_votes ?? 0; // Default to 0 if no votes
         }
@@ -263,6 +275,7 @@ class SubjectsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Subject $subject
      * @return array
      * @throws \Exception
      */
