@@ -88,7 +88,7 @@ class SurveyVotesController extends Controller
 
         $vote->choice_id = \request('choice_id');
         // $vote->mark = \request('mark', null);
-        $vote->mark = \request('mark', 4.5);
+        $vote->mark = \request('mark', 1);
 
         $vote->save();
 
