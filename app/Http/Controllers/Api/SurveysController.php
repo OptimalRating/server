@@ -1054,26 +1054,7 @@ public function homeSurveyApproval(Request $request)
     \Log::info('Top vote result: ', [$vote]);
 
     if (!$vote) {
-        \Log::warning('No survey vote found for country: ' . (optional($country)->name ?? 'world'));
-        $this->jsonResponse->setData(
-            200,
-            'msg.warning.survey.not_found',
-            null,
-            null,
-            null
-        );
-
-        return $this->jsonResponse->getResponse();
-    }
-$rawSurvey = Survey::withTrashed()->find($vote->survey_id);
-\Log::info('Raw survey data for ID ' . $vote->survey_id . ': ', [$rawSurvey]);
-
-if ($rawSurvey) {
-    \Log::info('Survey status: ' . $rawSurvey->status);
-    \Log::info('Survey type: ' . $rawSurvey->type);
-    \Log::info('Survey user ID: ' . $rawSurvey->user_id);
-}
-
+    \Log::info('No top-voted survey found, falling back to show_on_home.');
 
     $model = Survey::with([
         'subjects',
@@ -1089,13 +1070,37 @@ if ($rawSurvey) {
         'comments.user.privacySettings.option',
         'comments.user.country',
         'comments.user.city',
+        'user' => function ($query) {
+            $query->withTrashed(); // include soft-deleted users
+        },
     ])
-        ->where('status',  true)
+        ->where('status', true)
         ->where('type', 'normal')
-        ->withTrashed()
-        ->whereHas('user', function ($query) {
-            $query->withTrashed();
-        });
+        ->where('show_on_home', 1)
+        ->where('is_world', false)
+        ->where('country_id', $country ? $country->id : null)
+        ->orderBy('created_at', 'desc')
+        ->first();
+
+    if (!$model) {
+        \Log::warning('No fallback show_on_home survey found.');
+        $this->jsonResponse->setData(
+            200,
+            'msg.warning.survey.not_found',
+            null,
+            null,
+            null
+        );
+
+        return $this->jsonResponse->getResponse();
+    }
+
+    \Log::info('Fallback survey loaded from show_on_home flag.', [$model]);
+
+    // Continue rest of logic as normal
+    // e.g. loading survey choices, processing privacy settings, etc.
+}
+
 
     if (!is_null($vote)) {
         $model->where('id', $vote->survey_id);
