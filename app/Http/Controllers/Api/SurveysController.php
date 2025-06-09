@@ -38,6 +38,7 @@ class SurveysController extends Controller
      * List of survey collection
      *
      * @param string $type
+     * @param Request $request
      * @return array
      */
     public function index(Request $request, $type = 'normal')
@@ -877,162 +878,10 @@ public function homeCurrentSpecialSurvey(Request $request)
         return $this->jsonResponse->getResponse();
     }
 
-//     public function homeSurveyApproval(Request $request)
-// {
-//     $country = Country::where('code', request('country'))->first();
-//     $user_id = auth()->user() ? auth()->user()->id : 0;
-//     $vote = SurveyVote::withTrashed()->groupBy('survey_id')
-//         ->selectRaw('survey_id, sum(mark) as sum')
-//         ->orderBy('sum', 'desc')
-//         ->where(function ($q) use ($country) {
-//             $q->whereHas('survey', function ($subQ) use ($country) {
-//                 if ($country) {
-//                     $subQ->where('is_world', false);
-//                 } else {
-//                     $subQ->where('is_world', true);
-//                 }
-//             });
-
-//             if ($country) {
-//                 $q->where('country_id', $country->id);
-//             }
-//         })
-//         ->first();
-
-//     if (!$vote) {
-//         $this->jsonResponse->setData(
-//             200,
-//             'msg.warning.survey.not_found',
-//             null,
-//             null,
-//             null
-//         );
-
-//         return $this->jsonResponse->getResponse();
-//     }
-
-//     $model = Survey::with([
-//         'subjects',
-//         'comments' => function ($query) {
-//         $query->withTrashed(); // Include soft-deleted comments
-//          },
-//         'comments.comments.user.userDetails',
-//         'comments.user.userDetails',
-//         'comments.comments.likes',
-//         'comments.likes.user',
-//         'comments.user.privacySettings.privacy',
-//         'comments.user.privacySettings.privacy.options',
-//         'comments.user.privacySettings.option',
-//         'comments.user.country',
-//         'comments.user.city',
-//     ])
-//         ->where('status', '=', true)
-//         ->where('type', '=', 'normal')
-//         ->withTrashed() // Include surveys from soft-deleted users
-//         ->whereHas('user', function ($query) {
-//             $query->withTrashed(); // Ensure that soft-deleted users are included
-//         });
-
-//     if (!is_null($vote)) {
-//         $model->where('id', $vote->survey_id);
-//     }
-
-//     $model = $model->first();
-
-//     if ($model) {
-//         foreach ($model->comments as $key => $comment) {
-//             foreach ($comment->user->privacySettings as $privacyInfo) {
-//                 $slug = $privacyInfo->privacy->slug;
-//                 $userDetails = $comment->user;
-
-//                 // Privacy settings for user details
-//                 if (isset($userDetails[$slug])) {
-//                     switch ($privacyInfo->option->option) {
-//                         case 'Friend':
-//                             // $friend = Friends::withTrashed()->hasFriend($userDetails->id, $user_id);
-//                             $friend = Friends::hasFriend($userDetails->id, $user_id);
-//                             if (!$friend) {
-//                                 $userDetails[$slug] = NULL;
-//                                 if ($slug == 'country_id') {
-//                                     $userDetails->country->name = NULL;
-//                                 }
-//                                 if ($slug == 'city_id') {
-//                                     $userDetails->city->name = NULL;
-//                                 }
-//                             }
-//                             break;
-
-//                         case 'Nobody':
-//                             $userDetails[$slug] = NULL;
-//                             if ($slug == 'country_id') {
-//                                 $userDetails->country->name = NULL;
-//                             }
-//                             if ($slug == 'city_id') {
-//                                 $userDetails->city->name = NULL;
-//                             }
-//                             break;
-//                     }
-//                 }
-
-//                 // Privacy settings for user details
-//                 if (isset($userDetails->userDetails[$slug])) {
-//                     switch ($privacyInfo->option->option) {
-//                         case 'Friend':
-//                             // $friend = Friends::withTrashed()->hasFriend($userDetails->id, $user_id);
-//                             $friend = Friends::hasFriend($userDetails->id, $user_id);
-//                             if (!$friend) {
-//                                 $userDetails->userDetails[$slug] = NULL;
-//                             }
-//                             break;
-
-//                         case 'Nobody':
-//                             $userDetails->userDetails[$slug] = NULL;
-//                             break;
-//                     }
-//                 }
-//             }
-//         }
-
-//         $survey_lists = SurveyChoice::withTrashed()->with('votes')->where('survey_id', $model->id)->take(10)->get();
-
-//         foreach ($survey_lists as $key => $survey) {
-//             $vote = SurveyVote::withTrashed()->groupBy('choice_id')
-//                 ->selectRaw('sum(mark) as total_votes')
-//                 ->where('choice_id', $survey->id);
-//             if ($request->orderBy == 'date') {
-//                 $vote->orderBy('created_at', 'desc');
-//             } else {
-//                 $vote->orderBy('total_votes', 'desc');
-//             }
-//             $vote = $vote->first();
-//             $survey->survey_votes = !empty($vote) ? $vote->total_votes : 0;
-//         }
-
-//         $model->comments = self::prepareTree($model->comments);
-//         $model->choices = $survey_lists;
-//     }
-
-//     $this->jsonResponse->setData(
-//         200,
-//         'msg.info.list.surveys',
-//         $model,
-//         null,
-//         null
-//     );
-
-//     return $this->jsonResponse->getResponse();
-// }
-
-public function homeSurveyApproval(Request $request)
-{
+    public function homeSurveyApproval(Request $request)
+    {
     $country = Country::where('code', request('country'))->first();
-    $user = auth()->user();
-    $user_id = $user ? $user->id : 0;
-
-    \Log::info('User ID: ' . $user_id);
-    \Log::info('Country code: ' . request('country'));
-    \Log::info('Country found: ', [$country]);
-
+    $user_id = auth()->user() ? auth()->user()->id : 0;
     $vote = SurveyVote::withTrashed()->groupBy('survey_id')
         ->selectRaw('survey_id, sum(mark) as sum')
         ->orderBy('sum', 'desc')
@@ -1051,39 +900,7 @@ public function homeSurveyApproval(Request $request)
         })
         ->first();
 
-    \Log::info('Top vote result: ', [$vote]);
-
     if (!$vote) {
-    \Log::info('No top-voted survey found, falling back to show_on_home.');
-
-    $model = Survey::with([
-        'subjects',
-        'comments' => function ($query) {
-            $query->withTrashed();
-        },
-        'comments.comments.user.userDetails',
-        'comments.user.userDetails',
-        'comments.comments.likes',
-        'comments.likes.user',
-        'comments.user.privacySettings.privacy',
-        'comments.user.privacySettings.privacy.options',
-        'comments.user.privacySettings.option',
-        'comments.user.country',
-        'comments.user.city',
-        'user' => function ($query) {
-            $query->withTrashed(); // include soft-deleted users
-        },
-    ])
-        ->where('status', true)
-        ->where('type', 'normal')
-        ->where('show_on_home', 1)
-        ->where('is_world', false)
-        ->where('country_id', $country ? $country->id : null)
-        ->orderBy('created_at', 'desc')
-        ->first();
-
-    if (!$model) {
-        \Log::warning('No fallback show_on_home survey found.');
         $this->jsonResponse->setData(
             200,
             'msg.warning.survey.not_found',
@@ -1095,12 +912,27 @@ public function homeSurveyApproval(Request $request)
         return $this->jsonResponse->getResponse();
     }
 
-    \Log::info('Fallback survey loaded from show_on_home flag.', [$model]);
-
-    // Continue rest of logic as normal
-    // e.g. loading survey choices, processing privacy settings, etc.
-}
-
+    $model = Survey::with([
+        'subjects',
+        'comments' => function ($query) {
+        $query->withTrashed(); // Include soft-deleted comments
+         },
+        'comments.comments.user.userDetails',
+        'comments.user.userDetails',
+        'comments.comments.likes',
+        'comments.likes.user',
+        'comments.user.privacySettings.privacy',
+        'comments.user.privacySettings.privacy.options',
+        'comments.user.privacySettings.option',
+        'comments.user.country',
+        'comments.user.city',
+    ])
+        ->where('status', '=', true)
+        ->where('type', '=', 'normal')
+        ->withTrashed() // Include surveys from soft-deleted users
+        ->whereHas('user', function ($query) {
+            $query->withTrashed(); // Ensure that soft-deleted users are included
+        });
 
     if (!is_null($vote)) {
         $model->where('id', $vote->survey_id);
@@ -1108,27 +940,30 @@ public function homeSurveyApproval(Request $request)
 
     $model = $model->first();
 
-    \Log::info('Survey model found: ', [$model]);
-
     if ($model) {
         foreach ($model->comments as $key => $comment) {
             foreach ($comment->user->privacySettings as $privacyInfo) {
                 $slug = $privacyInfo->privacy->slug;
                 $userDetails = $comment->user;
 
+                // Privacy settings for user details
                 if (isset($userDetails[$slug])) {
-                    \Log::info("Checking privacy for user detail: {$slug}, setting: " . $privacyInfo->option->option);
-                }
+                    switch ($privacyInfo->option->option) {
+                        case 'Friend':
+                            // $friend = Friends::withTrashed()->hasFriend($userDetails->id, $user_id);
+                            $friend = Friends::hasFriend($userDetails->id, $user_id);
+                            if (!$friend) {
+                                $userDetails[$slug] = NULL;
+                                if ($slug == 'country_id') {
+                                    $userDetails->country->name = NULL;
+                                }
+                                if ($slug == 'city_id') {
+                                    $userDetails->city->name = NULL;
+                                }
+                            }
+                            break;
 
-                if (isset($userDetails->userDetails[$slug])) {
-                    \Log::info("Checking privacy for userDetails: {$slug}, setting: " . $privacyInfo->option->option);
-                }
-
-                switch ($privacyInfo->option->option) {
-                    case 'Friend':
-                        $friend = Friends::hasFriend($userDetails->id, $user_id);
-                        \Log::info("Friend status between {$userDetails->id} and {$user_id}: " . ($friend ? 'Yes' : 'No'));
-                        if (!$friend) {
+                        case 'Nobody':
                             $userDetails[$slug] = NULL;
                             if ($slug == 'country_id') {
                                 $userDetails->country->name = NULL;
@@ -1136,23 +971,15 @@ public function homeSurveyApproval(Request $request)
                             if ($slug == 'city_id') {
                                 $userDetails->city->name = NULL;
                             }
-                        }
-                        break;
-
-                    case 'Nobody':
-                        $userDetails[$slug] = NULL;
-                        if ($slug == 'country_id') {
-                            $userDetails->country->name = NULL;
-                        }
-                        if ($slug == 'city_id') {
-                            $userDetails->city->name = NULL;
-                        }
-                        break;
+                            break;
+                    }
                 }
 
+                // Privacy settings for user details
                 if (isset($userDetails->userDetails[$slug])) {
                     switch ($privacyInfo->option->option) {
                         case 'Friend':
+                            // $friend = Friends::withTrashed()->hasFriend($userDetails->id, $user_id);
                             $friend = Friends::hasFriend($userDetails->id, $user_id);
                             if (!$friend) {
                                 $userDetails->userDetails[$slug] = NULL;
@@ -1170,25 +997,20 @@ public function homeSurveyApproval(Request $request)
         $survey_lists = SurveyChoice::withTrashed()->with('votes')->where('survey_id', $model->id)->take(10)->get();
 
         foreach ($survey_lists as $key => $survey) {
-            $voteQuery = SurveyVote::withTrashed()->groupBy('choice_id')
+            $vote = SurveyVote::withTrashed()->groupBy('choice_id')
                 ->selectRaw('sum(mark) as total_votes')
                 ->where('choice_id', $survey->id);
-
             if ($request->orderBy == 'date') {
-                $voteQuery->orderBy('created_at', 'desc');
+                $vote->orderBy('created_at', 'desc');
             } else {
-                $voteQuery->orderBy('total_votes', 'desc');
+                $vote->orderBy('total_votes', 'desc');
             }
-
-            $vote = $voteQuery->first();
-            \Log::info("Choice ID: {$survey->id} has votes: " . ($vote->total_votes ?? 0));
+            $vote = $vote->first();
             $survey->survey_votes = !empty($vote) ? $vote->total_votes : 0;
         }
 
         $model->comments = self::prepareTree($model->comments);
         $model->choices = $survey_lists;
-    } else {
-        \Log::warning('No survey model found after applying filters.');
     }
 
     $this->jsonResponse->setData(
@@ -1201,7 +1023,6 @@ public function homeSurveyApproval(Request $request)
 
     return $this->jsonResponse->getResponse();
 }
-
 
 
     private function prepareTree($comments)
