@@ -1065,6 +1065,15 @@ public function homeSurveyApproval(Request $request)
 
         return $this->jsonResponse->getResponse();
     }
+$rawSurvey = Survey::withTrashed()->find($vote->survey_id);
+\Log::info('Raw survey data for ID ' . $vote->survey_id . ': ', [$rawSurvey]);
+
+if ($rawSurvey) {
+    \Log::info('Survey status: ' . $rawSurvey->status);
+    \Log::info('Survey type: ' . $rawSurvey->type);
+    \Log::info('Survey user ID: ' . $rawSurvey->user_id);
+}
+
 
     $model = Survey::with([
         'subjects',
@@ -1081,8 +1090,8 @@ public function homeSurveyApproval(Request $request)
         'comments.user.country',
         'comments.user.city',
     ])
-        ->where('status', '=', true)
-        ->where('type', '=', 'normal')
+        ->where('status',  true)
+        ->where('type', 'normal')
         ->withTrashed()
         ->whereHas('user', function ($query) {
             $query->withTrashed();
