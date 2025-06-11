@@ -104,7 +104,8 @@ class SubjectsController extends Controller
     {
         //update the subject title if needed
         $subject->title = $request->json('title');
-        $subject->translate_key = 'subject.'.str_slug($subject->title);
+        // $subject->translate_key = 'subject.'.str_slug($subject->title); //old
+        $subject->translate_key = 'subject.' . Str::slug($subject->title); //updated
 
         $updated = $subject->update();
 
