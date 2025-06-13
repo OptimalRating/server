@@ -195,7 +195,7 @@ class SurveysController extends Controller
     // Get the survey details with relationships, including soft-deleted comments
     $model = Survey::with([
         'choices.votesSpecial',
-        // 'choices.votes',
+        'choices.votes',
         'subjects',
         'comments' => function ($query) {
             $query->withTrashed()->with([
