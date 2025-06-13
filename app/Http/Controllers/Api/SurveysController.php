@@ -167,7 +167,10 @@ class SurveysController extends Controller
     }
 
     $id = $survey->id;
-    
+
+    $surveyType = $request->get('surveyType', 'normal'); //added by muskan
+    $votesRelation = $surveyType === 'normal' ? 'votes' : 'votesSpecial'; //added by muskan
+
     // Get the survey choices with or without pagination
     if (isset($request->pagination)) {
         $survey_list_count = SurveyChoice::with('votes')
@@ -175,9 +178,7 @@ class SurveysController extends Controller
             ->where('survey_id', $id)
             ->where('status', 1)
             ->count();
-$surveyType = $request->get('surveyType', 'normal'); // default to 'normal'
-$votesRelation = $surveyType === 'normal' ? 'votes' : 'votesSpecial';
-$survey_list = SurveyChoice::with([$votesRelation => function ($query) {
+    $survey_list = SurveyChoice::with([$votesRelation => function ($query) {
     $query->withTrashed();
 }]) //updated by Muskan
         // $survey_list = SurveyChoice::with(['votes' => function ($query) {
