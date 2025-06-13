@@ -175,10 +175,14 @@ class SurveysController extends Controller
             ->where('survey_id', $id)
             ->where('status', 1)
             ->count();
-
-        $survey_list = SurveyChoice::with(['votes' => function ($query) {
-                $query->withTrashed();
-            }])
+$surveyType = $request->get('surveyType', 'normal'); // default to 'normal'
+$votesRelation = $surveyType === 'normal' ? 'votes' : 'votesSpecial';
+$survey_list = SurveyChoice::with([$votesRelation => function ($query) {
+    $query->withTrashed();
+}]) //updated by Muskan
+        // $survey_list = SurveyChoice::with(['votes' => function ($query) {
+        //         $query->withTrashed();
+        //     }]) //commented by muskan
             ->withTrashed()
             ->where('survey_id', $id)
             ->where('status', 1)
@@ -195,7 +199,8 @@ class SurveysController extends Controller
     // Get the survey details with relationships, including soft-deleted comments
     $model = Survey::with([
         // 'choices.votesSpecial',
-        'choices.votes',
+        // 'choices.votes',
+        "choices.$votesRelation", //updated by muskan
         'subjects',
         'comments' => function ($query) {
             $query->withTrashed()->with([
