@@ -213,7 +213,7 @@ class SurveysController extends Controller
         },
         'user.userDetails'
     ])
-    // ->withTrashed()  // Include soft-deleted surveys // 16-06-25
+    ->withTrashed()  // Include soft-deleted surveys
     ->where('id', $id);
 
     $pagination = new ApiPagination(request("limit", $take), $survey_list_count, request("offset", 0));
