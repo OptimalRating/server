@@ -48,20 +48,30 @@ class CommentController extends Controller
 {
     if (auth()->user()->hasRole('super_admin')) {
         $model = Comment::where('country_id', null)
-            ->whereHas('commentable', function ($query) {
-                $query->whereNotNull('category_id');
-            })
+            ->where('commentable_type', 'App\\Survey') // Only include Surveys
+            ->whereHasMorph(
+                'commentable',
+                [\App\Survey::class],
+                function ($query) {
+                    $query->whereNotNull('category_id');
+                }
+            )
             ->with(['country', 'commentable', 'user']);
     } else {
         $model = Comment::where('country_id', auth()->user()->country_id)
-            ->whereHas('commentable', function ($query) {
-                $query->whereNotNull('category_id');
-            })
+            ->where('commentable_type', 'App\\Survey') // Only include Surveys
+            ->whereHasMorph(
+                'commentable',
+                [\App\Survey::class],
+                function ($query) {
+                    $query->whereNotNull('category_id');
+                }
+            )
             ->with(['country', 'commentable', 'user']);
     }
 
     Log::info("comments data=>", [$model->get()->toArray()]);
-    
+
     $pagination = new ApiPagination(
         request("limit", 20),
         is_countable($model->get()) ? count($model->get()) : 0,
@@ -72,7 +82,6 @@ class CommentController extends Controller
 
     return $this->jsonResponse->getResponse();
 }
-
 
 
     public function store( Request $request )
