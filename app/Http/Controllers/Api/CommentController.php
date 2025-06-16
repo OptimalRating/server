@@ -28,21 +28,51 @@ class CommentController extends Controller
     /**
      * @return array
      */
-    public function comments()
-    {
-        if(auth()->user()->hasRole('super_admin')){
-            $model = Comment::where('country_id', null)->with(['country','commentable','user']);
-        }
-        else{
-            $model = Comment::where('country_id', auth()->user()->country_id)->with(['country','commentable','user']);
-        }
-        Log::info("Model Data 1=>", [$model->get()->toArray()]);
-        $pagination = new ApiPagination(request("limit", 20), is_countable($model->get()) ? count($model->get()) : 0, request("offset", 0));
+    // public function comments() //commented 16-06-2025
+    // {
+    //     if(auth()->user()->hasRole('super_admin')){
+    //         $model = Comment::where('country_id', null)->with(['country','commentable','user']);
+    //     }
+    //     else{
+    //         $model = Comment::where('country_id', auth()->user()->country_id)->with(['country','commentable','user']);
+    //     }
+    //     Log::info("Model Data 1=>", [$model->get()->toArray()]);
+    //     $pagination = new ApiPagination(request("limit", 20), is_countable($model->get()) ? count($model->get()) : 0, request("offset", 0));
 
-        $this->jsonResponse->setData(200, 'msg.info.list.comments', $model->get(), null, null);
+    //     $this->jsonResponse->setData(200, 'msg.info.list.comments', $model->get(), null, null);
 
-        return $this->jsonResponse->getResponse();
+    //     return $this->jsonResponse->getResponse();
+    // }
+
+    public function comments()  //updated 16-06-2025 added null-check for category_id
+{
+    if (auth()->user()->hasRole('super_admin')) {
+        $model = Comment::where('country_id', null)
+            ->whereHas('commentable', function ($query) {
+                $query->whereNotNull('category_id');
+            })
+            ->with(['country', 'commentable', 'user']);
+    } else {
+        $model = Comment::where('country_id', auth()->user()->country_id)
+            ->whereHas('commentable', function ($query) {
+                $query->whereNotNull('category_id');
+            })
+            ->with(['country', 'commentable', 'user']);
     }
+
+    Log::info("comments data=>", [$model->get()->toArray()]);
+    
+    $pagination = new ApiPagination(
+        request("limit", 20),
+        is_countable($model->get()) ? count($model->get()) : 0,
+        request("offset", 0)
+    );
+
+    $this->jsonResponse->setData(200, 'msg.info.list.comments', $model->get(), null, null);
+
+    return $this->jsonResponse->getResponse();
+}
+
 
 
     public function store( Request $request )
