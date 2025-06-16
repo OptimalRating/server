@@ -1282,6 +1282,8 @@ public function topVoted(Request $request)
         $survey->votes()->delete();
         //delete survey choices
         $survey->choices()->delete();
+        //delete survey comments 16/06/25
+        $survey->comments()->delete();
         //delete survey
         $survey->delete();
 
