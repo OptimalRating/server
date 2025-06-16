@@ -266,16 +266,18 @@ class SurveysController extends Controller
         $survey_list_count = 0;
         if (isset($request->pagination)) {
             // $model = SurveyChoice::with('votes')->where('survey_id', $id)->where('status', 1);
-            $survey_list_count = SurveyChoice::withTrashed()->with('votes')->where('survey_id', $id)->where('status', 1)->count();
-            $survey_list = SurveyChoice::withTrashed()->with('votes')->where('survey_id', $id)->where('status', 1)->limit($take)->offset($request->offset);
-            // $survey_list = SurveyChoice::with('votes')->where('survey_id', $id)->where('status', 1)->paginate($take);
+            // $survey_list_count = SurveyChoice::withTrashed()->with('votes')->where('survey_id', $id)->where('status', 1)->count();//16-06-25
+            $survey_list_count = SurveyChoice::with('votes')->where('survey_id', $id)->where('status', 1)->count();
+            // $survey_list = SurveyChoice::withTrashed()->with('votes')->where('survey_id', $id)->where('status', 1)->limit($take)->offset($request->offset);
+            $survey_list = SurveyChoice::with('votes')->where('survey_id', $id)->where('status', 1)->paginate($take);
         } else {
             // $model = SurveyChoice::with('votes')->where('survey_id', $id);
-            $survey_list = SurveyChoice::withTrashed()->with('votes')->where('survey_id', $id);
-            // $survey_list = SurveyChoice::with('votes')->where('survey_id', $id)->get();
+            // $survey_list = SurveyChoice::withTrashed()->with('votes')->where('survey_id', $id); //16-06-25
+            $survey_list = SurveyChoice::with('votes')->where('survey_id', $id)->get();
         }
 
-        $model = Survey::withTrashed()->with([
+        // $model = Survey::withTrashed()->with([ //16-06-25
+            $model = Survey::with([
             // 'choices.votes',
             'subjects',
             'comments' => function ($query) {
@@ -290,7 +292,7 @@ class SurveysController extends Controller
             // 'comments.likes.user',
             'user.userDetails'
         ])
-        ->withTrashed()
+        // ->withTrashed() //16-06-25
         ->where('id', $id);
         //            ->where('mark', '!=', null);
 
