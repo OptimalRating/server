@@ -281,6 +281,7 @@ class SurveysController extends Controller
             // 'choices.votes',
             'subjects',
             'comments' => function ($query) {
+            // $query->withTrashed()->with([//16-06-25
             $query->withTrashed()->with([
                 'comments.user.userDetails', 
                 'user.userDetails', 
@@ -309,10 +310,6 @@ class SurveysController extends Controller
         if ( $model ) {
             $model->choices = $survey_list->get();
         }
-
-        // return response()->json( $model );
-        // echo '<pre/>';
-        // dd(print_r($model));
 
         $this->jsonResponse->setData(
             200,
