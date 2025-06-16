@@ -11,6 +11,7 @@ use App\Service\CustomJsonResponse;
 use App\CustomObjects\ApiPagination;
 use App\Http\Controllers\Controller;
 use App\Validator\CategoryValidator;
+use Illuminate\Support\Facades\Log;
 
 class CommentController extends Controller
 {
