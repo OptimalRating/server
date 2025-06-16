@@ -204,7 +204,8 @@ class SurveysController extends Controller
         "choices.$votesRelation", //updated by muskan
         'subjects',
         'comments' => function ($query) {
-            $query->withTrashed()->with([
+            // $query->withTrashed()->with([ // 16-06-25
+                $query->with([
                 'comments.user.userDetails', 
                 'user.userDetails', 
                 'likes.user'
@@ -212,7 +213,7 @@ class SurveysController extends Controller
         },
         'user.userDetails'
     ])
-    ->withTrashed()  // Include soft-deleted surveys
+    // ->withTrashed()  // Include soft-deleted surveys // 16-06-25
     ->where('id', $id);
 
     $pagination = new ApiPagination(request("limit", $take), $survey_list_count, request("offset", 0));
