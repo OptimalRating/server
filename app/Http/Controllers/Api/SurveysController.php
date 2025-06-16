@@ -273,7 +273,7 @@ class SurveysController extends Controller
         } else {
             // $model = SurveyChoice::with('votes')->where('survey_id', $id);
             // $survey_list = SurveyChoice::withTrashed()->with('votes')->where('survey_id', $id); //16-06-25
-            $survey_list = SurveyChoice::with('votes')->where('survey_id', $id)->get();
+            $survey_list = SurveyChoice::with('votes')->where('survey_id', $id);
         }
 
         // $model = Survey::withTrashed()->with([ //16-06-25
@@ -282,7 +282,7 @@ class SurveysController extends Controller
             'subjects',
             'comments' => function ($query) {
             // $query->withTrashed()->with([//16-06-25
-            $query->withTrashed()->with([
+            $query->with([
                 'comments.user.userDetails', 
                 'user.userDetails', 
                 'likes.user'
