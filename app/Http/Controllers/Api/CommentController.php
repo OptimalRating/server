@@ -14,8 +14,14 @@ use App\Validator\CategoryValidator;
 
 class CommentController extends Controller
 {
-    public function __construct(private readonly CustomJsonResponse $jsonResponse)
+    /**
+     * @var CustomJsonResponse
+     */
+    private $jsonResponse;
+
+    public function __construct(CustomJsonResponse $jsonResponse)
     {
+        $this->jsonResponse = $jsonResponse;
     }
 
     /**
@@ -29,7 +35,7 @@ class CommentController extends Controller
         else{
             $model = Comment::where('country_id', auth()->user()->country_id)->with(['country','commentable','user']);
         }
-
+        Log::info("Model Data 1=>", [$model->get()->toArray()]);
         $pagination = new ApiPagination(request("limit", 20), is_countable($model->get()) ? count($model->get()) : 0, request("offset", 0));
 
         $this->jsonResponse->setData(200, 'msg.info.list.comments', $model->get(), null, null);
@@ -113,9 +119,9 @@ class CommentController extends Controller
     public function getSurveyComments(Survey $survey)
     {
         $model  = self::prepareTree($survey->comments);
-
+        Log::info("Model Data", [$model->get()->toArray()]);
         $pagination = new ApiPagination(request("limit", 20), is_countable($model) ? count($model) : 0, request("offset", 0));
-
+        Log::info("pagination", [$pagination]);
         $this->jsonResponse->setData(
             200,
             'msg.info.list.comments', $model, null, $pagination->getConvertObject()
