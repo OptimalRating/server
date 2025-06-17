@@ -15,8 +15,11 @@ use Illuminate\Support\Facades\Log;
 
 class MembersController extends Controller
 {
-    public function __construct(private readonly CustomJsonResponse $jsonResponse)
+    private $jsonResponse;
+
+    public function __construct(CustomJsonResponse $jsonResponse)
     {
+        $this->jsonResponse = $jsonResponse;
     }
 
     public function index()
@@ -44,7 +47,8 @@ class MembersController extends Controller
                       ->where('country_id', auth()->user()->country_id)  // Same country as the logged-in user
                       ->whereHas('country', function($countryQuery) {
                           // Check if the country has a country_admin
-                          $countryQuery->where('country_admin', auth()->user()->id); 
+                        $countryQuery->where('country_admin', auth()->user()->id)
+                        ->whereNull('deleted_at'); //17-06-25
                       });
             });
         }
