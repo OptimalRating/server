@@ -24,16 +24,24 @@ class MembersController extends Controller
 
     public function index()
     {
-        if(auth()->user()->hasRole('super_admin')){
-            // $model = User::with(['country', 'userDetails']); //17-06-25
-            $model = User::with(['country' => function ($q) {
+        // if(auth()->user()->hasRole('super_admin')){
+        //     $model = User::with(['country', 'userDetails']);
+        // }  //old code //17-06-25
+
+        if (auth()->user()->hasRole('super_admin')) { //updated //17-06-25
+         $model = User::with([
+            'country' => function ($q) {
                 $q->whereNull('deleted_at');
-            }, 'userDetails'])
-            ->whereHas('country', function ($q) {
-                $q->whereNull('deleted_at');
-            });
-           Log::info('I am HERE---',['$model' => $model]);
-        }
+            },
+            'userDetails'
+         ])
+         ->where(function ($query) {
+            $query->whereNull('country_id') // Super admin user with no country
+                  ->orWhereHas('country', function ($q) {
+                      $q->whereNull('deleted_at'); // Users from non-deleted countries
+                  });
+           });
+         }
 
         // else if(auth()->user()->hasRole('country_admin')){         //old code 
         //     $model = User::whereHas('roles', function (Builder $query) {
@@ -55,7 +63,7 @@ class MembersController extends Controller
                       ->whereHas('country', function($countryQuery) {
                           // Check if the country has a country_admin
                         $countryQuery->where('country_admin', auth()->user()->id)
-                        ->whereNull('deleted_at'); //17-06-25 added
+                        ->whereNull('deleted_at'); //17-06-25
                       });
             });
         }
