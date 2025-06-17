@@ -25,7 +25,14 @@ class MembersController extends Controller
     public function index()
     {
         if(auth()->user()->hasRole('super_admin')){
-            $model = User::with(['country', 'userDetails']);
+            // $model = User::with(['country', 'userDetails']); //17-06-25
+            $model = User::with(['country' => function ($q) {
+                $q->whereNull('deleted_at');
+            }, 'userDetails'])
+            ->whereHas('country', function ($q) {
+                $q->whereNull('deleted_at');
+            });
+           Log::info('I am HERE---',['$model' => $model]);
         }
 
         // else if(auth()->user()->hasRole('country_admin')){         //old code 
@@ -48,7 +55,7 @@ class MembersController extends Controller
                       ->whereHas('country', function($countryQuery) {
                           // Check if the country has a country_admin
                         $countryQuery->where('country_admin', auth()->user()->id)
-                        ->whereNull('deleted_at'); //17-06-25
+                        ->whereNull('deleted_at'); //17-06-25 added
                       });
             });
         }
