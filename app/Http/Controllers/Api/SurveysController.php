@@ -214,6 +214,7 @@ class SurveysController extends Controller
         'user.userDetails'
     ])
     ->withTrashed()  // Include soft-deleted surveys
+    ->whereNotNull('category_id') // 17-06-25
     ->where('id', $id);
 
     $pagination = new ApiPagination(request("limit", $take), $survey_list_count, request("offset", 0));
@@ -398,124 +399,7 @@ class SurveysController extends Controller
         return $this->jsonResponse->getResponse();
     }
 
-//     public function homeCurrentSpecialSurvey(Request $request)
-// {
-//     $headerCountry = $request->header('country');
-//     $country_id = null;
-//     $is_world = 1;
 
-//     if ($headerCountry !== 'null') {
-//         $curentCountry = Country::select(['id', 'code'])->where('code', $headerCountry)->first();
-
-//         // Check if $curentCountry is a valid object
-//         if ($curentCountry) {
-//             $country_id = $curentCountry->id;
-//             $is_world = 0;
-			
-//         } else {
-			
-			
-// 		}		
-// 	}
-//         $now = (new Carbon());
-//         $user_id = auth()->user() ? auth()->user()->id : 0;
-
-//         $model = Survey::with([
-//             'choices.votesSpecial',
-//             'subjects',
-//             'comments' => function ($query) {
-//         $query->withTrashed(); // Include soft-deleted comments
-//          },
-//             'comments.comments.likes',
-//             'comments.comments.user.userDetails',
-//             'comments.user.userDetails',
-//             'comments.likes.user',
-//             'comments.user.privacySettings.privacy',
-//             'comments.user.privacySettings.privacy.options',
-//             'comments.user.privacySettings.option',
-//             'comments.user.country',
-//             'comments.user.city',
-//         ])
-//             ->where('show_on_home', 1)
-//             ->where('type', '=', 'special')
-//             ->where('expire_at', '>', $now)
-//             ->where('start_at', '<', $now)
- 
-//             ->where('country_id', $country_id)
-//             ->where('is_world', $is_world)
-//             ->orderBy('id', 'desc')
-//             ->withTrashed()
-//             ->whereHas('user', function ($query) {
-//                 $query->withTrashed(); // Ensure that soft-deleted users are included
-//             })
-//             ->first();
-
-//         if ($model) {
-
-//             foreach ($model->comments as $key => $comment) {
-//                 foreach ($comment->user->privacySettings as $privacyInfo) {
-//                     $slug = $privacyInfo->privacy->slug;
-//                     $userDetails = $comment->user;
-//                     # For User Data
-//                     if (isset($userDetails[$slug])) {
-//                         switch ($privacyInfo->option->option) {
-//                             case 'Friend':
-//                                 $friend = Friends::withTrashed()->hasFriend($userDetails->id, $user_id);
-//                                 if (!$friend) {
-//                                     $userDetails[$slug] = NULL;
-//                                     if ($slug == 'country_id') {
-//                                         $userDetails->country->name = NULL;
-//                                     }
-//                                     if ($slug == 'city_id') {
-//                                         $userDetails->city->name = NULL;
-//                                     }
-//                                 }
-//                                 break;
-
-//                             case 'Nobody':
-//                                 $userDetails[$slug] = NULL;
-//                                 if ($slug == 'country_id') {
-                                    
-//                                     $userDetails->country->name = NULL;
-//                                 }
-//                                 if ($slug == 'city_id') {
-//                                     $userDetails->city->name = NULL;
-//                                 }
-//                                 break;
-//                         }
-//                     }
-
-//                     # For User details data
-//                     if (isset($userDetails->userDetails[$slug])) {
-//                         switch ($privacyInfo->option->option) {
-//                             case 'Friend':
-//                                 $friend = Friends::withTrashed()->hasFriend($userDetails->id, $user_id);
-//                                 if (!$friend) {
-//                                     $userDetails->userDetails[$slug] = NULL;
-//                                 }
-//                                 break;
-
-//                             case 'Nobody':
-//                                 $userDetails->userDetails[$slug] = NULL;
-//                                 break;
-//                         }
-//                     }
-//                 }
-//             }
-//             $model->comments = self::prepareTree($model->comments);
-//         }
-
-
-//         $this->jsonResponse->setData(
-//             200,
-//             'msg.info.list.surveys',
-//             $model,
-//             null,
-//             null
-//         );
-
-//         return $this->jsonResponse->getResponse();
-// }
 
 public function homeCurrentSpecialSurvey(Request $request)
 {
@@ -563,6 +447,7 @@ public function homeCurrentSpecialSurvey(Request $request)
         ->where('start_at', '<=', $now)
         ->where('country_id', $country_id)
         ->where('is_world', $is_world)
+        ->whereNotNull('category_id')
         ->orderBy('expire_at', 'asc')
         ->withTrashed()
         ->whereHas('user', function ($query) {
@@ -935,6 +820,7 @@ public function homeCurrentSpecialSurvey(Request $request)
     ])
         ->where('status', '=', true)
         ->where('type', '=', 'normal')
+        ->whereNotNull('category_id')
         ->withTrashed() // Include surveys from soft-deleted users
         ->whereHas('user', function ($query) {
             $query->withTrashed(); // Ensure that soft-deleted users are included
