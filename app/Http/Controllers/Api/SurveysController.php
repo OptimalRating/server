@@ -447,6 +447,7 @@ public function homeCurrentSpecialSurvey(Request $request)
         ->where('start_at', '<=', $now)
         ->where('country_id', $country_id)
         ->where('is_world', $is_world)
+        ->whereHas('subjects') // ✅ subject should not to be blank 26-06-2025
         ->orderBy('expire_at', 'asc')
         ->withTrashed()
         ->whereHas('user', function ($query) {
