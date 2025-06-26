@@ -1059,9 +1059,8 @@ public function homeCurrentSpecialSurvey(Request $request)
     // Initialize the query builder
     $query = Survey::withTrashed()
         ->where('created_at', '>=', Carbon::now()->subDays(38)->toDateTimeString())
-        ->where('status', true);
-        // ->whereNotNull('category_id'); // 19-06-25
-
+        ->where('status', true)
+        ->whereHas('subjects'); // ✅ subject should not to be blank 26-06-2025
     if ($country) {
         // If a country is found, filter by country_id
         $query->where('country_id', $country->id);
@@ -1096,8 +1095,8 @@ public function topVoted(Request $request)
     $query = Survey::withTrashed()
         ->whereIn('id', $ids)
         ->where('status', true)
-        ->take(CustomHelper::TOP_VOTED_SURVEY_LIMIT);
-        // ->whereNotNull('category_id'); // 19-06-25
+        ->take(CustomHelper::TOP_VOTED_SURVEY_LIMIT)
+        ->whereHas('subjects'); // ✅ subject should not to be blank 26-06-2025
 
     if ($country) {
         // If a country is found, filter by country_id
