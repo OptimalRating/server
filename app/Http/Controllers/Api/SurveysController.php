@@ -447,7 +447,6 @@ public function homeCurrentSpecialSurvey(Request $request)
         ->where('start_at', '<=', $now)
         ->where('country_id', $country_id)
         ->where('is_world', $is_world)
-        ->whereNotNull('category_id')
         ->orderBy('expire_at', 'asc')
         ->withTrashed()
         ->whereHas('user', function ($query) {
