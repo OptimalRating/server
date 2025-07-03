@@ -24,11 +24,16 @@ use Mockery\Exception;
 
 class CountryController extends Controller
 {
-    public function __construct(private readonly CustomJsonResponse $jsonResponse)
+    /**
+     * @var CustomJsonResponse
+     */
+    private $jsonResponse;
+
+    public function __construct(CustomJsonResponse $jsonResponse)
     {
+        $this->jsonResponse = $jsonResponse;
     }
 
-    
     public function index()
     {
     $model = Country::with(['user'])
@@ -142,34 +147,65 @@ class CountryController extends Controller
     //country silme olmamalı bence bu ülkeye bağlı bir
     //sürü anket user vs data olacağından bu işlem sorunlar doğuracaktır.
     // Passive e alma şeklinde yapılabilir
-    public function destroy(Request $request, Country $country)
-    {
-        // Step 1: Delete all surveys related to this country
-        $surveys = Survey::where('country_id', $country->id)->whereNull('deleted_at')->get();
-        foreach ($surveys as $survey) {
-            $survey->delete(); // Soft delete the survey
-        }
+    // public function destroy(Request $request, Country $country)
+    // {
+    //     // Step 1: Delete all surveys related to this country
+    //     $surveys = Survey::where('country_id', $country->id)->whereNull('deleted_at')->get();
+    //     foreach ($surveys as $survey) {
+    //         $survey->delete(); // Soft delete the survey
+    //     }
     
-        // Step 2: Delete all categories associated with the country
-        $categories = Category::where('country_id', $country->id)->whereNull('deleted_at')->get();
-        foreach ($categories as $category) {
-            // First delete the surveys linked to the category (if any)
-            Survey::where('category_id', $category->id)->delete(); // This ensures category's surveys are removed
+    //     // Step 2: Delete all categories associated with the country
+    //     $categories = Category::where('country_id', $country->id)->whereNull('deleted_at')->get();
+    //     foreach ($categories as $category) {
+    //         // First delete the surveys linked to the category (if any)
+    //         Survey::where('category_id', $category->id)->delete(); // This ensures category's surveys are removed
     
-            // Now delete the category
-            $category->delete();
-        }
+    //         // Now delete the category
+    //         $category->delete();
+    //     }
     
-        // Step 3: Soft delete all users related to the country
-        $users = User::where('country_id', $country->id)->whereNull('deleted_at')->get();
-        foreach ($users as $user) {
-            $user->delete(); // Soft delete the user
-        }
-        // Step 4: Finally, delete the country
-        $country->delete();
+    //     // Step 3: Soft delete all users related to the country
+    //     $users = User::where('country_id', $country->id)->whereNull('deleted_at')->get();
+    //     foreach ($users as $user) {
+    //         $user->delete(); // Soft delete the user
+    //     }
+    //     // Step 4: Finally, delete the country
+    //     $country->delete();
     
-        return $this->jsonResponse->setData(200, 'msg.info.success.country.delete')->getResponse();
+    //     return $this->jsonResponse->setData(200, 'msg.info.success.country.delete')->getResponse();
+    // }
+
+     public function destroy(Request $request, Country $country) //modify whole for permanent delete 3rd July
+{
+    // Step 1: Permanently delete all surveys related to this country
+    $surveys = Survey::where('country_id', $country->id)->get();
+    foreach ($surveys as $survey) {
+        $survey->forceDelete(); // Force delete survey
     }
+
+    // Step 2: Permanently delete all categories associated with the country
+    $categories = Category::where('country_id', $country->id)->get();
+    foreach ($categories as $category) {
+        // First permanently delete surveys linked to the category (if any)
+        Survey::where('category_id', $category->id)->forceDelete();
+
+        // Now permanently delete the category
+        $category->forceDelete();
+    }
+
+    // Step 3: Permanently delete all users related to the country
+    $users = User::where('country_id', $country->id)->get();
+    foreach ($users as $user) {
+        $user->forceDelete(); // Force delete user
+    }
+
+    // Step 4: Permanently delete the country itself
+    $country->forceDelete();
+
+    return $this->jsonResponse->setData(200, 'msg.info.success.country.delete')->getResponse();
+}
+
     
     // public function destroy(Request $request, Country $country)
     // {
