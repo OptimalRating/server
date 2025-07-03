@@ -812,9 +812,9 @@ public function homeCurrentSpecialSurvey(Request $request)
 
     $model = Survey::with([
         'subjects',
-        'comments' => function ($query) {
-        $query->withTrashed(); // Include soft-deleted comments
-         },
+        // 'comments' => function ($query) {
+        // $query->withTrashed(); // Include soft-deleted comments
+        //  },
         'comments.comments.user.userDetails',
         'comments.user.userDetails',
         'comments.comments.likes',
@@ -828,7 +828,7 @@ public function homeCurrentSpecialSurvey(Request $request)
         ->where('status', '=', true)
         ->where('type', '=', 'normal')
         ->whereNotNull('category_id')
-        ->withTrashed() // Include surveys from soft-deleted users
+        ->withTrashed() // ✅ includes soft-deleted surveys
         ->whereHas('user', function ($query) {
             $query->withTrashed(); // Ensure that soft-deleted users are included
         });
@@ -841,6 +841,12 @@ public function homeCurrentSpecialSurvey(Request $request)
 
     if ($model) {
         foreach ($model->comments as $key => $comment) {
+            if (!$comment->user || $comment->user->trashed()) { // added this block due to remove deleted user's comments 3rd july 2025
+                   // Remove comment from collection
+                  $model->comments->forget($key);
+                   continue;
+                }
+                if ($comment->user && $comment->user->privacySettings) { //added this line 3rd july 2025
             foreach ($comment->user->privacySettings as $privacyInfo) {
                 $slug = $privacyInfo->privacy->slug;
                 $userDetails = $comment->user;
@@ -891,6 +897,7 @@ public function homeCurrentSpecialSurvey(Request $request)
                     }
                 }
             }
+        }
         }
 
         $survey_lists = SurveyChoice::withTrashed()->with('votes')->where('survey_id', $model->id)->take(10)->get();
