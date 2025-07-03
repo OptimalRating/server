@@ -424,8 +424,8 @@ public function homeCurrentSpecialSurvey(Request $request)
     $user_id = auth()->user() ? auth()->user()->id : 0;
 
     // Fetch the list of surveys using get() instead of first()
-    // $models = Survey::with([
-        $model = Survey::with([
+    $models = Survey::with([
+        // $model = Survey::with([
             'choices.votesSpecial',
             'subjects',
             'comments' => function ($query) {
