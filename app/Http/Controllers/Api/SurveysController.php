@@ -46,7 +46,11 @@ class SurveysController extends Controller
 
         if ( $type == 'normal' ) {
             $model = Survey::whereHas('category', fn($query) => $query->where(['status' => 'active']))
-            ->with(['choices.votes', 'category']);
+            ->with(['choices.votes', 'category'])
+            ->withTrashed()
+            ->whereHas('user', function ($query) {
+                       $query->withTrashed(); // Ensure that soft-deleted users are included
+                      });
         } else {
             $model = Survey::with(['choices.votes', 'category']);
         }
