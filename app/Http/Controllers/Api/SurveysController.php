@@ -424,13 +424,13 @@ public function homeCurrentSpecialSurvey(Request $request)
     $user_id = auth()->user() ? auth()->user()->id : 0;
 
     // Fetch the list of surveys using get() instead of first()
-    $models = Survey::with([
-        // $model = Survey::with([
+    // $models = Survey::with([
+        $model = Survey::with([
             'choices.votesSpecial',
             'subjects',
-            'comments' => function ($query) {
-                $query->withTrashed(); // Include soft-deleted comments
-            },
+            // 'comments' => function ($query) {  commented this block 3rd july 2025
+            //     $query->withTrashed(); // Include soft-deleted comments
+            // },
             'comments.comments.likes',
             'comments.comments.user.userDetails',
             'comments.user.userDetails',
@@ -456,10 +456,16 @@ public function homeCurrentSpecialSurvey(Request $request)
         ->first();
 
     // Process each survey's comments and privacy settings
-    if ($models) {
-        // if ($model) {
-        foreach ($models as $model) {
-            foreach ($model->comments as $key => $comment) {
+    // if ($models) {
+        if ($model) {
+        // foreach ($models as $model) {
+             foreach ($model->comments as $key => $comment) {
+                 if (!$comment->user || $comment->user->trashed()) { // added this block due to remove deleted user's comments 3rd july 2025
+                   // Remove comment from collection
+                  $model->comments->forget($key);
+                   continue;
+                }
+                if ($comment->user && $comment->user->privacySettings) { //added this line 3rd july 2025
                 foreach ($comment->user->privacySettings as $privacyInfo) {
                     $slug = $privacyInfo->privacy->slug;
                     $userDetails = $comment->user;
@@ -510,11 +516,12 @@ public function homeCurrentSpecialSurvey(Request $request)
                         }
                     }
                 }
+              }
             }
 
             // Prepare the comments as a tree
             $model->comments = self::prepareTree($model->comments);
-        }
+        // }
     }
 
     // Return the surveys as an array (a collection of surveys)
