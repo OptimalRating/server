@@ -30,7 +30,7 @@ class UserService
             $userDetail->delete();
         }
 
-        self::deleteSurvey($user);
+        // self::deleteSurvey($user); //comented due to , don't want to delete survey if we delete user 3rd July 2025
         self::deleteComments($user);
         self::deleteCategories($user);
         self::deleteFriend($user);
