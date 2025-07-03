@@ -456,9 +456,9 @@ public function homeCurrentSpecialSurvey(Request $request)
         ->first();
 
     // Process each survey's comments and privacy settings
-    // if ($models) {
-        if ($model) {
-        // foreach ($models as $model) {
+    if ($models) {
+        // if ($model) {
+        foreach ($models as $model) {
             foreach ($model->comments as $key => $comment) {
                 foreach ($comment->user->privacySettings as $privacyInfo) {
                     $slug = $privacyInfo->privacy->slug;
@@ -514,7 +514,7 @@ public function homeCurrentSpecialSurvey(Request $request)
 
             // Prepare the comments as a tree
             $model->comments = self::prepareTree($model->comments);
-        // }
+        }
     }
 
     // Return the surveys as an array (a collection of surveys)
