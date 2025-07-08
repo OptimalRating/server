@@ -184,7 +184,7 @@ class SurveysController extends Controller
             ->count();
     $survey_list = SurveyChoice::with([$votesRelation => function ($query) {
     $query->withTrashed();
-}]) //updated by Muskan
+       }]) //updated by Muskan
         // $survey_list = SurveyChoice::with(['votes' => function ($query) {
         //         $query->withTrashed();
         //     }]) //commented by muskan
@@ -218,7 +218,7 @@ class SurveysController extends Controller
         'user.userDetails'
     ])
     ->withTrashed()  // Include soft-deleted surveys
-    ->whereNotNull('category_id') // 17-06-25
+    // ->whereNotNull('category_id') // 17-06-25
     ->where('id', $id);
 
     $pagination = new ApiPagination(request("limit", $take), $survey_list_count, request("offset", 0));
