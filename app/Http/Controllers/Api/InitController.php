@@ -86,8 +86,12 @@ class InitController extends Controller
 
         $decodedBody = json_decode((string) $keyword->body, null, 512, JSON_THROW_ON_ERROR);
         // Log the decoded body
-        Log::info('i18n response body:', ['body' => $decodedBody]);
-        
-        return response()->json(json_decode((string) $keyword->body, null, 512, JSON_THROW_ON_ERROR));
+        // Log::info('i18n response body:', ['body' => $decodedBody]);
+        // Fallback alias: 'world' or 'en'
+        if (!isset($decodedBody['en']) && isset($decodedBody['us'])) {
+        $decodedBody['en'] = $decodedBody['us'];
+        }
+        return response()->json($decodedBody);
+        // return response()->json(json_decode((string) $keyword->body, null, 512, JSON_THROW_ON_ERROR));
     }
 }
