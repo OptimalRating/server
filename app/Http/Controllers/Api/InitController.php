@@ -83,6 +83,8 @@ class InitController extends Controller
             (new CacheService())->keywordCacheCreate();
             $keyword = KeywordsCache::orderBy('id', 'desc')->first();
         }
+         // Log the decoded body
+        Log::info('i18n response body:', ['body' => $decodedBody]);
         return response()->json(json_decode((string) $keyword->body, null, 512, JSON_THROW_ON_ERROR));
     }
 }
