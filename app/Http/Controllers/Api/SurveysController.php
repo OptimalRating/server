@@ -218,8 +218,10 @@ class SurveysController extends Controller
         'user.userDetails'
     ])
     ->withTrashed()  // Include soft-deleted surveys
-    // ->whereNotNull('category_id') // 17-06-25
     ->where('id', $id);
+     if ($surveyType === 'normal') { //added this block ..8-7-2025
+     $model->whereNotNull('category_id');
+     }
 
     $pagination = new ApiPagination(request("limit", $take), $survey_list_count, request("offset", 0));
 
