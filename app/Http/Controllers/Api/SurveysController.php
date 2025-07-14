@@ -1071,68 +1071,123 @@ public function homeCurrentSpecialSurvey(Request $request)
         return $this->jsonResponse->getResponse();
     }
 
-    public function newest(Request $request)
+//     public function newest(Request $request)
+// {
+//     // Retrieve the country based on the request
+//     $country = (new CountryService($request))->getCountry();
+
+//     // Initialize the query builder
+//     $query = Survey::withTrashed()
+//         ->where('created_at', '>=', Carbon::now()->subDays(38)->toDateTimeString())
+//         ->where('status', true)
+//         ->whereHas('subjects'); // ✅ subject should not to be blank 26-06-2025
+//     if ($country) {
+//         // If a country is found, filter by country_id
+//         $query->where('country_id', $country->id);
+//     } else {
+//         // If no country is found, filter by is_world
+//         $query->where('is_world', 1);
+//     }
+
+//     // Execute the query and get the results
+//     $model = $query->get();
+
+//     // Set and return the JSON response
+//     $this->jsonResponse->setData(200, 'msg.info.survey.list', $model);
+//     return $this->jsonResponse->getResponse();
+// }
+
+// public function topVoted(Request $request)
+// {
+//     // Get the survey votes grouped by survey_id and ordered by the sum of marks
+//     $votes = SurveyVote::groupBy('survey_id')
+//         ->selectRaw('survey_id, sum(mark) as sum')
+//         ->orderBy('sum', 'desc')
+//         ->get();
+
+//     // Extract survey IDs from the votes
+//     $ids = $votes->pluck('survey_id')->toArray();
+
+//     // Retrieve the country based on the request
+//     $country = (new CountryService($request))->getCountry();
+
+//     // Initialize the query builder
+//     $query = Survey::withTrashed()
+//         ->whereIn('id', $ids)
+//         ->where('status', true)
+//         ->take(CustomHelper::TOP_VOTED_SURVEY_LIMIT)
+//         ->whereHas('subjects'); // ✅ subject should not to be blank 26-06-2025
+
+//     if ($country) {
+//         // If a country is found, filter by country_id
+//         $query->where('country_id', $country->id);
+//     } else {
+//         // If no country is found, filter by is_world
+//         $query->where('is_world', 1);
+//     }
+
+//     // Execute the query and get the results
+//     $surveys = $query->get();
+
+//     // Set and return the JSON response
+//     $this->jsonResponse->setData(200, 'msg.info.survey.list', $surveys);
+//     return $this->jsonResponse->getResponse();
+// }
+
+public function newest(Request $request)
 {
     // Retrieve the country based on the request
     $country = (new CountryService($request))->getCountry();
 
-    // Initialize the query builder
-    $query = Survey::withTrashed()
+    // Initialize the query builder (removed withTrashed)
+    $query = Survey::query()
         ->where('created_at', '>=', Carbon::now()->subDays(38)->toDateTimeString())
         ->where('status', true)
-        ->whereHas('subjects'); // ✅ subject should not to be blank 26-06-2025
+        ->whereHas('subjects'); // ✅ subject should not be blank
+
     if ($country) {
-        // If a country is found, filter by country_id
         $query->where('country_id', $country->id);
     } else {
-        // If no country is found, filter by is_world
         $query->where('is_world', 1);
     }
 
-    // Execute the query and get the results
     $model = $query->get();
 
-    // Set and return the JSON response
     $this->jsonResponse->setData(200, 'msg.info.survey.list', $model);
     return $this->jsonResponse->getResponse();
 }
 
 public function topVoted(Request $request)
 {
-    // Get the survey votes grouped by survey_id and ordered by the sum of marks
     $votes = SurveyVote::groupBy('survey_id')
         ->selectRaw('survey_id, sum(mark) as sum')
         ->orderBy('sum', 'desc')
         ->get();
 
-    // Extract survey IDs from the votes
     $ids = $votes->pluck('survey_id')->toArray();
 
-    // Retrieve the country based on the request
     $country = (new CountryService($request))->getCountry();
 
-    // Initialize the query builder
-    $query = Survey::withTrashed()
+    // Removed withTrashed here
+    $query = Survey::query()
         ->whereIn('id', $ids)
         ->where('status', true)
         ->take(CustomHelper::TOP_VOTED_SURVEY_LIMIT)
-        ->whereHas('subjects'); // ✅ subject should not to be blank 26-06-2025
+        ->whereHas('subjects'); // ✅ subject should not be blank
 
     if ($country) {
-        // If a country is found, filter by country_id
         $query->where('country_id', $country->id);
     } else {
-        // If no country is found, filter by is_world
         $query->where('is_world', 1);
     }
 
-    // Execute the query and get the results
     $surveys = $query->get();
 
-    // Set and return the JSON response
     $this->jsonResponse->setData(200, 'msg.info.survey.list', $surveys);
     return $this->jsonResponse->getResponse();
 }
+
+
 
 
     public function fake($id)
