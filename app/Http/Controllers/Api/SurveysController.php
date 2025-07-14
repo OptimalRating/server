@@ -455,7 +455,7 @@ public function homeCurrentSpecialSurvey(Request $request)
         ->where('is_world', $is_world)
         ->whereHas('subjects') // ✅ subject should not to be blank 26-06-2025
         ->orderBy('expire_at', 'asc')
-        ->withTrashed()
+        // ->withTrashed() // removed it 14-07-2025
         ->whereHas('user', function ($query) {
             $query->withTrashed(); // Ensure that soft-deleted users are included
         })
