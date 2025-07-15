@@ -66,8 +66,9 @@ jobs:
             }
 
             echo "Pulling latest code..."
+            # SAFER: Avoid deletion of uploads
             git reset --hard
-            git clean -fd
+            git clean -fd -e public/cdn/images/country
             git pull origin main
 
             echo "Installing server PHP dependencies (PHP 8.2)..."
