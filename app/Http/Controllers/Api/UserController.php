@@ -376,12 +376,13 @@ public function facebookLogin(Request $request)
 
     public function updateProfile(Request $request) // updated on 16-7-2025
 {
-    \Log::info('Received profile update payload:', $request->all());
+    // Log::info('Received profile update payload:', $request->all());
 
     $user = auth()->user();
     $req = $request->get('user'); // Extract user section
     $userDetailsPayload = $req['user_details'] ?? [];
-    $countryCode = $request->get('countryCode'); // Top-level country code
+    $countryCode = $request->get('country_code'); // Top-level country code
+    $selectedPhoneCountry = $request->get('selected_phone_country'); // Optional selected country object
 
     // Optional validation
     Validator::make($request->all(), [
@@ -424,6 +425,7 @@ public function facebookLogin(Request $request)
     return response()->json([
         'message' => 'Profile updated successfully.',
         'data' => User::where('id', $user->id)->with('userDetails')->first(),
+        'selected_phone_country' => $selectedPhoneCountry, // ⬅️ This line adds it to response
     ]);
 }
 
