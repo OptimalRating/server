@@ -23,7 +23,12 @@ class User extends Authenticatable
         'name',
         'provider',
         'provider_id',
+        'selected_phone_country',
     ];
+
+    protected $casts = [
+    'selected_phone_country' => 'array',
+     ];
     // protected $fillable = ['email', 'firstName', 'lastName'];
 
     /**
