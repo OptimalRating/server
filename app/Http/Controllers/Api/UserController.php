@@ -390,8 +390,9 @@ public function facebookLogin(Request $request)
     ])->validate();
 
     // Add countryCode to main user data
-    if ($countryCode) {
+    if ($countryCode && $selectedPhoneCountry) {
         $req['country_code'] = $countryCode;
+        $req['selected_phone_country'] = $selectedPhoneCountry;
     }
 
     // Validate user & user_details
@@ -425,7 +426,6 @@ public function facebookLogin(Request $request)
     return response()->json([
         'message' => 'Profile updated successfully.',
         'data' => User::where('id', $user->id)->with('userDetails')->first(),
-        'selected_phone_country' => $selectedPhoneCountry, // ⬅️ This line adds it to response
     ]);
 }
 
