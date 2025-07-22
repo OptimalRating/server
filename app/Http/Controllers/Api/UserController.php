@@ -374,69 +374,28 @@ public function facebookLogin(Request $request)
     //     return $this->customJsonResponse->getResponse();
     // }
 
-    public function updateProfile(Request $request) // updated on 16-7-2025
-{
-    // Log::info('Received profile update payload:', $request->all());
-
-    $user = auth()->user();
-    $req = $request->get('user'); // Extract user section
-    $userDetailsPayload = $req['user_details'] ?? [];
-    $countryCode = $request->get('country_code'); // Top-level country code
-    $selectedPhoneCountry = $request->get('selected_phone_country'); // Optional selected country object
-
-    // Optional validation
-    Validator::make($request->all(), [
-        'countryCode' => 'nullable|string|size:2',
-    ])->validate();
-
-    // Add countryCode to main user data
-    if ($countryCode && $selectedPhoneCountry) {
-        $req['country_code'] = $countryCode;
-        $req['selected_phone_country'] = $selectedPhoneCountry;
-    }
-
-    // Validate user & user_details
-    $userValidator = Validator::make($req, [
-        'firstname' => 'required|string|max:255',
-        'lastname' => 'required|string|max:255',
-        'country_id' => 'required|integer',
-        'city_id' => 'required|integer',
-    ]);
-
-    $userDetailsValidator = Validator::make($userDetailsPayload, [
-        'birthdate' => 'required|date',
-        'gender' => 'required|string',
-        'education' => 'required|string',
-        'phone_number' => 'required|string',
-    ]);
-
-    // Save user_details
-    $userDetails = $user->userDetails()->first();
-
-    if (!$userDetails) {
-        $userDetails = $user->userDetails()->create($userDetailsPayload);
-    } else {
-        $userDetails->update($userDetailsPayload);
-    }
-
-    // Save user info
-    unset($req['user_details']);
-    $user->update($req);
-
-    return response()->json([
-        'message' => 'Profile updated successfully.',
-        'data' => User::where('id', $user->id)->with('userDetails')->first(),
-    ]);
-}
-
-
-//     public function updateProfile(Request $request) // commented on 16-7-2025
+//     public function updateProfile(Request $request) // updated on 16-7-2025 , added phone country and country code
 // {
-//     $user = auth()->user();
-//     $req = $request->get('user'); // Extract 'user' section of the payload
-//     $userDetailsPayload = $req['user_details'] ?? null; // Extract 'user_details'
+//     // Log::info('Received profile update payload:', $request->all());
 
-//     // Validate user data
+//     $user = auth()->user();
+//     $req = $request->get('user'); // Extract user section
+//     $userDetailsPayload = $req['user_details'] ?? [];
+//     $countryCode = $request->get('country_code'); // Top-level country code
+//     $selectedPhoneCountry = $request->get('selected_phone_country'); // Optional selected country object
+
+//     // Optional validation
+//     Validator::make($request->all(), [
+//         'countryCode' => 'nullable|string|size:2',
+//     ])->validate();
+
+//     // Add countryCode to main user data
+//     if ($countryCode && $selectedPhoneCountry) {
+//         $req['country_code'] = $countryCode;
+//         $req['selected_phone_country'] = $selectedPhoneCountry;
+//     }
+
+//     // Validate user & user_details
 //     $userValidator = Validator::make($req, [
 //         'firstname' => 'required|string|max:255',
 //         'lastname' => 'required|string|max:255',
@@ -444,7 +403,6 @@ public function facebookLogin(Request $request)
 //         'city_id' => 'required|integer',
 //     ]);
 
-//     // Validate user_details data
 //     $userDetailsValidator = Validator::make($userDetailsPayload, [
 //         'birthdate' => 'required|date',
 //         'gender' => 'required|string',
@@ -452,27 +410,69 @@ public function facebookLogin(Request $request)
 //         'phone_number' => 'required|string',
 //     ]);
 
-
-//     // Update user details
+//     // Save user_details
 //     $userDetails = $user->userDetails()->first();
 
 //     if (!$userDetails) {
-//         // Create a new userDetails record if it doesn't exist
 //         $userDetails = $user->userDetails()->create($userDetailsPayload);
 //     } else {
-//         $userDetails->update($userDetailsPayload); // Update existing record
+//         $userDetails->update($userDetailsPayload);
 //     }
 
-//     // Update user data
-//     unset($req['user_details']); // Remove user_details from the user payload
+//     // Save user info
+//     unset($req['user_details']);
 //     $user->update($req);
 
-//     // Return the updated user with userDetails
 //     return response()->json([
 //         'message' => 'Profile updated successfully.',
 //         'data' => User::where('id', $user->id)->with('userDetails')->first(),
 //     ]);
 // }
+
+
+    public function updateProfile(Request $request) // commented on 16-7-2025 // resumed on 22-07-2025
+{
+    $user = auth()->user();
+    $req = $request->get('user'); // Extract 'user' section of the payload
+    $userDetailsPayload = $req['user_details'] ?? null; // Extract 'user_details'
+
+    // Validate user data
+    $userValidator = Validator::make($req, [
+        'firstname' => 'required|string|max:255',
+        'lastname' => 'required|string|max:255',
+        'country_id' => 'required|integer',
+        'city_id' => 'required|integer',
+    ]);
+
+    // Validate user_details data
+    $userDetailsValidator = Validator::make($userDetailsPayload, [
+        'birthdate' => 'required|date',
+        'gender' => 'required|string',
+        'education' => 'required|string',
+        'phone_number' => 'required|string',
+    ]);
+
+
+    // Update user details
+    $userDetails = $user->userDetails()->first();
+
+    if (!$userDetails) {
+        // Create a new userDetails record if it doesn't exist
+        $userDetails = $user->userDetails()->create($userDetailsPayload);
+    } else {
+        $userDetails->update($userDetailsPayload); // Update existing record
+    }
+
+    // Update user data
+    unset($req['user_details']); // Remove user_details from the user payload
+    $user->update($req);
+
+    // Return the updated user with userDetails
+    return response()->json([
+        'message' => 'Profile updated successfully.',
+        'data' => User::where('id', $user->id)->with('userDetails')->first(),
+    ]);
+}
 
     public function profileImage(Request $request)
     {
