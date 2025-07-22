@@ -20,6 +20,12 @@ trait Privacy
     public function getPrivacyForGenericAttribute($user, $model, $privacy)
 {
     $show = $this->attributes[$privacy] ?? null;
+    
+    // Always show to profile owner
+    if ($user && $model && $user->id == ($model instanceof UserDetail ? $model->user_id : $model->id)) {
+        return $show;
+    }
+
     $role = ['super_admin', 'country_admin', 'user'];
 
     if (!is_null($model) && !is_null($user) && $user->id == $model->id) {
