@@ -451,27 +451,49 @@ public function facebookLogin(Request $request)
         'education' => 'required|string',
         'phone_number' => 'required|string',
     ]);
+// Update user_details
+$userDetails = $user->userDetails()->first();
+
+if (!$userDetails) {
+    // Create a new userDetails record if it doesn't exist
+    $userDetails = $user->userDetails()->create($userDetailsPayload);
+} else {
+    $userDetails->update($userDetailsPayload);
+}
+
+// Reload updated relationship
+$user->load('userDetails');
+
+// Update user data
+unset($req['user_details']);
+$user->update($req);
+
+// Return the updated user with userDetails
+return response()->json([
+    'message' => 'Profile updated successfully.',
+    'data' => $user,
+]);
 
 
-    // Update user details
-    $userDetails = $user->userDetails()->first();
+    // // Update user details
+    // $userDetails = $user->userDetails()->first();
 
-    if (!$userDetails) {
-        // Create a new userDetails record if it doesn't exist
-        $userDetails = $user->userDetails()->create($userDetailsPayload);
-    } else {
-        $userDetails->update($userDetailsPayload); // Update existing record
-    }
+    // if (!$userDetails) {
+    //     // Create a new userDetails record if it doesn't exist
+    //     $userDetails = $user->userDetails()->create($userDetailsPayload);
+    // } else {
+    //     $userDetails->update($userDetailsPayload); // Update existing record
+    // }
 
-    // Update user data
-    unset($req['user_details']); // Remove user_details from the user payload
-    $user->update($req);
+    // // Update user data
+    // unset($req['user_details']); // Remove user_details from the user payload
+    // $user->update($req);
 
-    // Return the updated user with userDetails
-    return response()->json([
-        'message' => 'Profile updated successfully.',
-        'data' => User::where('id', $user->id)->with('userDetails')->first(),
-    ]);
+    // // Return the updated user with userDetails
+    // return response()->json([
+    //     'message' => 'Profile updated successfully.',
+    //     'data' => User::where('id', $user->id)->with('userDetails')->first(),
+    // ]);
 }
 
     public function profileImage(Request $request)
