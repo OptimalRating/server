@@ -37,7 +37,7 @@ class RouteServiceProvider extends ServiceProvider
     // Add custom API rate limit rules
     RateLimiter::for('api', function (Request $request) {
         // Throttle by IP; increase to 300 reqs/min or use a value suitable for your use case
-        \Log::info('Throttle key: ' . $request->ip());
+        Log::info('Throttle key: ' . $request->ip());
         return Limit::perMinute(300)->by($request->ip());
     });
 
