@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -21,12 +25,25 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
-        //
+    // public function boot()
+    // {
+    //     //
 
-        parent::boot();
-    }
+    //     parent::boot();
+    // }
+
+    public function boot() //updated boot method for api requests per minute 24th July
+{
+    // Add custom API rate limit rules
+    RateLimiter::for('api', function (Request $request) {
+        // Throttle by IP; increase to 300 reqs/min or use a value suitable for your use case
+        \Log::info('Throttle key: ' . $request->ip());
+        return Limit::perMinute(300)->by($request->ip());
+    });
+
+    parent::boot();
+}
+
 
     /**
      * Define the routes for the application.
