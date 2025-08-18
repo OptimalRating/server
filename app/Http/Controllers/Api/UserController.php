@@ -402,7 +402,19 @@ public function facebookLogin(Request $request)
         'country_id' => 'required|integer',
         'city_id' => 'required|integer',
     ]);
+    
+    if (isset($userDetailsPayload['gender'])) {
+    $gender = strtolower(trim($userDetailsPayload['gender']));
 
+    if ($gender === 'no response') {
+        // This directly affects the array passed to update()
+        $userDetailsPayload['gender'] = 'no response';
+    } else {
+        $userDetailsPayload['gender'] = $gender; // normalize
+    }
+    }
+
+    // Validate user_details data
     $userDetailsValidator = Validator::make($userDetailsPayload, [
         'birthdate' => 'required|date',
         'gender' => 'required|string',

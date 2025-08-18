@@ -16,7 +16,7 @@ class CreateUserDetailsTable extends Migration
         Schema::create('user_details', function (Blueprint $table) {
             $table->increments('id');
             $table->date('birthdate')->nullable();
-            $table->enum('gender', ['male', 'female'])->nullable();
+            $table->enum('gender', ['male', 'female', 'no response'])->nullable();
             $table->string('education')->nullable();
             $table->string('phone_number')->nullable();
             $table->enum('marital_status', ['married', 'single'])->nullable();
