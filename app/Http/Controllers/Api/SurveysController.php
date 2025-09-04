@@ -94,8 +94,14 @@ class SurveysController extends Controller
         // }
         // Log::info("Model Data", [$model->get()->toArray()]);
 
-        $count = $model->count();
-        $pagination = new ApiPagination(request("limit", 20), $count, request("offset", 0));
+        // Sorting
+       $sort = request('sort', 'id');      // Default to 'id' if not provided
+       $order = request('order', 'desc');  // Default to 'desc' if not provided
+       $model->orderBy($sort, $order);
+
+        // Count and paginate
+       $count = $model->count();
+       $pagination = new ApiPagination(request("limit", 20), $count, request("offset", 0));
 
         $this->jsonResponse->setData(
             200,
