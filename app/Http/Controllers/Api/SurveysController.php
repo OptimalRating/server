@@ -57,7 +57,7 @@ class SurveysController extends Controller
         $model->where('type', $type);
 
         if (request('year')) {
-            $model->whereMonth('start_at', request('year'));
+            $model->whereYear('start_at', request('year'));
         }
 
         if (request('month')) {
