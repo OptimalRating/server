@@ -134,7 +134,10 @@ public function facebookLogin(Request $request)
     $name = $socialUser->user->name ?? $socialUser->name ?? $socialUser->attributes->name ?? 'Default Name';
     $email = $socialUser->user->email ?? $socialUser->email ?? $socialUser->attributes->email ?? 'default@example.com';
 
-    $existingUser = User::where('email', $email)->first();
+    // $existingUser = User::where('email', $email)->first(); // commented 10-09-2025
+    $existingUser = User::where('email', $email)
+                    ->where('provider', $provider)
+                    ->first();
 
     if ($existingUser) {
     $token = $existingUser->createToken('https://www.optimalrating.com/')->accessToken;
@@ -147,7 +150,12 @@ public function facebookLogin(Request $request)
 
     $userData = ['username' => $firstName, 'name' => $name, 'firstname' => $firstName, 'lastname' => $lastName, 'email' => $email, 'password' => bcrypt(Str::random(24)), 'status' => 'approved', 'country_id' => $countryId, 'provider' => $provider];
 
-    $user = User::firstOrCreate(['email' => $email], $userData);
+    // $user = User::firstOrCreate(['email' => $email], $userData); // commented 10-09-2025
+    $user = User::firstOrCreate(
+    ['email' => $email, 'provider' => $provider],
+    $userData
+    );
+
 
     // Issue an OAuth token for the user
     $token = $user->createToken('https://www.optimalrating.com/')->accessToken;
