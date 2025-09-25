@@ -115,7 +115,7 @@ public function facebookLogin(Request $request)
     public function socialLogin(Request $request, CustomJsonResponse $customJsonResponse)
 {
     Log::info('Hello social');
-    Log::info('incoming request=>:', ['$request' => $request]);
+    // Log::info('incoming request=>:', ['$request' => $request]);
     $provider = $request->input('provider');
     $accessToken = $request->input('token');
     $countryCode = $request->input('countryCode');
