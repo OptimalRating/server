@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
-use App\Country;
 
 class KeywordsController extends Controller
 {
@@ -39,49 +38,25 @@ class KeywordsController extends Controller
 
     //     return $customResponse->getResponse();
     // }
-    public function index(Request $request)  //new code 23-10-2025
-{
-    $getQuery = $request->all();
-    $auth = Auth::user();
 
-    $model = Keyword::with(['translations' => function ($query) use ($auth) {
-        if ($auth && $auth->hasRole('country_admin')) {
-            $country = Country::find($auth->country_id);
-            if ($country) {
-                // Log::info('if',[$country]);
-                $query->where('country_code', $country->code);
-            }
-        } else if ($auth && $auth->hasRole('super_admin')) {
-            // Log::info('else if');
-            $query->whereNull('country_code');
+    public function index(Request $request)
+    {
+        // Use $request->all() instead of Input::all()
+        $getQuery = $request->all();
+
+        $model = Keyword::with('translations')->orderBy($getQuery["sort"], $getQuery["order"])->get();
+        $auth = Auth::user();
+
+        if ($auth->hasRole('country_admin')) {
+            $model = Keyword::with('translation')
+                ->orderBy($getQuery["sort"], $getQuery["order"])->get();
         }
-        // else{Log::info('only else block');}
-    }])->orderBy($getQuery["sort"], $getQuery["order"])->get();
-    // Log::info('MODEL==', ['MODEL' =>  $model]);
-    $pagination = new ApiPagination($getQuery["limit"], $model->count(), $getQuery["offset"]);
-    $customResponse = new CustomJsonResponse(200, 'msg.info.keyword.list', $model, null, $pagination->getConvertObject());
 
-    return $customResponse->getResponse();
-}
+        $pagination = new ApiPagination($getQuery["limit"], $model->count(), $getQuery["offset"]);
+        $customResponse = new CustomJsonResponse(200, 'msg.info.keyword.list', $model, null, $pagination->getConvertObject());
 
-    // public function index(Request $request)  commented on 23-10-2025
-    // {
-    //     // Use $request->all() instead of Input::all()
-    //     $getQuery = $request->all();
-
-    //     $model = Keyword::with('translations')->orderBy($getQuery["sort"], $getQuery["order"])->get();
-    //     $auth = Auth::user();
-
-    //     if ($auth->hasRole('country_admin')) {
-    //         $model = Keyword::with('translation')
-    //             ->orderBy($getQuery["sort"], $getQuery["order"])->get();
-    //     }
-
-    //     $pagination = new ApiPagination($getQuery["limit"], $model->count(), $getQuery["offset"]);
-    //     $customResponse = new CustomJsonResponse(200, 'msg.info.keyword.list', $model, null, $pagination->getConvertObject());
-
-    //     return $customResponse->getResponse();
-    // }
+        return $customResponse->getResponse();
+    }
 
     /**
      * @return array
