@@ -73,27 +73,42 @@ class InitController extends Controller
         return $customResponse->getResponse();
     }
 
-    public function i18n() 
-    {
+    // public function i18n()
+    // {
 
+    //     $keyword = KeywordsCache::orderBy('id', 'desc')->first();
+
+    //     if ($keyword == null) {
+
+    //         (new CacheService())->keywordCacheCreate();
+    //         $keyword = KeywordsCache::orderBy('id', 'desc')->first();
+    //     }
+    //     return response()->json(json_decode($keyword->body));
+    // }
+
+    public function i18n()
+{
+    $keyword = KeywordsCache::orderBy('id', 'desc')->first();
+
+    if ($keyword == null) {
+        (new CacheService())->keywordCacheCreate();
         $keyword = KeywordsCache::orderBy('id', 'desc')->first();
+    }
 
-        if ($keyword == null) {
-
-            (new CacheService())->keywordCacheCreate();
-            $keyword = KeywordsCache::orderBy('id', 'desc')->first();
-        }
-
-        $decodedBody = json_decode((string) $keyword->body, null, 512, JSON_THROW_ON_ERROR);
-        if (isset($decodedBody['null'])) { //added this block for world page translation with country code null
+    // Decode as associative array
+    $decodedBody = json_decode((string) $keyword->body, true, 512, JSON_THROW_ON_ERROR);
+    if (isset($decodedBody['null'])) { //added this block for world page translation with country code null
         // Log::info('inside if HELLO------');
         $decodedBody['en'] = $decodedBody['null'];
-       }
-        // Log the decoded body
-        // Log::info('i18n response body:', ['body' => $decodedBody]);
-        return response()->json($decodedBody);
-        // return response()->json(json_decode((string) $keyword->body, null, 512, JSON_THROW_ON_ERROR));
     }
+    //  Log::info('$decodedBody==', ['$decodedBody' =>  $decodedBody]);
+    // // Fallback alias: 'world' or 'en'
+    // if (!isset($decodedBody['en']) && isset($decodedBody['us'])) {
+    //     $decodedBody['en'] = $decodedBody['us'];
+    // }
+
+    return response()->json($decodedBody);
+}
 
 //     public function i18n() //commented 23-10-2025
 // {
