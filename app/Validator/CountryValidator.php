@@ -11,7 +11,7 @@ class CountryValidator extends ValidatorAbstract
         $this->fields = [
             'name' => 'required',
             'code' => 'required|unique:countries',
-            'flag' => 'required|flag',
+            'flag' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed',
         ];
