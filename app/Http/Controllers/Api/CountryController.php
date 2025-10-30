@@ -237,7 +237,7 @@ class CountryController extends Controller
     // Fetch countries where deleted_at is null
     $countries = Country::whereNull('deleted_at')
         ->orderBy('name')
-        ->select('id', 'name', 'flag', 'name_en', 'code')
+        ->select('id', 'name', 'flag', 'name_en', 'code', 'status')
         ->get();
  
     // Get the user's IP address
